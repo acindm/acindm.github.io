@@ -1169,7 +1169,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #d9ff90;
+  background: #a26ac2;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2521,4 +2521,11 @@ ul.breadcrumb li + li:last-child {
 }
 :root {
   --content-bg-color: rgba(255,255,255,0.902);
+}
+.fa-bilibili {
+  background: url("/images/bilibili.svg");
+  background-position: 50% 75%;
+  background-repeat: no-repeat;
+  height: 1rem;
+  width: 1rem;
 }
