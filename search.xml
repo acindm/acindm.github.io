@@ -27,13 +27,16 @@
 ]]></content>
   </entry>
   <entry>
-    <title></title>
-    <url>/2023/10/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/</url>
+    <title>红日靶场01</title>
+    <url>/2023/10/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA01/</url>
     <content><![CDATA[<p>Web渗透</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nmap -sn /192.168.100/24</span><br></pre></td></tr></table></figure>
+<p>进行主机发现，找到渗透目标主机</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nmap -sn 192.168.100.0/24</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="F:\blog\source\images\image-20231018123105815.png"></p>
-<p>扫描进行主机发现</p>
+<p><img data-src="F:\blog\source_posts\红日靶场01\image-20231018152153780.png" alt="image-20231018152153780"></p>
 ]]></content>
+      <tags>
+        <tag>基础靶场 Web</tag>
+      </tags>
   </entry>
 </search>
