@@ -34,7 +34,7 @@
     <content><![CDATA[<p>Web渗透</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nmap -sn /192.168.100/24</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="C:\Users\lm\AppData\Roaming\Typora\typora-user-images\image-20231018123105815.png" alt="image-20231018123105815"></p>
+<p><img data-src="F:\blog\source\images\image-20231018123105815.png"></p>
 <p>扫描进行主机发现</p>
 ]]></content>
   </entry>
