@@ -33,7 +33,7 @@
 <p>进行主机发现，找到渗透目标主机</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nmap -sn 192.168.100.0/24</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="F:\blog\source_posts\红日靶场01\image-20231018152153780.png" alt="image-20231018152153780"></p>
+<p><img data-src="F:\blog\source_posts\红日靶场01\image-20231018152153780.png" alt="1"></p>
 ]]></content>
       <tags>
         <tag>基础靶场 Web</tag>
