@@ -3,8 +3,100 @@
   <entry>
     <title>E-红日靶场01</title>
     <url>/2023/10/18/E-%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA01/</url>
-    <content><![CDATA[<p><img data-src="F:\blog\source\images\1.png" alt="1"></p>
-<img data-src="/2023/10/18/E-%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA01/1.png" class title="This is an image">  
+    <content><![CDATA[<h3 id="w1r3s靶场"><a href="#w1r3s靶场" class="headerlink" title="w1r3s靶场"></a><strong>w1r3s靶场</strong></h3><p>环境搭建：在VMware Workstation中安装Kali linux和靶机w1r3s</p>
+<p>下载地址：</p>
+<p>VMware: <a href="https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html">https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html</a></p>
+<p>Kali: <a href="https://www.kali.org/">https://www.kali.org/</a></p>
+<p>w1r3s: <a href="https://www.vulnhub.com/entry/w1r3s-101,220/">https://www.vulnhub.com/entry/w1r3s-101,220/</a></p>
+<p><strong>Nmap主机发现</strong></p>
+<p>此命令可显示当前系统中所有网络接口的详细信息，由此可知本机IP地址是192.168.184.134&#x2F;24。此步骤目的是为了下一步扫描出目标靶机的IP地址。</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps2.jpg" alt="img"> </p>
+<p>扫描该子网中的所有主机，nmap 将发送 ICMP Echo Request 包（ping）到指定子网的每个 IP 地址，并根据响应来判断主机是否在线。返回结果可以看到在线主机的 IP 地址。</p>
+<p>sudo:以超级用户权限执行命令</p>
+<p>nmap:扫描工具</p>
+<p>-sn:表示进行主机发现而不进行端口扫描，仅打印出对扫描做出响应的主机</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps3.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps4.jpg" alt="img"> </p>
+<p>第一次扫描未开靶机，第二次扫描前将靶机打开，通过前后两次扫描结果的对比我们可以发现目标靶机的 ip 是 192.168.184.129</p>
+<p><strong>端口扫描</strong></p>
+<p>先创建（mkdir）一个目录来存放数据，再创建一个子目录来存放nmap扫描的数据</p>
+<p>-p:创建目标目录的上级目录</p>
+<p>cd:切换路径</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps5.jpg" alt="img"> </p>
+<p><strong>执行端口扫描</strong></p>
+<p>-sS：表示使用TCP SYN扫描方式</p>
+<p>-p-：表示对全部端口进行扫描</p>
+<p>-oN：用于将扫描结果保存到文件（后加路径）</p>
+<p>可以看到四个开放的端口和对应的服务（21：ftp,22:ssh,80:http,3306:mysql）</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps6.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps7.jpg" alt="img"> </p>
+<p>端口提取命令，为了后续方便，将各个端口提取出来放到变量中</p>
+<p><strong>详细信息扫描</strong></p>
+<p>显示匿名FTP登录被允许，并且有三个客户端连接。此外，还显示了一些目录的信息，例如content、docs和new-employees。</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps8.jpg" alt="img"> </p>
+<p><strong>Udp扫描</strong></p>
+<p>目的是识别目标主机上开放的UDP（User Datagram Protocol）端口。</p>
+<p>结果显示，所有100个扫描的端口都处于被忽略状态。具体来说，目标主机没有对UDP端口作出明确的响应，因此无法判断端口是否开放或关闭。</p>
+<p>-sU：udp 扫描</p>
+<p>–top-ports 100：扫描最常见的 100 个端口</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps9.jpg" alt="img"> </p>
+<p><strong>漏洞脚本扫描</strong></p>
+<p>目的是为了发现目标系统中可能存在的漏洞。这些漏洞可能是由软件缺陷、配置错误或安全配置不当等原因引起的，攻击者可以利用这些漏洞来入侵系统、获取未授权的访问权限、窃取敏感信息或导致系统服务不可用。</p>
+<p>通过http-enum脚本扫描，发现了WordPress登录页面“&#x2F;wordpress&#x2F;wp-login.php”</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps10.jpg" alt="img"> </p>
+<p><strong>FTP匿名登录</strong></p>
+<p>目的是为了获取FTP服务器上公开的信息或文件。成功登录，获得访问FTP服务器上公开文件和文件夹的权限。</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps11.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps12.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps13.jpg" alt="img"> </p>
+<p>查看下载下来的文件，01.txt 看到是个新的 ftp 服务器，02.txt 看到两个字符串，03.txt 是个 logo</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps14.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps15.jpg" alt="img"> </p>
+<p>“hash-identifier”是一个用于识别哈希算法的工具，使用MD5解密，得到This is not a password</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps16.jpg" alt="img"> </p>
+<p>使用base64解密</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps17.jpg" alt="img"> </p>
+<p>mysql 试探。提示不允许登陆</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps18.jpg" alt="img"> </p>
+<p><strong>Web渗透</strong></p>
+<p>直接访问，看到一个 apache 的默认页面</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps19.jpg" alt="img"> </p>
+<p>访问之前 nmap 的 http-enum 得到的 &#x2F;wordpress&#x2F;wp-login.php 发现是一个登陆页面，弱口令无效</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps20.jpg" alt="img"> </p>
+<p><strong>目录爆破</strong></p>
+<p>用gobuster工具进行目录爆破，用于发现目标网站上隐藏的目录和文件</p>
+<p>gobuster dir：指示Gobuster使用目录模式进行枚举。</p>
+<p>-w &#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;dirbuster&#x2F;directory-list-2.3-medium.txt：指定用于枚举的字典文件路径。</p>
+<p>-u <a href="http://192.168.184.12：指定要枚举的目标URL，即" [http: 192.168.184.12](http: 192.168.184.12 )"。">http://192.168.184.12：指定要枚举的目标URL，即&quot;[http://192.168.184.12](http://192.168.184.12/)&quot;。</a></p>
+<p>结果：</p>
+<p>&#x2F;wordpress</p>
+<p>&#x2F;javascript</p>
+<p>&#x2F;administrator</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps21.jpg" alt="img"> </p>
+<p>&#x2F;javascript 提示没有访问权限</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps22.jpg" alt="img"> </p>
+<p>&#x2F;administrator 看到一个安装页面，网页标题是 cuppa cms</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps23.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps24.jpg" alt="img"> </p>
+<p>对cuppa cms 渗透</p>
+<p>SearchSploit是一个用于搜索和浏览漏洞利用数据库的命令行工具</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps25.jpg" alt="img"> </p>
+<p>查看文件，发现文件包含漏洞</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps26.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps27.jpg" alt="img"> </p>
+<p>查看利用文件，发现是 &#x2F;alerts&#x2F;alertConfigField.php 出现了漏洞</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps28.jpg" alt="img"> </p>
+<p>下载此漏洞，查看具体信息</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps29.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps30.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps31.jpg" alt="img"> </p>
+<p>访问目标系统中的敏感文件（passwd存放了用户账户的信息）</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps32.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps33.jpg" alt="img"> </p>
+<p>访问目标系统的用户密码文件</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps34.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps35.jpg" alt="img"> </p>
+<p>John破解密码</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps36.jpg" alt="img"> </p>
+<p>通过SSH协议连接到指定IP地址，成功登录后获取了root权限</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml11244\wps37.jpg" alt="img"> </p>
 ]]></content>
       <tags>
         <tag>Web</tag>
