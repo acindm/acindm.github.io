@@ -340,6 +340,204 @@
       </tags>
   </entry>
   <entry>
+    <title>老旧靶场——shop靶场&amp;封神台</title>
+    <url>/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/</url>
+    <content><![CDATA[<h3 id="shop靶场-1"><a href="#shop靶场-1" class="headerlink" title="shop靶场-1"></a><strong>shop靶场-1</strong></h3><p><em>ps：借鉴了一部分其他小伙伴的渗透过程内容(csdn@哈哈哈cry)</em></p>
+<p>进入windows 7 x64虚拟机里钓鱼台网站的后台</p>
+<p>打开虚拟机后然后双击打开shop1:</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8737.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps2.jpg)
+
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8738.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps4.jpg)
+
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8739.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps6.jpg)
+
+<p>如果遇到双击打不开的情况，点击右下角的小三角形，找到绿色的KR，点击：</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8740.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps8.png)
+
+<p>点击关闭:</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8741.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps10.png)
+
+<p>现在再点击就能打开了，如图：</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8742.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps12.png)
+
+<p>点击第一行：</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8743.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps14.png)
+
+<p>输入网站后台的地址：<a href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop/admin/login.asp </a>我们来到后台登录页面（这里找到后台比较简单，可以试一下几个可能的地址，就不需要扫描了）</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8744.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps16.png)
+
+<p>先来试试弱密码：账号：admin 密码：admin</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8745.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps18.png)
+
+<p>填好后点击“管理登录”，发现成功进入后台管理页面：</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8746.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps20.jpg)
+
+
+
+
+
+<h3 id="shop靶场-2"><a href="#shop靶场-2" class="headerlink" title="shop靶场-2"></a>shop靶场-2</h3><p>打开过程同“shop靶场-1”</p>
+<p>首先进入后台先要找到后台登录页面，使用工具扫描没有结果，但发现了网站的后台：</p>
+<p><a href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop2/admin/login1.asp</a></p>
+<p>跳转到网页后台登录页面：</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8747.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps22.png)
+
+<p>试一试之前试过的弱密码，失败</p>
+<p>接下来进行<strong>sql注入</strong></p>
+<p>打开阿D注入工具</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8748.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps26.jpg)
+
+<p>将注入链接里面的IP地址改成我现在的地址，点击检测</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8749.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps28.jpg)
+
+<p>点击检测标段，再点击admin</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8750.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps30.jpg)
+
+<p>点击检测字段，再把password和admin勾选上</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8751.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps32.jpg)
+
+<p>点击检测内容</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8752.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps34.jpg)
+
+<p>结果出现两组账号密码，我们任选其中一组就行</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8753.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps36.jpg)
+
+<p>在这里，我选择了上面一种，双击，出现账号和密码</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8754.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)
+
+<p>我们发现密码好像被MD5加密过了，解密得</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8755.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps40.jpg)
+
+<p>用获取的账号和密码进行登录</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8756.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps42.png)
+
+<p>成功登录</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8757.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps44.jpg)
+
+<p>上传木马</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8758.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>文件上传成功</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8759.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8760.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>在保存信息的路径下添加888.asp.jpg，在16进制数中找到asp后的.进行00截断。将2e改为00</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8761.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>输入保存路径+888.asp打开网页显示木马添加成功</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8762.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>打开菜刀，将木马路径输入进去</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8763.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>双击网址，打开即可看到任意盘下的文件并进行更改</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8764.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)
+
+
+
+
+
+<h3 id="尤里的复仇-sql注入"><a href="#尤里的复仇-sql注入" class="headerlink" title="尤里的复仇-sql注入"></a>尤里的复仇-sql注入</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8765.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p><strong>判断是否存在SQL注入漏洞</strong></p>
+<p>1.构造 ?id&#x3D;1 and 1&#x3D;1 ，回车观察页面是否正常</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8766.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>页面返回正常，可知 and 这个参数注入进去被当成SQL语句执行了。</p>
+<p>2.构造 and 1&#x3D;2</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8767.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>页面不正常,初步判断这里可能存在一个注入漏洞</p>
+<p><strong>判断字段数</strong></p>
+<p>构造 ?id&#x3D;1 and 1&#x3D;1 order by 1 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8768.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>页面返回正常，进行第二步，构造 ?id&#x3D;1 and 1&#x3D;1 order by 2 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8769.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>页面显示正常，进行第三步，构造 ?id&#x3D;1 and 1&#x3D;1 order by 3 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8770.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>页面返回 错误，判断字段数为 2（判断字符数只有两个）</p>
+<p><strong>判断回显点</strong></p>
+<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,2 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8771.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>页面出现了 2 ，说明我们可以在数字 2 处显示我们想要的内容</p>
+<p><strong>查询相关内容</strong></p>
+<p>查询当前数据库名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,database() 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8772.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>页面回显maoshe</p>
+<p>查询当前数据库版本：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,version() 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8773.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>回显版本号为5.5.53</p>
+<p>查询当前数据库 表名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,table_name from information_schema.tables where table_schema&#x3D;database() limit 0,1 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8774.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>页面回显admin</p>
+<p>绝大数情况下，管理员的账号密码都在admin表里。</p>
+<p>查询字段名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 0,1 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8775.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>回显字段名为id</p>
+<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 1,1 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8776.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 2,1 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8777.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>回显password</p>
+<p>构造语句输出账号密码： ?id&#x3D;1 and 1&#x3D;2 union select 1,password from admin limit 0,1 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8778.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>回显hellohack 得到管理员账号和密码为：hellokack</p>
+<p>得到flag</p>
+<h3 id="尤里的复仇-信息收集1"><a href="#尤里的复仇-信息收集1" class="headerlink" title="尤里的复仇-信息收集1"></a>尤里的复仇-信息收集1</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8779.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>用御剑进行扫描，flag在二级目录里</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8780.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8781.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>点击链接，得到flag</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8782.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+
+
+
+
+<h3 id="尤里的复仇-绕过WAF"><a href="#尤里的复仇-绕过WAF" class="headerlink" title="尤里的复仇-绕过WAF"></a>尤里的复仇-绕过WAF</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8783.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>随便点击一个新闻。在id&#x3D;171后面加一个引号’，测试一下是否有SQL注入</p>
+<p>有弹框了，提示过滤了很多关键字。下一步考虑如何绕过这些关键字</p>
+<p>因为网页做了waf过滤防护，这里考虑用cookie注入，可以进行绕过</p>
+<p>这里使用一个小工具进行注入</p>
+<p>打开这款插件直接在value处填写注入参数即可然后按上面的键开始（value中的值需要注意的是空格用+表示）</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8784.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>出现账号和密码</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8785.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>将密码md5解密</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8786.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
+
+<p>用御剑进行扫描，获得后台地址：</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8787.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)  
+
+<p>输入之前获得的用户名和密码</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8788.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)  
+
+<p>成功拿到flag</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8789.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)  
+]]></content>
+      <tags>
+        <tag>Web-渗透测试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>红日靶场</title>
     <url>/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/</url>
     <content><![CDATA[<h3 id="红日靶场"><a href="#红日靶场" class="headerlink" title="红日靶场"></a>红日靶场</h3><p><strong>编辑虚拟网络</strong></p>
@@ -567,198 +765,44 @@
       </tags>
   </entry>
   <entry>
-    <title>老旧靶场——shop靶场&amp;封神台</title>
-    <url>/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/</url>
-    <content><![CDATA[<h3 id="shop靶场-1"><a href="#shop靶场-1" class="headerlink" title="shop靶场-1"></a><strong>shop靶场-1</strong></h3><p><em>ps：借鉴了一部分其他小伙伴的渗透过程内容(csdn@哈哈哈cry)</em></p>
-<p>进入windows 7 x64虚拟机里钓鱼台网站的后台</p>
-<p>打开虚拟机后然后双击打开shop1:</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8737.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps2.jpg)
-
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8738.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps4.jpg)
-
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8739.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps6.jpg)
-
-<p>如果遇到双击打不开的情况，点击右下角的小三角形，找到绿色的KR，点击：</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8740.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps8.png)
-
-<p>点击关闭:</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8741.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps10.png)
-
-<p>现在再点击就能打开了，如图：</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8742.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps12.png)
-
-<p>点击第一行：</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8743.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps14.png)
-
-<p>输入网站后台的地址：<a href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop/admin/login.asp </a>我们来到后台登录页面（这里找到后台比较简单，可以试一下几个可能的地址，就不需要扫描了）</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8744.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps16.png)
-
-<p>先来试试弱密码：账号：admin 密码：admin</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8745.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps18.png)
-
-<p>填好后点击“管理登录”，发现成功进入后台管理页面：</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8746.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps20.jpg)
-
-
-
-
-
-<h3 id="shop靶场-2"><a href="#shop靶场-2" class="headerlink" title="shop靶场-2"></a>shop靶场-2</h3><p>打开过程同“shop靶场-1”</p>
-<p>首先进入后台先要找到后台登录页面，使用工具扫描没有结果，但发现了网站的后台：</p>
-<p><a href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop2/admin/login1.asp</a></p>
-<p>跳转到网页后台登录页面：</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8747.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps22.png)
-
-<p>试一试之前试过的弱密码，失败</p>
-<p>接下来进行<strong>sql注入</strong></p>
-<p>打开阿D注入工具</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8748.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps26.jpg)
-
-<p>将注入链接里面的IP地址改成我现在的地址，点击检测</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8749.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps28.jpg)
-
-<p>点击检测标段，再点击admin</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8750.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps30.jpg)
-
-<p>点击检测字段，再把password和admin勾选上</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8751.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps32.jpg)
-
-<p>点击检测内容</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8752.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps34.jpg)
-
-<p>结果出现两组账号密码，我们任选其中一组就行</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8753.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps36.jpg)
-
-<p>在这里，我选择了上面一种，双击，出现账号和密码</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8754.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)
-
-<p>我们发现密码好像被MD5加密过了，解密得</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8755.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps40.jpg)
-
-<p>用获取的账号和密码进行登录</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8756.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps42.png)
-
-<p>成功登录</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8757.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps44.jpg)
-
-<p>上传木马</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8758.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>文件上传成功</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8759.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8760.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>在保存信息的路径下添加888.asp.jpg，在16进制数中找到asp后的.进行00截断。将2e改为00</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8761.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>输入保存路径+888.asp打开网页显示木马添加成功</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8762.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>打开菜刀，将木马路径输入进去</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8763.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>双击网址，打开即可看到任意盘下的文件并进行更改</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8764.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)
-
-
-
-
-
-<h3 id="尤里的复仇-sql注入"><a href="#尤里的复仇-sql注入" class="headerlink" title="尤里的复仇-sql注入"></a>尤里的复仇-sql注入</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8765.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p><strong>判断是否存在SQL注入漏洞</strong></p>
-<p>1.构造 ?id&#x3D;1 and 1&#x3D;1 ，回车观察页面是否正常</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8766.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>页面返回正常，可知 and 这个参数注入进去被当成SQL语句执行了。</p>
-<p>2.构造 and 1&#x3D;2</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8767.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>页面不正常,初步判断这里可能存在一个注入漏洞</p>
-<p><strong>判断字段数</strong></p>
-<p>构造 ?id&#x3D;1 and 1&#x3D;1 order by 1 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8768.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>页面返回正常，进行第二步，构造 ?id&#x3D;1 and 1&#x3D;1 order by 2 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8769.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>页面显示正常，进行第三步，构造 ?id&#x3D;1 and 1&#x3D;1 order by 3 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8770.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>页面返回 错误，判断字段数为 2（判断字符数只有两个）</p>
-<p><strong>判断回显点</strong></p>
-<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,2 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8771.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>页面出现了 2 ，说明我们可以在数字 2 处显示我们想要的内容</p>
-<p><strong>查询相关内容</strong></p>
-<p>查询当前数据库名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,database() 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8772.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>页面回显maoshe</p>
-<p>查询当前数据库版本：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,version() 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8773.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>回显版本号为5.5.53</p>
-<p>查询当前数据库 表名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,table_name from information_schema.tables where table_schema&#x3D;database() limit 0,1 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8774.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>页面回显admin</p>
-<p>绝大数情况下，管理员的账号密码都在admin表里。</p>
-<p>查询字段名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 0,1 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8775.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>回显字段名为id</p>
-<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 1,1 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8776.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 2,1 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8777.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>回显password</p>
-<p>构造语句输出账号密码： ?id&#x3D;1 and 1&#x3D;2 union select 1,password from admin limit 0,1 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8778.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>回显hellohack 得到管理员账号和密码为：hellokack</p>
-<p>得到flag</p>
-<h3 id="尤里的复仇-信息收集1"><a href="#尤里的复仇-信息收集1" class="headerlink" title="尤里的复仇-信息收集1"></a>尤里的复仇-信息收集1</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8779.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>用御剑进行扫描，flag在二级目录里</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8780.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8781.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>点击链接，得到flag</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8782.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-
-
-
-
-<h3 id="尤里的复仇-绕过WAF"><a href="#尤里的复仇-绕过WAF" class="headerlink" title="尤里的复仇-绕过WAF"></a>尤里的复仇-绕过WAF</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8783.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>随便点击一个新闻。在id&#x3D;171后面加一个引号’，测试一下是否有SQL注入</p>
-<p>有弹框了，提示过滤了很多关键字。下一步考虑如何绕过这些关键字</p>
-<p>因为网页做了waf过滤防护，这里考虑用cookie注入，可以进行绕过</p>
-<p>这里使用一个小工具进行注入</p>
-<p>打开这款插件直接在value处填写注入参数即可然后按上面的键开始（value中的值需要注意的是空格用+表示）</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8784.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>出现账号和密码</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8785.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>将密码md5解密</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8786.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png) 
-
-<p>用御剑进行扫描，获得后台地址：</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8787.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)  
-
-<p>输入之前获得的用户名和密码</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8788.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)  
-
-<p>成功拿到flag</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8789.png" class title="This is an test image">![img](file:///C:\Users\lm\AppData\Local\Temp\ksohtml17332\wps38.png)  
+    <title>靶场总结</title>
+    <url>/2023/11/06/%E9%9D%B6%E5%9C%BA%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h4 id="W1r3s靶场攻击"><a href="#W1r3s靶场攻击" class="headerlink" title="W1r3s靶场攻击"></a>W1r3s靶场攻击</h4><p><strong>思路</strong>：由于是内网渗透，首先进行主机的扫描来发现目标主机，之后对目标主机进行端口扫描查看开放的端口，在这里发现其21端口允许匿名登陆，以此为攻击点，对其进行漏洞脚本扫描，得到 &#x2F;wordpress&#x2F;wp-login.php，发现其漏洞，之后进行ftp匿名登录，将worktodo.txt以及employee-names.txt下载下来，得到一个新的ftp服务器以及两个字符串，访问nmap得到的 &#x2F;wordpress&#x2F;wp-login.php发现为一个登陆页面，常见的用户名密码登陆失败，决定进行目录爆破，在这里使用gobuster工具进行目录爆破，得到三个结果，挨个访问得到一个安装页面，在此页面中发现为cuppa cms，接下来进行cuppa cms渗透，通过cuppa cms的利用文件，可发现漏洞在 &#x2F;alerts&#x2F;alertConfigField.php中，查看发现为使用post方法传递参数并且将他拼接至前面文件中包含过来，使用curl命令得到密码的内容，发现加密，使用John进行破解得到破解后的密码，最后使用ssh获取shell与提权，通过破解过的密码成功获取root权限。</p>
+<p><strong>攻击工具</strong>：nmap，gobuster，John</p>
+<p><strong>防御方法</strong>：关闭匿名登陆</p>
+<h4 id="shop1靶场"><a href="#shop1靶场" class="headerlink" title="shop1靶场"></a>shop1靶场</h4><p><strong>思路</strong>：首先尝试默认登录后台未成功，使用阿D注入工具（SQL注入的渗透测试工具）扫描注入点，等到两组登录信息，登录成功。尝试上传一句话木马，更改为.jpg格式，将图片与木马链接上传并抓包。在信息路径下添加888.asp.jpg，进行00截断（利用了字符串的结束标识符“0x00”的特性，攻击者可以在目标文件名或URL中手动添加字符串标识符，将后面的内容进行截断，从而绕过某些安全检测），木马添加成功，在菜刀工具中输入木马路径即可修改任意文件。</p>
+<p><strong>攻击工具</strong>：阿D注入工具、菜刀、MD5</p>
+<p><strong>防御方法</strong>：</p>
+<p>密码强度和保护（启用多因素身份验证可以增加额外的安全层）</p>
+<p>安全配置和更新（及时更新软件和操作系统，以及设置适当的安全组和防火墙规则）</p>
+<p>输入验证和过滤（对所有用户输入进行验证和过滤）</p>
+<p>文件上传安全控制（限制上传的文件类型和大小并设置合适的文件存储路径和命名规则。）</p>
+<p>安全扫描和监控（定期进行安全扫描和监控，以发现和修复潜在的安全漏洞）</p>
+<p>访问控制和权限管理（实施严格的权限管理策略）</p>
+<h4 id="尤里的复仇-sql注入"><a href="#尤里的复仇-sql注入" class="headerlink" title="尤里的复仇-sql注入"></a>尤里的复仇-sql注入</h4><p><strong>攻击思路和原理</strong>：sql注入与数据库对话，获得账号和密码，进入后台，上传木马，最后连接菜刀，达到控制网站的目的。</p>
+<p><strong>防御方法</strong>：防御sql注入可以将sql语句转化成无法执行的sql语句，这样攻击者就无法和数据库进行对话。</p>
+<h4 id="尤里的复仇-信息收集1"><a href="#尤里的复仇-信息收集1" class="headerlink" title="尤里的复仇-信息收集1"></a>尤里的复仇-信息收集1</h4><p><strong>攻击思路和原理</strong>：通过御剑扫描后台，这里是二级目录，然后获得flag</p>
+<p><strong>防御方法</strong>：后台路径如果和大家的认知一样，就很容易被发现，因此设计网站时需要把后台的路径名设置的和认知不一样。</p>
+<h4 id="尤里的复仇-绕过WAF"><a href="#尤里的复仇-绕过WAF" class="headerlink" title="尤里的复仇-绕过WAF"></a>尤里的复仇-绕过WAF</h4><p>网站做了WAF过滤防护，因此用cookie注入进行绕过，获得账号和密码，再用御剑扫描，获得后台路径，输入账号密码，得到flag</p>
+<h4 id="红日靶场"><a href="#红日靶场" class="headerlink" title="红日靶场"></a>红日靶场</h4><p><strong>思路</strong>：首先进行网络配置，添加一个外网，一个内网。将攻击机kali第一个适配器连接互联网，第二个使用外网。将web服务器（win7）,一个适配器连内网，第二个连外网。开始进行web渗透，通过端口扫描、目录爆破等尝试操作，进行信息收集，主要目的是为发现有关目标系统的漏洞，这是后续进行攻击的前提。接下来是利用漏洞：目录爆破发现了后台登录（phpmyadmin页面），通过bp暴力破解之后成功登录，之后在SQL界面尝试用日志写下一句话木马getshell,成功执行。通过webshell将探测等攻击文件成功植入(目标主机)win7，拿到权限。之后就进入到，权限维持和内网渗透的步骤了主要收集是关于域控的环境探测的信息，接着尝试使用远程桌面连接控制失败，用msf创建并运行木马尝试修改密码，提权成功。获取了域用户的密码信息，然后开始内网主机探测（扫描内网网段），至此内网信息收集结束。最后是横向移动：对域控渗透并进行IPC连接。让域控访问win7的指定端口，win7监听指定端口并将监听到的流量转发给kali的指定端口，在攻击机（kali）上监听，成功获取域控的shell。</p>
+<h4 id="Hackdamic"><a href="#Hackdamic" class="headerlink" title="Hackdamic"></a>Hackdamic</h4><p><strong>思路</strong>：</p>
+<p>①主机发现和端口扫描</p>
+<p>②Web渗透：发现cms是WordPress 1.5.1.1，searchsploit发现可能存在SQL注入漏洞。在超链接Uncategorized的url下可以看到参数cat，尝试添加单引号’发现报错并回显了SQL查询语句，找到了SQL注入的位置。</p>
+<p>③手工进行SQL注入，通过order by确定列数，再通过联合查询执行我们想要的代码。Google搜索WordPress的数据库结构，构造我们的查询语句。</p>
+<p>④文件上传：拿到凭据后，登录WordPress后台，设置允许上传php文件，并上传反弹shell的php代码，得到了文件上传的路径。开启nc监听后，访问shell.php路径，触发了代码执行，拿到了初始Shell。</p>
+<p>内核提权：由于内核版本老旧，寻找内核提权的exp，成功提权。</p>
+<p><strong>防御方法</strong>：</p>
+<p>-防御SQL注入，采取以下措施：</p>
+<p>1.输入过滤：对用户输入的数据进行过滤和验证，确保其中不包含任何恶意的SQL查询语句。</p>
+<p>2.参数化查询：使用参数化查询或预编译语句来减少SQL注入攻击的风险。</p>
+<p>-防御文件上传漏洞，采取以下措施：</p>
+<p>1.文件类型检查：对用户上传的文件进行类型检查，只接受可信的文件类型。</p>
+<p>2.文件内容验证：在上传文件后，对文件内容进行检查，确认其是否符合预期的格式和结构。</p>
+<p>3.文件名处理：对用户上传的文件名进行检查和处理，避免文件名中包含特殊字符或路径遍历漏洞。</p>
+<p>4.文件存储位置：将上传的文件存储在非web根目录下。</p>
+<p>5.文件大小限制：限制上传文件的大小，避免上传过大的文件导致服务器资源耗尽。</p>
+<p>6.输入过滤和验证：对用户上传的文件名和其他相关字段进行输入过滤和验证，确保其中不包含恶意代码。</p>
+<p>7.权限控制：为不同用户分配不同的上传权限，并根据需要对上传文件进行审核或审查。</p>
 ]]></content>
       <tags>
         <tag>Web-渗透测试</tag>
