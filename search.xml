@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hackdamic靶机</title>
+    <title>Hackdamic</title>
     <url>/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/</url>
     <content><![CDATA[<h3 id="Hackdamic靶机"><a href="#Hackdamic靶机" class="headerlink" title="Hackdamic靶机"></a><strong>Hackdamic靶机</strong></h3><p>扫描虚拟机</p>
 <img data-src="/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/%E5%9B%BE%E7%89%87157.png" class title="This is an test image">  
@@ -195,7 +195,7 @@
       </tags>
   </entry>
   <entry>
-    <title>w1r3s靶场</title>
+    <title>W1R3S</title>
     <url>/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/</url>
     <content><![CDATA[<h3 id="w1r3s靶场"><a href="#w1r3s靶场" class="headerlink" title="w1r3s靶场"></a>w1r3s靶场</h3><p>环境搭建：在<a href="https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html">VMware</a> Workstation中安装<a href="https://www.kali.org/">Kali</a> linux和<a href="https://www.vulnhub.com/entry/w1r3s-101,220/">靶机w1r3s</a></p>
 <p><strong>Nmap主机发现</strong></p>
@@ -763,7 +763,7 @@
       </tags>
   </entry>
   <entry>
-    <title>靶场总结</title>
+    <title>10.07-11.05(2023)总结与拓展</title>
     <url>/2023/11/06/%E9%9D%B6%E5%9C%BA%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h4 id="W1r3s靶场攻击"><a href="#W1r3s靶场攻击" class="headerlink" title="W1r3s靶场攻击"></a>W1r3s靶场攻击</h4><p><strong>思路</strong>：由于是内网渗透，首先进行主机的扫描来发现目标主机，之后对目标主机进行端口扫描查看开放的端口，在这里发现其21端口允许匿名登陆，以此为攻击点，对其进行漏洞脚本扫描，得到 &#x2F;wordpress&#x2F;wp-login.php，发现其漏洞，之后进行ftp匿名登录，将worktodo.txt以及employee-names.txt下载下来，得到一个新的ftp服务器以及两个字符串，访问nmap得到的 &#x2F;wordpress&#x2F;wp-login.php发现为一个登陆页面，常见的用户名密码登陆失败，决定进行目录爆破，在这里使用gobuster工具进行目录爆破，得到三个结果，挨个访问得到一个安装页面，在此页面中发现为cuppa cms，接下来进行cuppa cms渗透，通过cuppa cms的利用文件，可发现漏洞在 &#x2F;alerts&#x2F;alertConfigField.php中，查看发现为使用post方法传递参数并且将他拼接至前面文件中包含过来，使用curl命令得到密码的内容，发现加密，使用John进行破解得到破解后的密码，最后使用ssh获取shell与提权，通过破解过的密码成功获取root权限。</p>
 <p><strong>攻击工具</strong>：nmap，gobuster，John</p>
