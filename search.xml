@@ -195,149 +195,12 @@
       </tags>
   </entry>
   <entry>
-    <title>W1R3S</title>
-    <url>/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/</url>
-    <content><![CDATA[<h3 id="w1r3s靶场"><a href="#w1r3s靶场" class="headerlink" title="w1r3s靶场"></a>w1r3s靶场</h3><p>环境搭建：在<a href="https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html">VMware</a> Workstation中安装<a href="https://www.kali.org/">Kali</a> linux和<a href="https://www.vulnhub.com/entry/w1r3s-101,220/">靶机w1r3s</a></p>
-<p><strong>Nmap主机发现</strong></p>
-<p>此命令可显示当前系统中所有网络接口的详细信息，由此可知本机IP地址: 192.168.184.134&#x2F;24</p>
-<p>此步骤目的是为了下一步扫描出目标靶机的IP地址</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%871.png" class title="This is an test image">
-
-<p>扫描该子网中的所有主机，nmap 将发送 ICMP Echo Request 包(ping)到指定子网的每个 IP 地址，并根据响应来判断主机是否在线。返回结果可以看到在线主机的 IP 地址</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo: 以超级用户权限执行命令</span><br><span class="line"></span><br><span class="line">nmap: 扫描工具</span><br><span class="line"></span><br><span class="line">-sn: 表示进行主机发现而不进行端口扫描，仅打印出对扫描做出响应的主机</span><br></pre></td></tr></table></figure>
-
- <img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%872.png" class title="This is an test image">
-
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%873.png" class title="This is an test image">
-
-<p>第一次扫描未开靶机，第二次扫描前将靶机打开，通过前后两次扫描结果的对比我们可以发现目标靶机的 ip 是 192.168.184.129</p>
-<p><strong>端口扫描</strong></p>
-<p>先创建（mkdir）一个目录来存放数据，再创建一个子目录来存放nmap扫描的数据</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-p:创建目标目录的上级目录</span><br><span class="line"></span><br><span class="line">cd:切换路径</span><br></pre></td></tr></table></figure>
-
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%874.png" class title="This is an test image">
-
-
-
-<p><strong>执行端口扫描</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-sS：表示使用TCP SYN扫描方式</span><br><span class="line"></span><br><span class="line">-p-：表示对全部端口进行扫描</span><br><span class="line"></span><br><span class="line">-oN：用于将扫描结果保存到文件（后加路径）</span><br></pre></td></tr></table></figure>
-
-<p>可以看到四个开放的端口和对应的服务（21:ftp,22:ssh,80:http,3306:mysql）</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%875.png" class title="This is an test image">
-
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%876.png" class title="This is an test image">
-
-<p>端口提取命令，为了后续方便，将各个端口提取出来放到变量中</p>
-<p><strong>详细信息扫描</strong></p>
-<p>显示匿名FTP登录被允许，并且有三个客户端连接。此外，还显示了一些目录的信息，例如content、docs和new-employees。</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%877.png" class title="This is an test image">
-
-
-
-<p><strong>UDP扫描</strong></p>
-<p>目的是识别目标主机上开放的UDP（User Datagram Protocol）端口。</p>
-<p>结果显示，所有100个扫描的端口都处于被忽略状态。具体来说，目标主机没有对UDP端口作出明确的响应，因此无法判断端口是否开放或关闭。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-sU：udp 扫描</span><br><span class="line"></span><br><span class="line">--top-ports 100：扫描最常见的 100 个端口</span><br></pre></td></tr></table></figure>
-
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%878.png" class title="This is an test image">
-
-
-
-<p><strong>漏洞脚本扫描</strong></p>
-<p>目的是为了发现目标系统中可能存在的漏洞。这些漏洞可能是由软件缺陷、配置错误或安全配置不当等原因引起的，攻击者可以利用这些漏洞来入侵系统、获取未授权的访问权限、窃取敏感信息或导致系统服务不可用。</p>
-<p>通过http-enum脚本扫描，发现了WordPress登录页面 &#x2F;wordpress&#x2F;wp-login.php</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%879.png" class title="This is an test image">
-
-
-
-<p><strong>FTP匿名登录</strong></p>
-<p>目的是为了获取FTP服务器上公开的信息或文件。成功登录，获得访问FTP服务器上公开文件和文件夹的权限。</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8710.png" class title="This is an test image">
-
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8711.png" class title="This is an test image"> 
-
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8712.png" class title="This is an test image"> 
-
-<p>查看下载下来的文件，01.txt 看到是个新的 ftp 服务器，02.txt 看到两个字符串，03.txt 是个 logo</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8713.png" class title="This is an test image">
-
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8714.png" class title="This is an test image"> 
-
-<p>“hash-identifier”是一个用于识别哈希算法的工具，使用MD5解密，得到This is not a password</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8715.png" class title="This is an test image"> 
-
-<p>使用base64解密</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8716.png" class title="This is an test image"> 
-
-<p><strong>mysql 试探</strong></p>
-<p>提示不允许登陆</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8717.png" class title="This is an test image"> 
-
-<p><strong>Web渗透</strong></p>
-<p>直接访问，看到一个 apache 的默认页面</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8718.png" class title="This is an test image"> 
-
-<p>访问之前 nmap 的 http-enum 得到的 &#x2F;wordpress&#x2F;wp-login.php 发现是一个登陆页面，弱口令无效</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8719.png" class title="This is an test image"> 
-
-<p><strong>目录爆破</strong></p>
-<p>用gobuster工具进行目录爆破，用于发现目标网站上隐藏的目录和文件</p>
-<p>gobuster dir：指示Gobuster使用目录模式进行枚举。</p>
-<p>-w &#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;dirbuster&#x2F;directory-list-2.3-medium.txt：指定用于枚举的字典文件路径。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-u http://192.168.184.12：指定要枚举的目标URL，即&quot;[http://192.168.184.12]</span><br></pre></td></tr></table></figure>
-
-<p>结果：</p>
-<p>&#x2F;wordpress</p>
-<p>&#x2F;javascript</p>
-<p>&#x2F;administrator</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8720.png" class title="This is an test image"> 
-
-<p> &#x2F;javascript 提示没有访问权限</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8721.png" class title="This is an test image"> 
-
-<p>&#x2F;administrator 看到一个安装页面，网页标题是 cuppa cms</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8722.png" class title="This is an test image">
-
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8723.png" class title="This is an test image"> 
-
-<p><strong>cuppa cms 渗透</strong></p>
-<p>SearchSploit是一个用于搜索和浏览漏洞利用数据库的命令行工具</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8724.png" class title="This is an test image"> 
-
-<p>查看文件，发现文件包含漏洞</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8725.png" class title="This is an test image"> 
-
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8726.png" class title="This is an test image"> 
-
-<p> 查看利用文件，发现是 &#x2F;alerts&#x2F;alertConfigField.php 出现了漏洞</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8727.png" class title="This is an test image"> 
-
-<p>下载此漏洞，查看具体信息</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8728.png" class title="This is an test image"> 
-
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8729.png" class title="This is an test image"> 
-
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8730.png" class title="This is an test image"> 
-
-<p>访问目标系统中的敏感文件（passwd存放了用户账户的信息）</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8731.png" class title="This is an test image"> 
-
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8732.png" class title="This is an test image"> 
-
-<p>访问目标系统的用户密码文件</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8733.png" class title="This is an test image"> 
-
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8734.png" class title="This is an test image"> 
-
-<p>John破解密码</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8735.png" class title="This is an test image"> 
-
-<p>通过SSH协议连接到指定IP地址，成功登录后获取了root权限</p>
-<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8736.png" class title="This is an test image"> 
+    <title>Top漏洞</title>
+    <url>/2024/03/17/Top%E6%BC%8F%E6%B4%9E/</url>
+    <content><![CDATA[<h3 id="TOP8：软件和数据完整性失效"><a href="#TOP8：软件和数据完整性失效" class="headerlink" title="TOP8：软件和数据完整性失效"></a>TOP8：软件和数据完整性失效</h3><h3 id="Software-and-Data-Integrity-Failures"><a href="#Software-and-Data-Integrity-Failures" class="headerlink" title="Software and Data Integrity Failures"></a>Software and Data Integrity Failures</h3><p><strong>类型</strong>：</p>
+<p>、关键资料（critical data）、持续集成&#x2F;持续部署（CI&#x2F;CD）流程等关键内容没有经过完整性验证导致产生的漏洞</p>
+<p>防范举例：手机安装软件通过官方的应用商城相对比较安全，因为应用商城会对更新包和软件包进行检测</p>
 ]]></content>
-      <tags>
-        <tag>Web-渗透测试</tag>
-      </tags>
   </entry>
   <entry>
     <title>红日靶场</title>
@@ -561,6 +424,151 @@
 
 <p>在攻击机上开启端口9999的监听，在攻击机上成功获取域控的shell</p>
 <img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87156.png" class title="This is an test image">  
+]]></content>
+      <tags>
+        <tag>Web-渗透测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>W1R3S</title>
+    <url>/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/</url>
+    <content><![CDATA[<h3 id="w1r3s靶场"><a href="#w1r3s靶场" class="headerlink" title="w1r3s靶场"></a>w1r3s靶场</h3><p>环境搭建：在<a href="https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html">VMware</a> Workstation中安装<a href="https://www.kali.org/">Kali</a> linux和<a href="https://www.vulnhub.com/entry/w1r3s-101,220/">靶机w1r3s</a></p>
+<p><strong>Nmap主机发现</strong></p>
+<p>此命令可显示当前系统中所有网络接口的详细信息，由此可知本机IP地址: 192.168.184.134&#x2F;24</p>
+<p>此步骤目的是为了下一步扫描出目标靶机的IP地址</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%871.png" class title="This is an test image">
+
+<p>扫描该子网中的所有主机，nmap 将发送 ICMP Echo Request 包(ping)到指定子网的每个 IP 地址，并根据响应来判断主机是否在线。返回结果可以看到在线主机的 IP 地址</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo: 以超级用户权限执行命令</span><br><span class="line"></span><br><span class="line">nmap: 扫描工具</span><br><span class="line"></span><br><span class="line">-sn: 表示进行主机发现而不进行端口扫描，仅打印出对扫描做出响应的主机</span><br></pre></td></tr></table></figure>
+
+ <img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%872.png" class title="This is an test image">
+
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%873.png" class title="This is an test image">
+
+<p>第一次扫描未开靶机，第二次扫描前将靶机打开，通过前后两次扫描结果的对比我们可以发现目标靶机的 ip 是 192.168.184.129</p>
+<p><strong>端口扫描</strong></p>
+<p>先创建（mkdir）一个目录来存放数据，再创建一个子目录来存放nmap扫描的数据</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-p:创建目标目录的上级目录</span><br><span class="line"></span><br><span class="line">cd:切换路径</span><br></pre></td></tr></table></figure>
+
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%874.png" class title="This is an test image">
+
+
+
+<p><strong>执行端口扫描</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-sS：表示使用TCP SYN扫描方式</span><br><span class="line"></span><br><span class="line">-p-：表示对全部端口进行扫描</span><br><span class="line"></span><br><span class="line">-oN：用于将扫描结果保存到文件（后加路径）</span><br></pre></td></tr></table></figure>
+
+<p>可以看到四个开放的端口和对应的服务（21:ftp,22:ssh,80:http,3306:mysql）</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%875.png" class title="This is an test image">
+
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%876.png" class title="This is an test image">
+
+<p>端口提取命令，为了后续方便，将各个端口提取出来放到变量中</p>
+<p><strong>详细信息扫描</strong></p>
+<p>显示匿名FTP登录被允许，并且有三个客户端连接。此外，还显示了一些目录的信息，例如content、docs和new-employees。</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%877.png" class title="This is an test image">
+
+
+
+<p><strong>UDP扫描</strong></p>
+<p>目的是识别目标主机上开放的UDP（User Datagram Protocol）端口。</p>
+<p>结果显示，所有100个扫描的端口都处于被忽略状态。具体来说，目标主机没有对UDP端口作出明确的响应，因此无法判断端口是否开放或关闭。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-sU：udp 扫描</span><br><span class="line"></span><br><span class="line">--top-ports 100：扫描最常见的 100 个端口</span><br></pre></td></tr></table></figure>
+
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%878.png" class title="This is an test image">
+
+
+
+<p><strong>漏洞脚本扫描</strong></p>
+<p>目的是为了发现目标系统中可能存在的漏洞。这些漏洞可能是由软件缺陷、配置错误或安全配置不当等原因引起的，攻击者可以利用这些漏洞来入侵系统、获取未授权的访问权限、窃取敏感信息或导致系统服务不可用。</p>
+<p>通过http-enum脚本扫描，发现了WordPress登录页面 &#x2F;wordpress&#x2F;wp-login.php</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%879.png" class title="This is an test image">
+
+
+
+<p><strong>FTP匿名登录</strong></p>
+<p>目的是为了获取FTP服务器上公开的信息或文件。成功登录，获得访问FTP服务器上公开文件和文件夹的权限。</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8710.png" class title="This is an test image">
+
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8711.png" class title="This is an test image"> 
+
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8712.png" class title="This is an test image"> 
+
+<p>查看下载下来的文件，01.txt 看到是个新的 ftp 服务器，02.txt 看到两个字符串，03.txt 是个 logo</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8713.png" class title="This is an test image">
+
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8714.png" class title="This is an test image"> 
+
+<p>“hash-identifier”是一个用于识别哈希算法的工具，使用MD5解密，得到This is not a password</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8715.png" class title="This is an test image"> 
+
+<p>使用base64解密</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8716.png" class title="This is an test image"> 
+
+<p><strong>mysql 试探</strong></p>
+<p>提示不允许登陆</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8717.png" class title="This is an test image"> 
+
+<p><strong>Web渗透</strong></p>
+<p>直接访问，看到一个 apache 的默认页面</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8718.png" class title="This is an test image"> 
+
+<p>访问之前 nmap 的 http-enum 得到的 &#x2F;wordpress&#x2F;wp-login.php 发现是一个登陆页面，弱口令无效</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8719.png" class title="This is an test image"> 
+
+<p><strong>目录爆破</strong></p>
+<p>用gobuster工具进行目录爆破，用于发现目标网站上隐藏的目录和文件</p>
+<p>gobuster dir：指示Gobuster使用目录模式进行枚举。</p>
+<p>-w &#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;dirbuster&#x2F;directory-list-2.3-medium.txt：指定用于枚举的字典文件路径。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-u http://192.168.184.12：指定要枚举的目标URL，即&quot;[http://192.168.184.12]</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p>&#x2F;wordpress</p>
+<p>&#x2F;javascript</p>
+<p>&#x2F;administrator</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8720.png" class title="This is an test image"> 
+
+<p> &#x2F;javascript 提示没有访问权限</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8721.png" class title="This is an test image"> 
+
+<p>&#x2F;administrator 看到一个安装页面，网页标题是 cuppa cms</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8722.png" class title="This is an test image">
+
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8723.png" class title="This is an test image"> 
+
+<p><strong>cuppa cms 渗透</strong></p>
+<p>SearchSploit是一个用于搜索和浏览漏洞利用数据库的命令行工具</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8724.png" class title="This is an test image"> 
+
+<p>查看文件，发现文件包含漏洞</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8725.png" class title="This is an test image"> 
+
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8726.png" class title="This is an test image"> 
+
+<p> 查看利用文件，发现是 &#x2F;alerts&#x2F;alertConfigField.php 出现了漏洞</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8727.png" class title="This is an test image"> 
+
+<p>下载此漏洞，查看具体信息</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8728.png" class title="This is an test image"> 
+
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8729.png" class title="This is an test image"> 
+
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8730.png" class title="This is an test image"> 
+
+<p>访问目标系统中的敏感文件（passwd存放了用户账户的信息）</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8731.png" class title="This is an test image"> 
+
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8732.png" class title="This is an test image"> 
+
+<p>访问目标系统的用户密码文件</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8733.png" class title="This is an test image"> 
+
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8734.png" class title="This is an test image"> 
+
+<p>John破解密码</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8735.png" class title="This is an test image"> 
+
+<p>通过SSH协议连接到指定IP地址，成功登录后获取了root权限</p>
+<img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8736.png" class title="This is an test image"> 
 ]]></content>
       <tags>
         <tag>Web-渗透测试</tag>
