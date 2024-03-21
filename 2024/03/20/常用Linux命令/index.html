@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-undefined.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"acindm.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="常用linux命令绝大部分云基础设施和托管服务都在Linux操作系统中运行，所以了解甚至熟知Linux命令是至关重要的 之前看一个师傅说把电脑刷成Linux机的话对计算机一些底层原理的了解会更深入（我有进行这个尝试的想法hhh，毕竟全命令行操作确实很酷！ 以下是Linux较全的命令收录👇🏻一些常用的不常用但是有一定概率会用到的都有收录 ​         1启动terminal（终端）Ctrl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用Linux命令">
+<meta property="og:url" content="https://acindm.github.io/2024/03/20/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="acind の blog">
+<meta property="og:description" content="常用linux命令绝大部分云基础设施和托管服务都在Linux操作系统中运行，所以了解甚至熟知Linux命令是至关重要的 之前看一个师傅说把电脑刷成Linux机的话对计算机一些底层原理的了解会更深入（我有进行这个尝试的想法hhh，毕竟全命令行操作确实很酷！ 以下是Linux较全的命令收录👇🏻一些常用的不常用但是有一定概率会用到的都有收录 ​         1启动terminal（终端）Ctrl">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-20T14:56:00.000Z">
+<meta property="article:modified_time" content="2024-03-21T14:56:53.389Z">
+<meta property="article:tag" content="levelup">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://acindm.github.io/2024/03/20/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>常用Linux命令 | acind の blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">acind の blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">8</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://acindm.github.io/2024/03/20/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png.jpg">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="Welcome to the 1/30000 🫧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="acind の blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          常用Linux命令
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-03-20 22:56:00" itemprop="dateCreated datePublished" datetime="2024-03-20T22:56:00+08:00">2024-03-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-03-21 22:56:53" itemprop="dateModified" datetime="2024-03-21T22:56:53+08:00">2024-03-21</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="常用linux命令"><a href="#常用linux命令" class="headerlink" title="常用linux命令"></a>常用linux命令</h3><p>绝大部分云基础设施和托管服务都在Linux操作系统中运行，所以了解甚至熟知Linux命令是至关重要的</p>
+<p>之前看一个师傅说把电脑刷成Linux机的话对计算机一些底层原理的了解会更深入（我有进行这个尝试的想法hhh，毕竟全命令行操作确实很酷！</p>
+<p>以下是Linux较全的命令收录👇🏻一些常用的不常用但是有一定概率会用到的都有收录</p>
+<p>​        </p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">启动terminal（终端）Ctrl+ Alt +T</span><br></pre></td></tr></table></figure>
+
+<h4 id="🎞️最常用命令"><a href="#🎞️最常用命令" class="headerlink" title="🎞️最常用命令"></a>🎞️最常用命令</h4><ol>
+<li><p><strong><code>ls</code> – 列出目录内容</strong></p>
+</li>
+<li><p><strong><code>cd</code> – 更改目录</strong></p>
+</li>
+<li><p><strong><code>mkdir</code> – 创建新目录</strong></p>
+</li>
+<li><p><strong><code>rmdir</code> – 删除目录</strong></p>
+</li>
+<li><p><strong><code>touch</code> – 创建新的空文件</strong></p>
+</li>
+<li><p><strong><code>cp</code> – 复制文件和目录</strong></p>
+</li>
+<li><p><strong><code>mv</code> – 移动或重命名文件和目录</strong></p>
+</li>
+<li><p><strong><code>rm</code> – 移除文件和目录</strong></p>
+</li>
+<li><p><strong><code>find</code></strong> <strong>– 在目录层次结构中搜索文件</strong></p>
+</li>
+<li><p><strong><code>du</code></strong> <strong>– 估算文件空间使用情况</strong></p>
+</li>
+<li><p><strong><code>grep</code></strong> <strong>命令 – 使用条件匹配搜索文本</strong></p>
+</li>
+<li><p><strong><code>awk</code></strong> <strong>– 条件扫描和处理语言</strong></p>
+</li>
+<li><p><strong><code>sed</code></strong> <strong>– 用于过滤和转换文本的流编辑器</strong></p>
+</li>
+<li><p><strong><code>sort</code></strong> <strong>– 对文本文件行进行排序</strong></p>
+</li>
+<li><p><strong><code>uniq</code></strong> <strong>– 报告或省略重复行</strong></p>
+</li>
+<li><p><strong><code>diff</code></strong> <strong>– 逐行比较文件</strong></p>
+</li>
+<li><p><strong><code>wc</code></strong> <strong>– 打印行数、字数和字节数</strong></p>
+</li>
+<li><p><strong><code>&gt;</code></strong> <strong>– 重定向标准输出</strong></p>
+<p>重定向标准输出有助于将命令结果保存到文件中，以便存储、调试或将命令串联起来</p>
+</li>
+<li><p><strong><code>&gt;&gt;</code></strong> <strong>– 追加标准输出</strong></p>
+<p><code>&gt;&gt;</code> 操作符将命令的标准输出追加到文件中，而不覆盖现有内容</p>
+</li>
+<li><p><strong><code>&lt;</code></strong> <strong>– 重定向标准输入</strong></p>
+<p><code>&lt;</code> 重定向操作符将文件内容作为标准输入送入命令，而不是从键盘输入</p>
+</li>
+<li><p><strong><code>|</code></strong> <strong>– 管道输出到另一条命令</strong></p>
+<p>管道 <code>|</code> 操作符将一条命令的输出作为输入发送到另一条命令，将它们串联起来</p>
+<p>管道通常用于将命令串联起来，其中一个命令的输出为另一个命令的输入提供信息。这样就能从较小的单用途程序中构建出复杂的操作</p>
+</li>
+<li><p><strong><code>tee</code></strong> <strong>– 从标准输入读取并写入标准输出和文件</strong></p>
+<p><code>tee</code> 命令将标准输入分为两个流</p>
+<p>它将输入写入标准输出（显示主命令的输出），同时将副本保存到文件中</p>
+<h4 id="🎞️Linux归档命令"><a href="#🎞️Linux归档命令" class="headerlink" title="🎞️Linux归档命令"></a>🎞️Linux归档命令</h4></li>
+<li><p><strong><code>tar</code></strong> <strong>– 从归档文件中存储和提取文件</strong></p>
+<p><code>tar</code> 命令可帮助你处理磁带归档文件（.tar）。它可以帮助你将多个文件和目录捆绑到一个压缩的 .tar 文件中</p>
+</li>
+<li><p><strong><code>gzip</code></strong> <strong>– 压缩或扩展文件</strong></p>
+<p>gzip 命令使用 LZ77 编码压缩文件，以减小存储或传输文件的大小。使用 gzip，你可以处理 .gz 文件</p>
+</li>
+<li><p><strong><code>gunzip</code></strong> <strong>– 解压缩文件</strong></p>
+<p><code>gunzip</code> 命令用于解压缩 .gz 文件</p>
+</li>
+<li><p><strong><code>zip</code></strong> <strong>– 打包和压缩文件</strong></p>
+<p><code>zip</code> 命令用于创建包含压缩文件内容的 .zip 归档文件</p>
+</li>
+<li><p><strong><code>unzip</code></strong> <strong>– 从 ZIP 档案中提取文件</strong></p>
+<p>与 <code>gunzip</code> 类似， <code>unzip</code> 命令可从 .zip 压缩文件中提取和解压缩文件</p>
+<h4 id="Linux文件传输命令"><a href="#Linux文件传输命令" class="headerlink" title="Linux文件传输命令"></a>Linux文件传输命令</h4></li>
+<li><p><strong><code>scp</code></strong> <strong>– 在主机间安全复制文件</strong></p>
+<p><code>scp</code> （安全复制）命令通过 SSH 连接在主机间复制文件。所有数据传输都经过加密，以确保安全</p>
+<h4 id="更多Linux命令"><a href="#更多Linux命令" class="headerlink" title="更多Linux命令"></a>更多Linux命令</h4></li>
+<li><p><strong><code>mount</code></strong> – 将硬盘安装或 “连接 “到系统上</p>
+</li>
+<li><p><strong><code>umount</code></strong> – 从系统中卸载或 “移除” 硬盘。 </p>
+</li>
+<li><p>**<code>xargs </code>**– 生成并执行通过标准输入提供的命令。</p>
+</li>
+<li><p><strong><code>alias</code></strong> – 为冗长或复杂的命令创建快捷方式</p>
+</li>
+<li><p><strong><code>jobs</code> – 列出当前在后台运行任务的程序</strong></p>
+</li>
+<li><p><strong><code>bg</code> – 恢复已停止或暂停的后台进程</strong></p>
+</li>
+<li><p><strong><code>killall</code> – 通过程序名称而不是 PID 终止进程</strong></p>
+</li>
+<li><p><strong><code>history</code> – 显示当前终端会话中以前使用过的命令</strong></p>
+</li>
+<li><p><strong><code>man</code> – 直接在终端中访问命令的帮助手册</strong></p>
+</li>
+<li><p><strong><code>screen</code> – 从一个窗口管理多个终端会话。</strong></p>
+</li>
+<li><p><strong><code>ssh</code> – 建立与远程服务器的安全加密连接</strong></p>
+</li>
+<li><p><strong><code>tcpdump</code> – 根据特定标准捕获网络流量</strong></p>
+</li>
+<li><p><strong><code>watch</code> – 每隔一段时间重复一次命令，并突出显示输出差异</strong></p>
+</li>
+<li><p><strong><code>nc</code> – 打开 TCP 或 UDP 连接，进行测试和数据传输</strong></p>
+</li>
+<li><p><strong><code>nmap</code> – 主机发现、端口扫描和操作系统指纹</strong></p>
+</li>
+<li><p><strong><code>strace</code> – 通过跟踪操作系统信号和调用来调试进程</strong></p>
+</li>
+<li><p><strong><code>unalias</code>– 顾名思义，<code>unalias</code>命令旨在从已定义的别名中删除<code>alias</code></strong></p>
+</li>
+<li><p><strong><code>pwd</code>– 代表“打印工作目录”，它输出您所在目录的绝对路径</strong></p>
+</li>
+<li><p><strong><code>./</code> – .&#x2F; 符号本身不是命令，但在这个列表中值得一提。</strong><br>它允许shell直接从终端运行可执行文件，并在系统中安装任何解释器</p>
+</li>
+<li><p><strong><code>exit</code>– 自动关闭正在使用的终端</strong></p>
+</li>
+<li><p><strong><code>apt</code>, <code>yum</code>, <code>pacman</code> 命令</strong><br>无论使用的是哪个Linux发行版，都可能使用package管理器来安装、更新和删除每天使用的软件</p>
+<p><strong>1. Debian-based (Ubuntu, Linux Mint)</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install gimp</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>2. Red Hat-based (Fedora, CentOS)</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install gimp</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>3. Arch-based (Manjaro, Arco Linux)</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S gimp</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>echo</code>– 在终端中显示定义的文本</strong></p>
+</li>
+<li><p><strong><code>cat</code>– 用于直接从终端创建、查看和连接文件。</strong></p>
+<p><strong><code>cat</code></strong> 是“concatenate”的缩写，用于直接从终端创建、查看和连接文件。它主要用于在不打开图形文本编辑器的情况下预览文件</p>
+</li>
+<li><p><strong><code>vim</code>– 使用高效的键绑定编辑纯文本文件</strong></p>
+</li>
+<li><p><strong><code>which</code>– 输出shell命令的完整路径。</strong><br><code>which</code>命令输出shell命令的完整路径</p>
+</li>
+<li><p><strong><code>shred</code>– 此命令会重复覆盖文件的内容。</strong><br>此命令会重复覆盖文件的内容，给定的文件极难恢复</p>
+</li>
+<li><p><strong><code>tail</code>– 打印文件内容后几行</strong></p>
+</li>
+<li><p><strong><code>head</code>– 输出文本文件的前10行</strong></p>
+</li>
+<li><p><strong><code>whatis</code>– 打印任何其他命令的说明</strong></p>
+</li>
+<li><p><strong><code>neofetch</code>– CLI（命令行界面）工具。</strong><br>Neofetch是一个CLI（命令行界面）工具，它在Linux发行版的ASCII徽标旁边显示有关系统的信息，如内核版本、shell和硬件</p>
+</li>
+<li></li>
+<li><p><strong><code>less</code>– 允许您前后检查文件的程序</strong></p>
+</li>
+<li><p><strong><code>tmux</code> – 用于持续会话和分割的终端多路复用器</strong></p>
+</li>
+</ol>
+<h4 id="速查常用Linux命令"><a href="#速查常用Linux命令" class="headerlink" title="速查常用Linux命令"></a>速查常用Linux命令</h4><table>
+<thead>
+<tr>
+<th>ls</th>
+<th>列出目录的内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>alias</td>
+<td>定义或显示别名</td>
+</tr>
+<tr>
+<td>unalias</td>
+<td>删除别名定义</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td>打印工作目录</td>
+</tr>
+<tr>
+<td>cd</td>
+<td>更改目录</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>复制文件和目录</td>
+</tr>
+<tr>
+<td>rm</td>
+<td>删除文件和目录</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>移动（重命名）文件和目录</td>
+</tr>
+<tr>
+<td>mkdir</td>
+<td>创建目录</td>
+</tr>
+<tr>
+<td>man</td>
+<td>显示其他命令的手册页面</td>
+</tr>
+<tr>
+<td>touch</td>
+<td>创建空文件</td>
+</tr>
+<tr>
+<td>chmod</td>
+<td>更改文件权限</td>
+</tr>
+<tr>
+<td>.&#x2F;</td>
+<td>运行可执行文件</td>
+</tr>
+<tr>
+<td>exit</td>
+<td>退出当前shell会话</td>
+</tr>
+<tr>
+<td>sudo</td>
+<td>以超级用户身份执行命令</td>
+</tr>
+<tr>
+<td>shutdown</td>
+<td>关闭您的机器</td>
+</tr>
+<tr>
+<td>htop</td>
+<td>显示进程和资源信息</td>
+</tr>
+<tr>
+<td>unzip</td>
+<td>解压zip文件</td>
+</tr>
+<tr>
+<td>apt,yum,pacman</td>
+<td>包管理器</td>
+</tr>
+<tr>
+<td>echo</td>
+<td>显示文本行</td>
+</tr>
+<tr>
+<td>cat</td>
+<td>打印文件内容</td>
+</tr>
+<tr>
+<td>ps</td>
+<td>报告shell进程状态</td>
+</tr>
+<tr>
+<td>kill</td>
+<td>终止程序</td>
+</tr>
+<tr>
+<td>ping</td>
+<td>测试网络连接</td>
+</tr>
+<tr>
+<td>vim</td>
+<td>高效文本编辑</td>
+</tr>
+<tr>
+<td>history</td>
+<td>显示以前的命令列表</td>
+</tr>
+<tr>
+<td>passwd</td>
+<td>更改用户密码</td>
+</tr>
+<tr>
+<td>which</td>
+<td>返回程序的完整二进制路径</td>
+</tr>
+<tr>
+<td>shred</td>
+<td>覆盖文件以隐藏其内容</td>
+</tr>
+<tr>
+<td>less</td>
+<td>以交互式检查文件</td>
+</tr>
+<tr>
+<td>tail</td>
+<td>显示文件的最后几行</td>
+</tr>
+<tr>
+<td>head</td>
+<td>显示文件的第一行</td>
+</tr>
+<tr>
+<td>grep</td>
+<td>打印与给定条件匹配行</td>
+</tr>
+<tr>
+<td>whoami</td>
+<td>输出用户名</td>
+</tr>
+<tr>
+<td>whatis</td>
+<td>显示单行说明</td>
+</tr>
+<tr>
+<td>wc</td>
+<td>字数文件</td>
+</tr>
+<tr>
+<td>uname</td>
+<td>显示操作系统信息</td>
+</tr>
+<tr>
+<td>neofetch</td>
+<td>显示操作系统和硬件信息</td>
+</tr>
+<tr>
+<td>find</td>
+<td>搜索遵循模式的文件</td>
+</tr>
+<tr>
+<td>wget</td>
+<td>从互联网检索文件</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/levelup/" rel="tag"># levelup</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/12/07/Top%E6%BC%8F%E6%B4%9E/" rel="prev" title="Top漏洞">
+      <i class="fa fa-chevron-left"></i> Top漏洞
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8linux%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">常用linux命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%8E%9E%EF%B8%8F%E6%9C%80%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">1.1.</span> <span class="nav-text">🎞️最常用命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%8E%9E%EF%B8%8FLinux%E5%BD%92%E6%A1%A3%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.</span> <span class="nav-text">🎞️Linux归档命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E5%91%BD%E4%BB%A4"><span class="nav-number">1.3.</span> <span class="nav-text">Linux文件传输命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E5%A4%9ALinux%E5%91%BD%E4%BB%A4"><span class="nav-number">1.4.</span> <span class="nav-text">更多Linux命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9F%E6%9F%A5%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4"><span class="nav-number">1.5.</span> <span class="nav-text">速查常用Linux命令</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt=""
+      src="/images/avatar.png.jpg">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description">Welcome to the 1/30000 🫧</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/yourname" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>StackOverflow</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/acindm" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;acindm" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:acindd@yeah.net" title="E-Mail → mailto:acindd@yeah.net" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/yourname" title="Twitter(X) → https:&#x2F;&#x2F;twitter.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter(X)</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">17k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:02</span>
+</div>
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("10/8/2023 2:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = " 👾营业已经："+dnum+" 天 "+hnum + " 时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

