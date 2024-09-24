@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-undefined.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"acindm.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="甲方漏洞管理实践个人学习时对安全最原始的近距离接触就是安全漏洞，企业中也不例外。 前段时间就有幸参与并且落地了一些与漏洞管理相关的项目。与个人学习差距较大的地方在于，甲方企业对安全漏洞的最核心最关键需求就是“闭环漏洞”，这里涉及到的不仅是如何发现、如何修复之类技术问题，整体建设的思路、运营的流程、运营与管理流程中业务方与安全方视角的切换，环环相扣，都非常重要。 目前阶段我理解的“安全事件管理与漏洞">
+<meta property="og:type" content="article">
+<meta property="og:title" content="甲方漏洞管理建设">
+<meta property="og:url" content="https://acindm.github.io/2024/08/15/%E7%94%B2%E6%96%B9%E6%BC%8F%E6%B4%9E%E7%AE%A1%E7%90%86%E5%BB%BA%E8%AE%BE/index.html">
+<meta property="og:site_name" content="acind の blog">
+<meta property="og:description" content="甲方漏洞管理实践个人学习时对安全最原始的近距离接触就是安全漏洞，企业中也不例外。 前段时间就有幸参与并且落地了一些与漏洞管理相关的项目。与个人学习差距较大的地方在于，甲方企业对安全漏洞的最核心最关键需求就是“闭环漏洞”，这里涉及到的不仅是如何发现、如何修复之类技术问题，整体建设的思路、运营的流程、运营与管理流程中业务方与安全方视角的切换，环环相扣，都非常重要。 目前阶段我理解的“安全事件管理与漏洞">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-15T06:05:07.000Z">
+<meta property="article:modified_time" content="2024-09-24T13:06:02.553Z">
+<meta property="article:tag" content="安全建设">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://acindm.github.io/2024/08/15/%E7%94%B2%E6%96%B9%E6%BC%8F%E6%B4%9E%E7%AE%A1%E7%90%86%E5%BB%BA%E8%AE%BE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>甲方漏洞管理建设 | acind の blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">acind の blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">9</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://acindm.github.io/2024/08/15/%E7%94%B2%E6%96%B9%E6%BC%8F%E6%B4%9E%E7%AE%A1%E7%90%86%E5%BB%BA%E8%AE%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png.jpg">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="Welcome to the 1/30000 🫧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="acind の blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          甲方漏洞管理建设
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-08-15 14:05:07" itemprop="dateCreated datePublished" datetime="2024-08-15T14:05:07+08:00">2024-08-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-24 21:06:02" itemprop="dateModified" datetime="2024-09-24T21:06:02+08:00">2024-09-24</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="甲方漏洞管理实践"><a href="#甲方漏洞管理实践" class="headerlink" title="甲方漏洞管理实践"></a>甲方漏洞管理实践</h2><p>个人学习时对安全最原始的近距离接触就是安全漏洞，企业中也不例外。</p>
+<p>前段时间就有幸参与并且落地了一些与漏洞管理相关的项目。与个人学习差距较大的地方在于，甲方企业对安全漏洞的最核心最关键需求就是“闭环漏洞”，这里涉及到的不仅是如何发现、如何修复之类技术问题，整体建设的思路、运营的流程、运营与管理流程中业务方与安全方视角的切换，环环相扣，都非常重要。</p>
+<p>目前阶段我理解的“安全事件管理与漏洞管理”的终极目标，就是“结果导向，解决问题”。发现问题很重要但不是目的，如何解决问题降低安全风险才是最终目的。忽略对修复结果的追踪、缺少标准化流程来对漏洞状态进行持续管理，会导致修复周期长、漏洞无法闭环等问题。</p>
+<h3 id="基础安全建设"><a href="#基础安全建设" class="headerlink" title="基础安全建设"></a>基础安全建设</h3><p>公司最初的安全管理形式是“甩文档，甩表格”，原始低效。最大问题是人工成本太高，尤其是公司资产数量不少，扫描出的漏洞数量也不少，拉群与业务方同学逐个沟通，管理起来比较费劲。而且业务同学普遍在漏洞修复这件事上很不积极（这涉及到企业员工安全意识建设，另开一篇博客说）就导致漏洞修复效率奇低。严重漏洞还比较有压力，修复速度很快，从高危往后的漏洞修复，大家的效率会随着漏洞等级的降低逐级递减。</p>
+<p>这时候如果有平台、有机制规范修复的整体流程的话，问题想必会得到很大缓解。好的流程可以让人自觉地进入“管束”状态，对解决问题本身是很有益的。</p>
+<p>流程依赖两个必要条件：</p>
+<ul>
+<li>一个好用的漏洞管理平台<ul>
+<li>管理平台可以减少重复的人力劳动，提高安全运营效率。</li>
+</ul>
+</li>
+<li>公司资产管理<ul>
+<li>管理公司资产，也可以将发现的安全问题及时给到业务侧修复。</li>
+</ul>
+</li>
+</ul>
+<h4 id="漏洞管理平台"><a href="#漏洞管理平台" class="headerlink" title="漏洞管理平台"></a><strong>漏洞管理平台</strong></h4><ul>
+<li>报警管理：</li>
+</ul>
+<p>漏洞管理平台所汇集的信息来源是多方的，包括外部报告（渗透测试、SRC）、HIDS、威胁情报、扫描器。每个报警源低耦合、可插拔、易扩展。</p>
+<ul>
+<li>漏洞全生命周期管理</li>
+</ul>
+<p>以上告警信息经人工研判后，需要将有效漏洞导入漏洞管理平台，并将安全问题分发至业务线。可以通过安全调度中心或企业工单等自动化流程分发。</p>
+<ul>
+<li><p>流程：漏洞发现 ➡️ 漏洞验证 ➡️ 漏洞分发 ➡️ 业务修复 ➡️ 复测 ➡️ 打回&#x2F;延期&#x2F;关闭 ➡️ 结束</p>
+</li>
+<li><p>全程留痕（日志等）</p>
+</li>
+<li><p>支持表格&#x2F;图表导出</p>
+</li>
+<li><p>模版化</p>
+</li>
+</ul>
+<p>常见&#x2F;常规的漏洞描述、危险描述、修复方案可以模版化存储到漏洞知识库中。</p>
+<ul>
+<li>权限控制</li>
+</ul>
+<p>漏洞owner只允许访问自己负责修复的漏洞的信息。做好权限的分类分级。（基于功能模块，基于角色）</p>
+<ul>
+<li>扩展性与易用性<ul>
+<li>与其他平台&#x2F;流程的打通。（如加入到工单中）</li>
+<li>开放API</li>
+<li>支持批量操作</li>
+</ul>
+</li>
+</ul>
+<p>ps：对于安全侧，定期的数据分析和统计是必要的，常见的例如dashbord页面，实时展示不同统计维度、多种漏洞数据情况，同时漏洞运营的监控指标也可以在这个页面实时显示，便于运营同学及时发现问题。</p>
+<p>为什么在业务侧也需要做数据分析，一方面是业务真的有这种诉求（安全意识较高的业务），他们希望了解每季度甚至每月对体系内部的安全风险情况；另一方面从安全的角度，让业务侧能看见这些“触目惊心”的漏洞数据，也是警示和提醒。</p>
+<h4 id="资产管理"><a href="#资产管理" class="headerlink" title="资产管理"></a>资产管理</h4><p>安全问题的处理自然离不开业务部门的参与，安全漏洞更需要细粒度到资产属主、定位到人，因此需要具备公司各类资产的全量接口，如：域名、IP、主机名、容器名、实例名等，以及各类资产之间的映射关系查询，以确保安全问题定位的准确性和实效性。</p>
+<p>除了上述提到的常见类型资产，指纹库、第三方组件库的建立也是很必要的，尤其是fastjson、struts 2这类安全漏洞爆发时，如何在快速应急也是对安全的考验。 由于资产的动态性，内部梳理是一部分，也需要外部视角的资产探测来做补充，也正是由于资产动态变化这个特性，这往往也是实际工作中的<strong>难点和痛点。</strong></p>
+<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><p>基础安全建设的前提下，将漏洞管理平台的运行与运营流程结合起来，让整个系统进入良好运转状态。</p>
+<ul>
+<li>关键点：闭环<ul>
+<li><strong>时效性要求</strong>：对于高、中、低不同等级的漏洞有不同的修复优先级和时效性要求。</li>
+<li><strong>通知渠道覆盖</strong>：安全平台以工单形式自动化将问题下发至业务，通过邮件、IM、短信等通知渠道将工单状态的变更实时同步至业务和安全。</li>
+<li><strong>周期提醒、过期升级抄送</strong>：对业务进行周期性修复提醒，若在规定时间内未修复将安全问题逐级上升至业务侧管理角色，督促整改，确保安全问题处置的时效性保证闭环率。</li>
+<li><strong>人工定期review流程</strong>：不断优化迭代运营流程。</li>
+</ul>
+</li>
+</ul>
+<p>优化策略：定期的数据统计和分析，可以发现流程和机制上的gap点，及时改进。</p>
+<ul>
+<li>协同与通知</li>
+</ul>
+<p>协同的重要作用之一是促进业务方与安全方效率协同，效率协同就需要彼此理解，需要同步安全与业务的认知。</p>
+<ul>
+<li><strong>从上至下推进</strong>：首先是安全制度层面，明确各类资产、虚拟资源的安全职责，出了安全问题谁来担责（安全制度一定要经过高层review确认和背书，具备权威性）。</li>
+<li><strong>明确接口人机制：</strong>在每个业务体系设立安全负责人、安全接口人角色（也需要在制度层面达成一致），有职责和义务配合安全，牵头推进该业务体系安全问题的处理。</li>
+<li><strong>OKR协同</strong>：OKR协同机制，将安全任务拆解至业务的OKR里（前提也是需要沟通达成一致），形成“契约”后让业务能主动推进。</li>
+</ul>
+<h3 id="安全review意识"><a href="#安全review意识" class="headerlink" title="安全review意识"></a><strong>安全review意识</strong></h3><ul>
+<li><p>针对外部报告的各种漏洞、情报，甚至是一次突发的应急事件、红蓝对抗等，安全需要对内部各能力线进行审视，内部安全能力是否有覆盖、是否该覆盖、是否能覆盖、资产是否有遗漏、安全能力是否存在gap点、安全流程是否存在改进空间等，需要不断优化迭代内部的安全能力，不断提高纵深防御水平。</p>
+</li>
+<li><p><strong>风险分析：</strong>漏洞管理起源于漏洞，但绝不止于漏洞。从一个安全漏洞可以深挖的东西很多，如：业务逻辑业务形态是怎样的，他们为什么会出现这类问题，在现有安全需求下出现这类问题是否合理，安全能力还能做什么，发生这个问题的根因是什么、以及背后潜在的可能风险面等等，可以更加发散的来看。</p>
+<ul>
+<li><p>基于以上两点，举个简单的例子：</p>
+<p>比如业务侧被发现存在一个fastjson某个版本的RCE漏洞并且被getsehll了，从这个问题知道业务侧代码大概率是使用JAVA的，那么现在安全能力是否有定期的在进行扫描，是否有被扫描到，如果有被提前扫描到，那么业务侧为什么当时没有修复，是漏洞信息未触达业务还是业务不会修、不能修；</p>
+<p>如果内部没有提前扫描出来，那么安全就需要反思排查了，是组件库&#x2F;指纹库&#x2F;POC 没覆盖、不准确还是压根这台机器就不在我们的资产库里；</p>
+<p>除了扫描的问题，被反弹shell了，websehll检测、HIDS是否有报警，如果没报警是为什么，机器不覆盖还是规则不覆盖还是什么其他原因，若是有报警，为什么安全侧未提前发现，报警功能是否还正常、报警处理流程是否不够高效导致处理滞后….</p>
+<p>从业务侧来说，是测试机还是开发机，测试机严格讲是不允许部署在外网的，这说明业务侧开发部署上线流程不规范，至少是存在安全隐患的；</p>
+<p>从发现的这一台机器来看，业务侧是否还有别的部署了该版本fastjson的机器，除了fastjson其他JAVA类的组件是否还应该排查；</p>
+<p>从整个公司范围来说，单个业务出现这类case，其他业务是否也会有，是否需要进行针对性的排查………</p>
+</li>
+</ul>
+</li>
+<li><p><strong>数据分析****：</strong>精细化运营少不了对数据的分析解读，对安全来说需要定期查看数据、指标，是否在阈值范围内，近期漏洞数量&#x2F;类型变化情况，安全是否需要采取新的控制措施；各业务线漏洞的分布情况，哪些业务目前安全风险较大，是否需要进一步了解等；</p>
+</li>
+</ul>
+<p>针对业务方，可以定期给业务线安全接口人&#x2F;负责人等管理角色推送安全数据以及风险评估报告。</p>
+<blockquote>
+<p>Reference：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ffx1/p/15406732.html">https://www.cnblogs.com/ffx1/p/15406732.html</a></p>
+<p>在自我梳理过后搜到上面这篇博客。很高兴我的前面的大部分想法与作者不谋而合，这件事本身也是对我自己的一种激励～😆</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE/" rel="tag"># 安全建设</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/12/07/Top%E6%BC%8F%E6%B4%9E/" rel="prev" title="OWASP Top-10">
+      <i class="fa fa-chevron-left"></i> OWASP Top-10
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B2%E6%96%B9%E6%BC%8F%E6%B4%9E%E7%AE%A1%E7%90%86%E5%AE%9E%E8%B7%B5"><span class="nav-number">1.</span> <span class="nav-text">甲方漏洞管理实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE"><span class="nav-number">1.1.</span> <span class="nav-text">基础安全建设</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0"><span class="nav-number">1.1.1.</span> <span class="nav-text">漏洞管理平台</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B5%84%E4%BA%A7%E7%AE%A1%E7%90%86"><span class="nav-number">1.1.2.</span> <span class="nav-text">资产管理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E5%85%A8review%E6%84%8F%E8%AF%86"><span class="nav-number">1.3.</span> <span class="nav-text">安全review意识</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt=""
+      src="/images/avatar.png.jpg">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description">Welcome to the 1/30000 🫧</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/yourname" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>StackOverflow</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/acindm" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;acindm" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:acindd@yeah.net" title="E-Mail → mailto:acindd@yeah.net" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/yourname" title="Twitter(X) → https:&#x2F;&#x2F;twitter.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter(X)</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">19k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:10</span>
+</div>
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("10/8/2023 2:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = " 👾营业已经："+dnum+" 天 "+hnum + " 时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
