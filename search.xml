@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>About</title>
+    <url>/2023/10/14/Hello-My-Blog/</url>
+    <content><![CDATA[<h1 id="About"><a href="#About" class="headerlink" title="About"></a>About</h1><ul>
+<li>想要创建博客记录一下我的学习过程 &amp; 一些生活和学习工作的想法 ~（srds有点建晚了，大一就该准备好的呜呜呜Q﹏Q（不过还不算太迟</li>
+<li>超严重的强迫症，这些事情写到纸上如果格式之类出问题 or 字写得丑了点，立马就会忍不住撕掉重写（所以Blog+markdown对我来说是好选择）之前为了治这个毛病，特意买了Daycrafts的日程本试图用昂贵的纸张唤醒我节约的意识，结果完美证明：我的强迫症 &gt; 我对银子的心疼😥</li>
+</ul>
+<h2 id="勇气"><a href="#勇气" class="headerlink" title="勇气"></a>勇气</h2><p>普通家庭出身的大部分人所习惯的模式是竞争与服从，缺乏那种真正能让人出彩于某个领域的信念与可使用的方法论，我叫它“意识”。</p>
+<p>成绩、量化一个人的考核标准，在我更加年轻的时候给了我很多满足——因为我经常在这种“竞争”游戏中胜出。可惜意识不足的个体不会真正踏上“上行之路”，像地基没有扎稳的房子，不会挺立太久。之后很长一段时间我所面对的，是认知与期望产生巨大落差的挫败，以及明知自己难以迅速填补沟壑、想要得到一些事物就要付出超常的努力，却迟迟驻足原处、不知该走向何处的犹疑。</p>
+<p>这种情况在我进入大学之后改善了非常之多，但“改善”还远远不够。这个博客存在的意义就在于，我会在这片“自留地”记录自己一些自己看重的东西。</p>
+<h2 id="YOUTH"><a href="#YOUTH" class="headerlink" title="YOUTH"></a>YOUTH</h2><p><strong>这是我非常喜欢的一首诗</strong></p>
+<p><em>Samuel Ullman</em></p>
+<p>Youth is not a time of life; </p>
+<p>It is a state of mind; </p>
+<p>It is not a matter of rosy cheeks, red lips and supple knees; </p>
+<p>It is a matter of the will, a quality of the imagination, a vigour of the emotions; </p>
+<p>It is the freshness of the deep springs of life.</p>
+<p>Youth means a temperamental predominance of courage over timidity of the appetite, for adventure over the love of ease. This often exists in a man of sixty more than a boy of twenty. Nobody grows old merely by a number of years. We grow old by deserting our ideals.</p>
+<p>Years may wrinkle the skin, but to give up enthusiasm wrinkles the soul. Worry, fear, self-distrust blows the heart and turns the spirit back to dust.</p>
+<p>Whether sixty or sixteen, there is in every human being’s heart the lure of wonders, the unfailing childlike appetite of what’s next and the joy of the game of living. In the centre of your heart and my heart there is a wireless station: so long as it receives messages of beauty, hope, cheer, courage and power from men and from the infinite, so long are you young.</p>
+<p>When the aerials are down, and your spirit is covered with snows of cynicism and the ice of pessimism, then you are grown old, even at twenty, but as long as your aerials are up, to catch waves of optimism, there is hope you may die young at eighty.</p>
+]]></content>
+      <tags>
+        <tag>levelup</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hackdamic渗透</title>
     <url>/2023/11/02/Hackdamic%E9%9D%B6%E6%9C%BA/</url>
     <content><![CDATA[<h3 id="Hackdamic靶机"><a href="#Hackdamic靶机" class="headerlink" title="Hackdamic靶机"></a><strong>Hackdamic靶机</strong></h3><p>扫描虚拟机</p>
@@ -161,32 +187,6 @@
 ]]></content>
       <tags>
         <tag>Web-渗透测试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>About</title>
-    <url>/2023/10/14/Hello-My-Blog/</url>
-    <content><![CDATA[<h1 id="About"><a href="#About" class="headerlink" title="About"></a>About</h1><ul>
-<li>想要创建博客记录一下我的学习过程 &amp; 一些生活和学习工作的想法 ~（srds有点建晚了，大一就该准备好的呜呜呜Q﹏Q（不过还不算太迟</li>
-<li>超严重的强迫症，这些事情写到纸上如果格式之类出问题 or 字写得丑了点，立马就会忍不住撕掉重写（所以Blog+markdown对我来说是好选择）之前为了治这个毛病，特意买了Daycrafts的日程本试图用昂贵的纸张唤醒我节约的意识，结果完美证明：我的强迫症 &gt; 我对银子的心疼😥</li>
-</ul>
-<h2 id="勇气"><a href="#勇气" class="headerlink" title="勇气"></a>勇气</h2><p>普通家庭出身的大部分人所习惯的模式是竞争与服从，缺乏那种真正能让人出彩于某个领域的信念与可使用的方法论，我叫它“意识”。</p>
-<p>成绩、量化一个人的考核标准，在我更加年轻的时候给了我很多满足——因为我经常在这种“竞争”游戏中胜出。可惜意识不足的个体不会真正踏上“上行之路”，像地基没有扎稳的房子，不会挺立太久。之后很长一段时间我所面对的，是认知与期望产生巨大落差的挫败，以及明知自己难以迅速填补沟壑、想要得到一些事物就要付出超常的努力，却迟迟驻足原处、不知该走向何处的犹疑。</p>
-<p>这种情况在我进入大学之后改善了非常之多，但“改善”还远远不够。这个博客存在的意义就在于，我会在这片“自留地”记录自己一些自己看重的东西。</p>
-<h2 id="YOUTH"><a href="#YOUTH" class="headerlink" title="YOUTH"></a>YOUTH</h2><p><strong>这是我非常喜欢的一首诗</strong></p>
-<p><em>Samuel Ullman</em></p>
-<p>Youth is not a time of life; </p>
-<p>It is a state of mind; </p>
-<p>It is not a matter of rosy cheeks, red lips and supple knees; </p>
-<p>It is a matter of the will, a quality of the imagination, a vigour of the emotions; </p>
-<p>It is the freshness of the deep springs of life.</p>
-<p>Youth means a temperamental predominance of courage over timidity of the appetite, for adventure over the love of ease. This often exists in a man of sixty more than a boy of twenty. Nobody grows old merely by a number of years. We grow old by deserting our ideals.</p>
-<p>Years may wrinkle the skin, but to give up enthusiasm wrinkles the soul. Worry, fear, self-distrust blows the heart and turns the spirit back to dust.</p>
-<p>Whether sixty or sixteen, there is in every human being’s heart the lure of wonders, the unfailing childlike appetite of what’s next and the joy of the game of living. In the centre of your heart and my heart there is a wireless station: so long as it receives messages of beauty, hope, cheer, courage and power from men and from the infinite, so long are you young.</p>
-<p>When the aerials are down, and your spirit is covered with snows of cynicism and the ice of pessimism, then you are grown old, even at twenty, but as long as your aerials are up, to catch waves of optimism, there is hope you may die young at eighty.</p>
-]]></content>
-      <tags>
-        <tag>levelup</tag>
       </tags>
   </entry>
   <entry>
