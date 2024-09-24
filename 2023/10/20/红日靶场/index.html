@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"acindm.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="shop靶场-1ps：借鉴了一部分其他小伙伴的渗透过程内容(csdn@哈哈哈cry) 进入windows 7 x64虚拟机里钓鱼台网站的后台 打开虚拟机后然后双击打开shop1:       如果遇到双击打不开的情况，点击右下角的小三角形，找到绿色的KR，点击：   点击关闭:   现在再点击就能打开了，如图：   点击第一行：   输入网站后台的地址：http:&#x2F;&#x2F;192.168.111.134">
+  <meta name="description" content="shop靶场-1进入windows 7 x64虚拟机里钓鱼台网站的后台 打开虚拟机后然后双击打开shop1:       如果遇到双击打不开的情况，点击右下角的小三角形，找到绿色的KR，点击：   点击关闭:   现在再点击就能打开了，如图：   点击第一行：   输入网站后台的地址：http:&#x2F;&#x2F;192.168.111.134&#x2F;shop&#x2F;admin&#x2F;login.asp 我们来到后台登录页面（这里">
 <meta property="og:type" content="article">
 <meta property="og:title" content="shop靶场与“尤里题”">
 <meta property="og:url" content="https://acindm.github.io/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/index.html">
 <meta property="og:site_name" content="acind の blog">
-<meta property="og:description" content="shop靶场-1ps：借鉴了一部分其他小伙伴的渗透过程内容(csdn@哈哈哈cry) 进入windows 7 x64虚拟机里钓鱼台网站的后台 打开虚拟机后然后双击打开shop1:       如果遇到双击打不开的情况，点击右下角的小三角形，找到绿色的KR，点击：   点击关闭:   现在再点击就能打开了，如图：   点击第一行：   输入网站后台的地址：http:&#x2F;&#x2F;192.168.111.134">
+<meta property="og:description" content="shop靶场-1进入windows 7 x64虚拟机里钓鱼台网站的后台 打开虚拟机后然后双击打开shop1:       如果遇到双击打不开的情况，点击右下角的小三角形，找到绿色的KR，点击：   点击关闭:   现在再点击就能打开了，如图：   点击第一行：   输入网站后台的地址：http:&#x2F;&#x2F;192.168.111.134&#x2F;shop&#x2F;admin&#x2F;login.asp 我们来到后台登录页面（这里">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://acindm.github.io/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8737.png">
 <meta property="og:image" content="https://acindm.github.io/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8738.png">
@@ -83,7 +83,7 @@
 <meta property="og:image" content="https://acindm.github.io/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8788.png">
 <meta property="og:image" content="https://acindm.github.io/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8789.png">
 <meta property="article:published_time" content="2023-10-20T13:30:05.000Z">
-<meta property="article:modified_time" content="2024-09-24T13:07:23.706Z">
+<meta property="article:modified_time" content="2024-09-24T13:43:04.276Z">
 <meta property="article:tag" content="Web-渗透测试">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://acindm.github.io/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8737.png">
@@ -275,7 +275,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-09-24 21:07:23" itemprop="dateModified" datetime="2024-09-24T21:07:23+08:00">2024-09-24</time>
+                <time title="修改时间：2024-09-24 21:43:04" itemprop="dateModified" datetime="2024-09-24T21:43:04+08:00">2024-09-24</time>
               </span>
 
           <br>
@@ -303,8 +303,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="shop靶场-1"><a href="#shop靶场-1" class="headerlink" title="shop靶场-1"></a><strong>shop靶场-1</strong></h3><p><em>ps：借鉴了一部分其他小伙伴的渗透过程内容(csdn@哈哈哈cry)</em></p>
-<p>进入windows 7 x64虚拟机里钓鱼台网站的后台</p>
+        <h3 id="shop靶场-1"><a href="#shop靶场-1" class="headerlink" title="shop靶场-1"></a><strong>shop靶场-1</strong></h3><p>进入windows 7 x64虚拟机里钓鱼台网站的后台</p>
 <p>打开虚拟机后然后双击打开shop1:</p>
 <img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8737.png" class title="This is an test image">
 
@@ -333,10 +332,8 @@
 <p>填好后点击“管理登录”，发现成功进入后台管理页面：</p>
 <img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8746.png" class title="This is an test image">
 
-
-
-
-
+<p>​                    </p>
+<p>​                            </p>
 <h3 id="shop靶场-2"><a href="#shop靶场-2" class="headerlink" title="shop靶场-2"></a>shop靶场-2</h3><p>打开过程同“shop靶场-1”</p>
 <p>首先进入后台先要找到后台登录页面，使用工具扫描没有结果，但发现了网站的后台：</p>
 <p><a target="_blank" rel="noopener" href="http://192.168.111.134/shop2/admin/login1.asp">http://192.168.111.134/shop2/admin/login1.asp</a></p>
@@ -395,8 +392,7 @@
 <p>双击网址，打开即可看到任意盘下的文件并进行更改</p>
 <img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8764.png" class title="This is an test image">
 
-
-
+<p>​                                     </p>
 <h3 id="尤里的复仇-sql注入"><a href="#尤里的复仇-sql注入" class="headerlink" title="尤里的复仇-sql注入"></a>尤里的复仇-sql注入</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8765.png" class title="This is an test image">
 
 <p><strong>判断是否存在SQL注入漏洞</strong></p>
@@ -408,6 +404,7 @@
 <img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8767.png" class title="This is an test image">
 
 <p>页面不正常,初步判断这里可能存在一个注入漏洞</p>
+<p>​                        </p>
 <p><strong>判断字段数</strong></p>
 <p>构造 ?id&#x3D;1 and 1&#x3D;1 order by 1 回车</p>
 <img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8768.png" class title="This is an test image">
@@ -419,11 +416,13 @@
 <img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8770.png" class title="This is an test image">
 
 <p>页面返回 错误，判断字段数为 2（判断字符数只有两个）</p>
+<p>​                        </p>
 <p><strong>判断回显点</strong></p>
 <p>构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,2 回车</p>
 <img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8771.png" class title="This is an test image">
 
 <p>页面出现了 2 ，说明我们可以在数字 2 处显示我们想要的内容</p>
+<p>​                              </p>
 <p><strong>查询相关内容</strong></p>
 <p>查询当前数据库名：构造 ?id&#x3D;1 and 1&#x3D;2 union select 1,database() 回车</p>
 <img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8772.png" class title="This is an test image">
@@ -454,6 +453,8 @@
 
 <p>回显hellohack 得到管理员账号和密码为：hellokack</p>
 <p>得到flag</p>
+<p>​                                    </p>
+<p>​                         </p>
 <h3 id="尤里的复仇-信息收集1"><a href="#尤里的复仇-信息收集1" class="headerlink" title="尤里的复仇-信息收集1"></a>尤里的复仇-信息收集1</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8779.png" class title="This is an test image">
 
 <p>用御剑进行扫描，flag在二级目录里</p>
@@ -464,10 +465,8 @@
 <p>点击链接，得到flag</p>
 <img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8782.png" class title="This is an test image">
 
-
-
-
-
+<p>​                               </p>
+<p>​                           </p>
 <h3 id="尤里的复仇-绕过WAF"><a href="#尤里的复仇-绕过WAF" class="headerlink" title="尤里的复仇-绕过WAF"></a>尤里的复仇-绕过WAF</h3><img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8783.png" class title="This is an test image">
 
 <p>随便点击一个新闻。在id&#x3D;171后面加一个引号’，测试一下是否有SQL注入</p>
@@ -491,6 +490,13 @@
 
 <p>成功拿到flag</p>
 <img data-src="/2023/10/20/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA/%E5%9B%BE%E7%89%8789.png" class title="This is an test image">
+
+<p>​                              </p>
+<p>​                           </p>
+<blockquote>
+<p>Reference：</p>
+<p>csdn@哈哈哈cry</p>
+</blockquote>
 
     </div>
 

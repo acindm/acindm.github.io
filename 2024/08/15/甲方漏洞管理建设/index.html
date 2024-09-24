@@ -22,16 +22,16 @@
     var CONFIG = {"hostname":"acindm.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="甲方漏洞管理实践个人学习时对安全最原始的近距离接触就是安全漏洞，企业中也不例外。 前段时间就有幸参与并且落地了一些与漏洞管理相关的项目。与个人学习差距较大的地方在于，甲方企业对安全漏洞的最核心最关键需求就是“闭环漏洞”，这里涉及到的不仅是如何发现、如何修复之类技术问题，整体建设的思路、运营的流程、运营与管理流程中业务方与安全方视角的切换，环环相扣，都非常重要。 目前阶段我理解的“安全事件管理与漏洞">
+  <meta name="description" content="个人学习时对安全最原始的近距离接触就是安全漏洞，企业中也不例外。 前段时间就有幸参与并且落地了一些与漏洞管理相关的项目。与个人学习差距较大的地方在于，甲方企业对安全漏洞的最核心最关键需求就是“闭环漏洞”，这里涉及到的不仅是如何发现、如何修复之类技术问题，整体建设的思路、运营的流程、运营与管理流程中业务方与安全方视角的切换，环环相扣，都非常重要。 目前阶段我理解的“安全事件管理与漏洞管理”的终极目标">
 <meta property="og:type" content="article">
 <meta property="og:title" content="甲方漏洞管理建设">
 <meta property="og:url" content="https://acindm.github.io/2024/08/15/%E7%94%B2%E6%96%B9%E6%BC%8F%E6%B4%9E%E7%AE%A1%E7%90%86%E5%BB%BA%E8%AE%BE/index.html">
 <meta property="og:site_name" content="acind の blog">
-<meta property="og:description" content="甲方漏洞管理实践个人学习时对安全最原始的近距离接触就是安全漏洞，企业中也不例外。 前段时间就有幸参与并且落地了一些与漏洞管理相关的项目。与个人学习差距较大的地方在于，甲方企业对安全漏洞的最核心最关键需求就是“闭环漏洞”，这里涉及到的不仅是如何发现、如何修复之类技术问题，整体建设的思路、运营的流程、运营与管理流程中业务方与安全方视角的切换，环环相扣，都非常重要。 目前阶段我理解的“安全事件管理与漏洞">
+<meta property="og:description" content="个人学习时对安全最原始的近距离接触就是安全漏洞，企业中也不例外。 前段时间就有幸参与并且落地了一些与漏洞管理相关的项目。与个人学习差距较大的地方在于，甲方企业对安全漏洞的最核心最关键需求就是“闭环漏洞”，这里涉及到的不仅是如何发现、如何修复之类技术问题，整体建设的思路、运营的流程、运营与管理流程中业务方与安全方视角的切换，环环相扣，都非常重要。 目前阶段我理解的“安全事件管理与漏洞管理”的终极目标">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-08-15T06:05:07.000Z">
-<meta property="article:modified_time" content="2024-09-24T13:06:02.553Z">
-<meta property="article:tag" content="安全建设">
+<meta property="article:modified_time" content="2024-09-24T13:34:51.080Z">
+<meta property="article:tag" content="安全建设,安全意识">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://acindm.github.io/2024/08/15/%E7%94%B2%E6%96%B9%E6%BC%8F%E6%B4%9E%E7%AE%A1%E7%90%86%E5%BB%BA%E8%AE%BE/">
@@ -221,7 +221,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-09-24 21:06:02" itemprop="dateModified" datetime="2024-09-24T21:06:02+08:00">2024-09-24</time>
+                <time title="修改时间：2024-09-24 21:34:51" itemprop="dateModified" datetime="2024-09-24T21:34:51+08:00">2024-09-24</time>
               </span>
 
           <br>
@@ -249,7 +249,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="甲方漏洞管理实践"><a href="#甲方漏洞管理实践" class="headerlink" title="甲方漏洞管理实践"></a>甲方漏洞管理实践</h2><p>个人学习时对安全最原始的近距离接触就是安全漏洞，企业中也不例外。</p>
+        <p>个人学习时对安全最原始的近距离接触就是安全漏洞，企业中也不例外。</p>
 <p>前段时间就有幸参与并且落地了一些与漏洞管理相关的项目。与个人学习差距较大的地方在于，甲方企业对安全漏洞的最核心最关键需求就是“闭环漏洞”，这里涉及到的不仅是如何发现、如何修复之类技术问题，整体建设的思路、运营的流程、运营与管理流程中业务方与安全方视角的切换，环环相扣，都非常重要。</p>
 <p>目前阶段我理解的“安全事件管理与漏洞管理”的终极目标，就是“结果导向，解决问题”。发现问题很重要但不是目的，如何解决问题降低安全风险才是最终目的。忽略对修复结果的追踪、缺少标准化流程来对漏洞状态进行持续管理，会导致修复周期长、漏洞无法闭环等问题。</p>
 <h3 id="基础安全建设"><a href="#基础安全建设" class="headerlink" title="基础安全建设"></a>基础安全建设</h3><p>公司最初的安全管理形式是“甩文档，甩表格”，原始低效。最大问题是人工成本太高，尤其是公司资产数量不少，扫描出的漏洞数量也不少，拉群与业务方同学逐个沟通，管理起来比较费劲。而且业务同学普遍在漏洞修复这件事上很不积极（这涉及到企业员工安全意识建设，另开一篇博客说）就导致漏洞修复效率奇低。严重漏洞还比较有压力，修复速度很快，从高危往后的漏洞修复，大家的效率会随着漏洞等级的降低逐级递减。</p>
@@ -335,10 +335,12 @@
 </li>
 </ul>
 </li>
-<li><p><strong>数据分析****：</strong>精细化运营少不了对数据的分析解读，对安全来说需要定期查看数据、指标，是否在阈值范围内，近期漏洞数量&#x2F;类型变化情况，安全是否需要采取新的控制措施；各业务线漏洞的分布情况，哪些业务目前安全风险较大，是否需要进一步了解等；</p>
+<li><p><strong>数据分析</strong>：精细化运营少不了对数据的分析解读，对安全来说需要定期查看数据、指标，是否在阈值范围内，近期漏洞数量&#x2F;类型变化情况，安全是否需要采取新的控制措施；各业务线漏洞的分布情况，哪些业务目前安全风险较大，是否需要进一步了解等；</p>
 </li>
 </ul>
 <p>针对业务方，可以定期给业务线安全接口人&#x2F;负责人等管理角色推送安全数据以及风险评估报告。</p>
+<p>​                                      </p>
+<p>​                                 </p>
 <blockquote>
 <p>Reference：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ffx1/p/15406732.html">https://www.cnblogs.com/ffx1/p/15406732.html</a></p>
 <p>在自我梳理过后搜到上面这篇博客。很高兴我的前面的大部分想法与作者不谋而合，这件事本身也是对我自己的一种激励～😆</p>
@@ -352,7 +354,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE/" rel="tag"># 安全建设</a>
+              <a href="/tags/%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE-%E5%AE%89%E5%85%A8%E6%84%8F%E8%AF%86/" rel="tag"># 安全建设,安全意识</a>
           </div>
 
         
@@ -423,7 +425,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B2%E6%96%B9%E6%BC%8F%E6%B4%9E%E7%AE%A1%E7%90%86%E5%AE%9E%E8%B7%B5"><span class="nav-number">1.</span> <span class="nav-text">甲方漏洞管理实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE"><span class="nav-number">1.1.</span> <span class="nav-text">基础安全建设</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0"><span class="nav-number">1.1.1.</span> <span class="nav-text">漏洞管理平台</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B5%84%E4%BA%A7%E7%AE%A1%E7%90%86"><span class="nav-number">1.1.2.</span> <span class="nav-text">资产管理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E5%85%A8review%E6%84%8F%E8%AF%86"><span class="nav-number">1.3.</span> <span class="nav-text">安全review意识</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE"><span class="nav-number">1.</span> <span class="nav-text">基础安全建设</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0"><span class="nav-number">1.1.</span> <span class="nav-text">漏洞管理平台</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B5%84%E4%BA%A7%E7%AE%A1%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">资产管理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E5%85%A8review%E6%84%8F%E8%AF%86"><span class="nav-number">3.</span> <span class="nav-text">安全review意识</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
